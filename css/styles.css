@@ -11,7 +11,7 @@ body {
 logo {
     display: block;
     margin: 0 auto 1rem auto;
-    max-width: 200px;
+    max-width: 1in;
   }
 /* Heading font */
 h1, h2, h3 {
