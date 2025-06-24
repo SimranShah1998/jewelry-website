@@ -16,17 +16,17 @@ body {
   /* Heading font */
   h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #153D62; /* updated to logo navy */
+    color: #0b2b45; /* updated deep navy */
   }
   
   /* Header */
   header {
-    background-color: #153D62; /* updated to logo navy */
+    background-color: #0b2b45; /* updated deep navy */
     padding: 1rem;
     text-align: center;
   }
   
-  /* Navigation links and dropdown */
+  /* Navigation links and dropdown button */
   nav a,
   .dropbtn {
     margin: 0 1rem;
@@ -47,7 +47,7 @@ body {
   
   /* Footer */
   footer {
-    background-color: #153D62; /* updated to logo navy */
+    background-color: #0b2b45; /* updated deep navy */
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
@@ -65,17 +65,18 @@ body {
     position: absolute;
     background-color: #e9ecf5;
     min-width: 180px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
   }
   
   .dropdown-content a {
-    color: #153D62; /* updated to logo navy */
+    color: #0b2b45; /* updated deep navy */
     padding: 10px 16px;
     text-decoration: none;
     display: block;
   }
   
+  /* Show dropdown on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }
@@ -85,8 +86,9 @@ body {
   .dropbtn:hover,
   .dropdown-content a:hover {
     color: #fff;
-    background-color: #1d4a72; /* hover variant of #153D62 */
+    background-color: #12344f; /* lighter navy on hover */
     border-radius: 4px;
     transition: all 0.3s ease;
-  }
+  }  
+
   
