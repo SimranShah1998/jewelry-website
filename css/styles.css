@@ -31,7 +31,7 @@ body {
   .dropbtn {
     margin: 0 1rem;
     text-decoration: none;
-    color: #d4af37; /* gold */
+    color: #b67c2f; /* updated gold */
     font-weight: bold;
     background: none;
     border: none;
@@ -51,7 +51,7 @@ body {
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
-    color: #d4af37; /* gold */
+    color: #b67c2f; /* updated gold */
   }
   
   /* Dropdown */
@@ -89,5 +89,3 @@ body {
     border-radius: 4px;
     transition: all 0.3s ease;
   }  
-
-  
