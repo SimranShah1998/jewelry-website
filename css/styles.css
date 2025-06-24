@@ -8,6 +8,11 @@ body {
   color: #2c2c2c;
 }
 
+logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    max-width: 200px;
+  }
 /* Heading font */
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
