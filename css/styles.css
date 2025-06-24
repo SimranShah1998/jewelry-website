@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #f4f6fa; /* soft background */
+    background-color: #f4f6fa;
     color: #2c2c2c;
   }
   
@@ -10,23 +10,23 @@ body {
   .logo {
     display: block;
     margin: 0 auto 1rem auto;
-    max-width: 1in; /* 1 inch wide */
+    max-width: 1in;
   }
   
-  /* Heading font */
+  /* Headings */
   h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #0b2b45; /* updated deep navy */
+    color: #000000; /* black */
   }
   
   /* Header */
   header {
-    background-color: #0b2b45; /* updated deep navy */
+    background-color: #000000; /* black */
     padding: 1rem;
     text-align: center;
   }
   
-  /* Navigation links and dropdown button */
+  /* Navigation */
   nav a,
   .dropbtn {
     margin: 0 1rem;
@@ -39,7 +39,7 @@ body {
     font-size: 1rem;
   }
   
-  /* Main content */
+  /* Main */
   main {
     padding: 2rem;
     text-align: center;
@@ -47,14 +47,14 @@ body {
   
   /* Footer */
   footer {
-    background-color: #0b2b45; /* updated deep navy */
+    background-color: #000000; /* black */
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
     color: #d4af37; /* gold */
   }
   
-  /* Dropdown styles */
+  /* Dropdown */
   .dropdown {
     position: relative;
     display: inline-block;
@@ -65,18 +65,17 @@ body {
     position: absolute;
     background-color: #e9ecf5;
     min-width: 180px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 1;
   }
   
   .dropdown-content a {
-    color: #0b2b45; /* updated deep navy */
+    color: #000000; /* black */
     padding: 10px 16px;
     text-decoration: none;
     display: block;
   }
   
-  /* Show dropdown on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }
@@ -86,7 +85,7 @@ body {
   .dropbtn:hover,
   .dropdown-content a:hover {
     color: #fff;
-    background-color: #12344f; /* lighter navy on hover */
+    background-color: #333333; /* dark gray for hover */
     border-radius: 4px;
     transition: all 0.3s ease;
   }  
