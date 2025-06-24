@@ -1,37 +1,45 @@
-/* Base styles */
-body {
+/* Import Kugile font */
+@font-face {
+    font-family: 'Kugile';
+    src: url('fonts/Kugile.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Base styles */
+  body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     background-color: #f4f6fa;
     color: #2c2c2c;
   }
   
-  /* Logo */
+  /* Logo image */
   .logo {
     display: block;
     margin: 0 auto 1rem auto;
     max-width: 1in;
   }
   
-  /* Headings */
+  /* Headings use Kugile */
   h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    color: #000000; /* black */
+    font-family: 'Kugile', serif;
+    color: #0b2b45; /* updated dark navy-black */
   }
   
-  /* Header */
+  /* Header bar */
   header {
-    background-color: #000000; /* black */
+    background-color: #0b2b45;
     padding: 1rem;
     text-align: center;
   }
   
-  /* Navigation */
+  /* Navigation links and dropdown */
   nav a,
   .dropbtn {
     margin: 0 1rem;
     text-decoration: none;
-    color: #b67c2f; /* updated gold */
+    color: #b67c2f; /* gold */
     font-weight: bold;
     background: none;
     border: none;
@@ -39,7 +47,7 @@ body {
     font-size: 1rem;
   }
   
-  /* Main */
+  /* Main content */
   main {
     padding: 2rem;
     text-align: center;
@@ -47,19 +55,20 @@ body {
   
   /* Footer */
   footer {
-    background-color: #000000; /* black */
+    background-color: #0b2b45;
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
-    color: #b67c2f; /* updated gold */
+    color: #b67c2f;
   }
   
-  /* Dropdown */
+  /* Dropdown container */
   .dropdown {
     position: relative;
     display: inline-block;
   }
   
+  /* Dropdown content box */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -69,23 +78,25 @@ body {
     z-index: 1;
   }
   
+  /* Dropdown link styles */
   .dropdown-content a {
-    color: #000000; /* black */
+    color: #0b2b45;
     padding: 10px 16px;
     text-decoration: none;
     display: block;
   }
   
+  /* Show dropdown on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }
   
-  /* Hover effects */
+  /* Hover effect */
   nav a:hover,
   .dropbtn:hover,
   .dropdown-content a:hover {
     color: #fff;
-    background-color: #333333; /* dark gray for hover */
+    background-color: #1f3a50;
     border-radius: 4px;
     transition: all 0.3s ease;
-  }  
+  }
