@@ -1,4 +1,4 @@
-/* Import Kugile font */
+/* Import the Kugile font */
 @font-face {
     font-family: 'Kugile';
     src: url('fonts/Kugile.woff2') format('woff2');
@@ -14,32 +14,32 @@
     color: #2c2c2c;
   }
   
-  /* Logo image */
+  /* Logo */
   .logo {
     display: block;
     margin: 0 auto 1rem auto;
     max-width: 1in;
   }
   
-  /* Headings use Kugile */
+  /* Heading font */
   h1, h2, h3 {
     font-family: 'Kugile', serif;
-    color: #0b2b45; /* updated dark navy-black */
+    color: #000000;
   }
   
-  /* Header bar */
+  /* Header */
   header {
-    background-color: #0b2b45;
+    background-color: #000000;
     padding: 1rem;
     text-align: center;
   }
   
-  /* Navigation links and dropdown */
+  /* Navigation links and dropdown button */
   nav a,
   .dropbtn {
     margin: 0 1rem;
     text-decoration: none;
-    color: #b67c2f; /* gold */
+    color: #b67c2f;
     font-weight: bold;
     background: none;
     border: none;
@@ -55,20 +55,19 @@
   
   /* Footer */
   footer {
-    background-color: #0b2b45;
+    background-color: #000000;
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
     color: #b67c2f;
   }
   
-  /* Dropdown container */
+  /* Dropdown styles */
   .dropdown {
     position: relative;
     display: inline-block;
   }
   
-  /* Dropdown content box */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -78,25 +77,24 @@
     z-index: 1;
   }
   
-  /* Dropdown link styles */
   .dropdown-content a {
-    color: #0b2b45;
+    color: #000000;
     padding: 10px 16px;
     text-decoration: none;
     display: block;
   }
   
-  /* Show dropdown on hover */
+  /* Hover effects */
   .dropdown:hover .dropdown-content {
     display: block;
   }
   
-  /* Hover effect */
   nav a:hover,
   .dropbtn:hover,
   .dropdown-content a:hover {
     color: #fff;
-    background-color: #1f3a50;
+    background-color: #1f1f1f;
     border-radius: 4px;
     transition: all 0.3s ease;
   }
+  
