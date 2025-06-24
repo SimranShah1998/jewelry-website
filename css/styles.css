@@ -30,3 +30,38 @@ body {
     font-size: 0.9rem;
   }
   
+  /* DROPDOWN MENU */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #b00060;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff8f0;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #5c003d;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Show the dropdown on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }  
