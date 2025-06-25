@@ -1,8 +1,7 @@
 /* === Load Kugile Font === */
 @font-face {
     font-family: 'Kugile';
-    src: url('../fonts/Kugile.woff2') format('woff2'),
-         url('../fonts/Kugile.ttf') format('truetype');
+    src: url('../fonts/Kugile.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
@@ -12,9 +11,9 @@
     font-family: 'Kugile', serif;
   }
   
+  /* === Global Styles === */
   body {
     margin: 0;
-    font-family: 'Kugile', serif;
     background-color: #f4f5f7;
     color: #111;
     text-align: center;
