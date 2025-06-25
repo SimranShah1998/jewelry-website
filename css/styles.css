@@ -1,7 +1,7 @@
 /* === Load Kugile Font === */
 @font-face {
     font-family: 'Kugile';
-    src: url('../fonts/Kugile.woff2') format('woff2');
+    src: url('fonts/Kugile.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
@@ -123,5 +123,4 @@
     color: #b67c2f;
     padding: 20px 0;
     font-size: 14px;
-  }
-  
+  }  
