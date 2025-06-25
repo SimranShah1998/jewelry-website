@@ -7,7 +7,11 @@
     font-style: normal;
   }
   
-  /* === Global Styles === */
+  /* === Global Font === */
+  * {
+    font-family: 'Kugile', serif;
+  }
+  
   body {
     margin: 0;
     font-family: 'Kugile', serif;
