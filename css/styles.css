@@ -135,3 +135,61 @@
     padding: 20px 0;
     font-size: 14px;
   }  
+  /* === Trends Page Layout === */
+.trends-page {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .sidebar {
+    width: 220px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+  }
+  
+  .sidebar h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #b67c2f;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 12px;
+  }
+  
+  .sidebar a {
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  .trend-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: left;
+  }
+  
+  .trend-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #b67c2f;
+  }
+  

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2024 Trends | Kool Concepts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="trend-container">
+    <aside class="sidebar">
+      <h2>2024 Trends</h2>
+      <ul>
+        <li><a href="#" onclick="showContent('trend1')">Western Revival</a></li>
+        <li><a href="#" onclick="showContent('trend2')">Celestial Minimalism</a></li>
+        <li><a href="#" onclick="showContent('trend3')">Statement Gold</a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <div id="trend1" class="trend-content">
+        <h3>Western Revival</h3>
+        <p>Chunky rings, horseshoe charms, and cowboy boot motifs brought the Wild West to the runway in 2024.</p>
+        <img src="images/western.jpg" alt="Western Revival Jewelry">
+      </div>
+      <div id="trend2" class="trend-content" style="display:none;">
+        <h3>Celestial Minimalism</h3>
+        <p>Stars, moons, and galaxy-inspired pieces in delicate gold dominated spring lines.</p>
+        <img src="images/celestial.jpg" alt="Celestial Jewelry">
+      </div>
+      <div id="trend3" class="trend-content" style="display:none;">
+        <h3>Statement Gold</h3>
+        <p>Oversized gold cuffs and bold chains emerged as staple investment pieces in 2024.</p>
+        <img src="images/gold.jpg" alt="Statement Gold">
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function showContent(id) {
+      document.querySelectorAll('.trend-content').forEach(div => {
+        div.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
+</body>
+</html>
