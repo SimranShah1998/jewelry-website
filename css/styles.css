@@ -87,7 +87,11 @@
     font-size: 48px;
     margin-top: 40px;
   }
-  
+  .tagline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+  }  
   main p {
     font-family: Verdana, sans-serif;
     font-size: 18px;
