@@ -72,8 +72,55 @@
   </script>
   
   
+  
 
       </main> 
+
+     <!-- Start of expandable section -->
+     <details class="trend-block" style="margin-top: 40px;">
+        <summary style="font-size: 1.3rem; text-align: center; cursor: pointer; padding: 10px 0;">Modern & Everyday Essentials</summary>
+        <div class="trend-content" style="text-align: center; padding: 20px 40px;">
+          <h3 style="font-size: 1.0rem; margin-bottom: 20px; font-family: Georgia, serif;">
+            Sleek & Modern: Paperclip Chains & Bracelets, Minimalist Bands, Stackable Rings
+          </h3>
+          
+    <!-- Horizontal Scroll with Arrows -->
+    <div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
+    
+        <!-- Scrollable container -->
+        <div id="scroll-container" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+          <img src="images/design-1.png" alt="Design 1" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-2.png" alt="Design 2" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-3.png" alt="Design 3" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-4.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-5.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-6.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-7.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-8.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/design-9.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+        </div>
+      
+        <!-- Left Arrow -->
+        <button onclick="scrollGallery(-300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
+      
+        <!-- Right Arrow -->
+        <button onclick="scrollGallery(300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
+      
+      </div>
+      
+      <!-- JS for Scrolling -->
+      <script>
+        function scrollGallery(amount) {
+          const container = document.getElementById('scroll-container');
+          container.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+      </script>
+      
+      
+      
+    
+          </main> 
+
 
   <footer>
     <p>© 2025 Kool Concepts</p>
