@@ -43,7 +43,7 @@
 <div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
 
     <!-- Scrollable container -->
-    <div id="scroll-container" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+    <div id="scroll-container-1" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
       <img src="images/design-1.png" alt="Design 1" style="max-height: 300px; border-radius: 10px;">
       <img src="images/design-2.png" alt="Design 2" style="max-height: 300px; border-radius: 10px;">
       <img src="images/design-3.png" alt="Design 3" style="max-height: 300px; border-radius: 10px;">
@@ -56,10 +56,10 @@
     </div>
   
     <!-- Left Arrow -->
-    <button onclick="scrollGallery(-300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
+    <button onclick="scrollGallery('scroll-container-1', -300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
   
     <!-- Right Arrow -->
-    <button onclick="scrollGallery(300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
+    <button onclick="scrollGallery('scroll-container-1', 300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
   
   </div>
   
@@ -88,33 +88,35 @@
     <div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
     
         <!-- Scrollable container -->
-        <div id="scroll-container" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
-          <img src="images/design-1.png" alt="Design 1" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-2.png" alt="Design 2" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-3.png" alt="Design 3" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-4.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-5.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-6.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-7.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-8.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
-          <img src="images/design-9.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+        <div id="scroll-container-2" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+          <img src="images/everyday-1.png" alt="Design 1" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-2.png" alt="Design 2" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-3.png" alt="Design 3" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-4.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-5.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-6.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-7.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-8.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-9.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
+          <img src="images/everyday-10.png" alt="Design 4" style="max-height: 300px; border-radius: 10px;">
         </div>
       
         <!-- Left Arrow -->
-        <button onclick="scrollGallery(-300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
+        <button onclick="scrollGallery('scroll-container-2', -300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
       
         <!-- Right Arrow -->
-        <button onclick="scrollGallery(300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
+        <button onclick="scrollGallery('scroll-container-2', 300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
       
       </div>
       
       <!-- JS for Scrolling -->
       <script>
-        function scrollGallery(amount) {
-          const container = document.getElementById('scroll-container');
+        function scrollGallery(containerId, amount) {
+          const container = document.getElementById(containerId);
           container.scrollBy({ left: amount, behavior: 'smooth' });
         }
       </script>
+      
       
       
       
