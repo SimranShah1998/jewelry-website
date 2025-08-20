@@ -441,15 +441,54 @@ practices.
     
     
 
-<!-- Coquette Charm Images -->
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-  <img src="./images/coquette1.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
-  <img src="./images/coquette2.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
-  <img src="./images/coquette3.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
-  <img src="./images/coquette4.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
-  <img src="./images/coquette5.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
-  <img src="./images/coquette6.png" alt="coquette" style="max-width: 400px; border-radius: 10px;">
+<!-- Wrapper -->
+<div style="position:relative; width:100%; max-width:1000px; margin:auto; overflow:hidden;">
+
+  <!-- Scrollable container -->
+  <div id="scroll-container-6"
+       style="display:flex; overflow-x:auto; scroll-behavior:smooth; gap:20px; padding:20px;">
+    <img src="images/coquette1.png" alt="Design 1" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette2.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette3.png" alt="Design 3" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette4.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette5.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette6.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette7.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette8.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette9.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette10.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/coquette11.png" alt="Design 4" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+  </div>
+
+  <!-- Left -->
+  <button type="button"
+          onclick="scrollGalleryBy('scroll-container-6', -500)"
+          style="position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
+    ‹
+  </button>
+
+  <!-- Right -->
+  <button type="button"
+          onclick="scrollGalleryBy('scroll-container-6', 500)"
+          style="position:absolute; right:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
+    ›
+  </button>
 </div>
+
+<script>
+  // Use a unique name so other scripts can't overwrite it
+  function scrollGalleryBy(id, amount) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // Prefer scrollBy; fall back to scrollLeft for broader support
+    if (typeof el.scrollBy === 'function') {
+      el.scrollBy({ left: amount, behavior: 'smooth' });
+    } else {
+      el.scrollLeft += amount;
+    }
+  }
+</script>
+
 </details>
 <!-- End of expandable section -->
   </main>
