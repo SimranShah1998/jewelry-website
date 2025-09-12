@@ -66,7 +66,6 @@ By studying how cultural movements, consumer behavior, and global aesthetics con
            padding: 0; margin: 20px auto; display: inline-block;">
   <li style="font-family: Georgia, serif !important;">Exclusivity: One-of-a-kind treasures that celebrate individuality and scarcity.</li>
   <li style="font-family: Georgia, serif !important;">Indulgence: Warm, dessert-inspired tones such as Chocolate Diamonds and ombré palettes.</li>
-  <li style="font-family: Georgia, serif !important;">Devotion: Romantic motifs with Passion Rubies, garnets, and hidden halos.</li>
   <li style="font-family: Georgia, serif !important;">Serenity: Ocean-inspired hues—opals, teal sapphires, and tourmalines.</li>
 </ul>
 
@@ -168,6 +167,70 @@ By studying how cultural movements, consumer behavior, and global aesthetics con
     <img src="images/brown5.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
     <img src="images/brown6.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;"> 
     <img src="images/brown7.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
+
+  </div>
+
+  <!-- Left -->
+  <button type="button"
+          onclick="scrollGalleryBy('scroll-container-20', -500)"
+          style="position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
+    ‹
+  </button>
+
+  <!-- Right -->
+  <button type="button"
+          onclick="scrollGalleryBy('scroll-container-20', 500)"
+          style="position:absolute; right:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
+    ›
+  </button>
+</div>
+
+<script>
+  // Use a unique name so other scripts can't overwrite it
+  function scrollGalleryBy(id, amount) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // Prefer scrollBy; fall back to scrollLeft for broader support
+    if (typeof el.scrollBy === 'function') {
+      el.scrollBy({ left: amount, behavior: 'smooth' });
+    } else {
+      el.scrollLeft += amount;
+    }
+  }
+</script>
+
+
+<p style="font-size: 1.2rem; font-weight: bold; font-family: Georgia, serif;"">The Serenity Collection</p>
+<p style="font-size: 1rem; font-weight: bold; font-family: Georgia, serif;"">Concept:</p>
+<p style="font-size: 0.95rem; margin-bottom: 20px; font-family: Georgia, serif;" >
+  Jewelry that channels calm, fluidity, and the restorative power of nature. 
+  Opals, teal sapphires, tourmalines, and aquamarines dominate—stones whose shifting colors and watery depths evoke tranquility and flow. 
+  Each jewel feels like a moment of stillness, a wearable breath of serenity.
+  </p
+
+  <ul style="font-size: 1rem; line-height: 1.8; margin-top: 20px; 
+  font-family: Georgia, serif !important; 
+  text-align: center; 
+  list-style-position: inside; 
+  padding: 0; margin: 20px auto; display: inline-block;">
+<li style="font-family: Georgia, serif !important;">Soft curves, flowing lines, and organic silhouettes that mirror waves, ripples, and natural movement.</li>
+<li style="font-family: Georgia, serif !important;">Light, airy settings that allow gemstones to glow with transparency and dimension.</li>
+<li style="font-family: Georgia, serif !important;">Pieces designed to bring harmony—pendants that rest near the heart, rings that balance symmetry and asymmetry, earrings that move like droplets of water.</li>
+</ul>
+
+<!-- Wrapper -->
+<div style="position:relative; width:100%; max-width:1000px; margin:auto; overflow:hidden;">
+
+  <!-- Scrollable container -->
+  <div id="scroll-container-20"
+       style="display:flex; overflow-x:auto; scroll-behavior:smooth; gap:20px; padding:20px;">
+    <img src="images/serenity1.png" alt="Design 1" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/serenity2.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/serenity3.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/serenity4.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
+    <img src="images/serenity5.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;"> 
+    <img src="images/serenity6.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
+    <img src="images/serenity7.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
 
   </div>
 
