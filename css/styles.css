@@ -422,3 +422,31 @@
     padding: 11px 14px;
   }
 }
+.concept-gallery {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.concept-gallery figure {
+  width: 30%;
+  min-width: 220px;
+  margin: 0;
+  text-align: center;
+}
+
+.concept-gallery img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.concept-gallery figcaption {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #333;
+  font-style: italic;
+}
