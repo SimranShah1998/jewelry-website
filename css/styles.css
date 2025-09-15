@@ -193,3 +193,232 @@
     color: #b67c2f;
   }
   
+/* --- Concept Card Styling --- */
+.concept-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 40px auto;
+  max-width: 980px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+}
+
+.concept-card h2 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.concept-tagline {
+  font-style: italic;
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.concept-intro {
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+
+/* spec table */
+.concept-spec {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.concept-spec th {
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  width: 30%;
+  font-size: 15px;
+}
+
+.concept-spec td {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+/* gallery */
+.concept-gallery {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.concept-gallery img {
+  width: 30%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* CTA inside the card */
+.concept-cta {
+  text-align: center;
+}
+
+/* --- Georgia Serif Global Override --- */
+.concept-card,
+.concept-card * {
+  font-family: Georgia, serif !important;
+}
+
+/* --- Concept Card Styling --- */
+.concept-card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 40px auto;
+  max-width: 980px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+}
+
+.concept-card h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.concept-tagline {
+  font-style: italic;
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.concept-intro {
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+
+/* spec table */
+.concept-spec {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.concept-spec th {
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  width: 30%;
+  font-size: 15px;
+}
+
+.concept-spec td {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+/* gallery */
+.concept-gallery {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.concept-gallery img {
+  width: 30%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* CTA inside the card */
+.concept-cta {
+  text-align: center;
+}
+
+/* --- Classy pill container CTA --- */
+.cta-pill {
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  margin: 28px auto;
+  padding: 8px;                       /* outer pill padding */
+  max-width: 980px;                   /* keeps it elegant on wide screens */
+  border-radius: 9999px;              /* pill shape */
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+.cta-pill__inner {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;                    /* wraps on small screens */
+  border-radius: 9999px;
+  padding: 6px;                       /* space around the buttons */
+  background: rgba(0,0,0,0.02);       /* subtle inner tint */
+}
+
+/* Individual pill buttons */
+.cta-pill__btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  background: #111;                   /* elegant dark pill */
+  color: #fff;
+  text-decoration: none;
+  font-size: 15.5px;
+  line-height: 1;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+  white-space: nowrap;
+}
+
+/* Hover / focus states for that “expensive” feel */
+.cta-pill__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  background: #222;
+}
+
+.cta-pill__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(17,17,17,0.25), 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Light variant if you prefer mixed emphasis: just add 'is-ghost' to a link */
+.cta-pill__btn.is-ghost {
+  background: #fff;
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+.cta-pill__btn.is-ghost:hover {
+  background: #f5f5f5;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .cta-pill {
+    padding: 10px;
+    margin: 22px 12px;               /* slight side breathing */
+  }
+  .cta-pill__inner {
+    gap: 8px;
+  }
+  .cta-pill__btn {
+    flex: 1 1 auto;                  /* allow buttons to grow */
+    text-align: center;
+    font-size: 15px;
+    padding: 11px 14px;
+  }
+}
