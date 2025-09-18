@@ -3,290 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2025 Jewelry Trends</title>
+  <title>Home | Kool Concepts</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <!-- Page-scoped styles (won’t touch your header) -->
   <style>
-    .trend-description {
-      font-family: Georgia, serif;
+    :root{
+      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
     }
 
+    /* Georgia across page content only */
+    .kc-page, .kc-page * { font-family: Georgia, serif; }
+
+    /* Centered hero */
+    .kc-page h1{
+      text-align:center;
+      font-size: clamp(28px, 3.4vw, 40px);
+      margin: 18px 0 8px;
+      color:#000;
+    }
+    .kc-page .lead, .kc-page .sublead{
+      text-align:center;
+      margin-left:auto; margin-right:auto;
+      max-width: 820px;
+      line-height:1.6;
+    }
+    .kc-page .lead{ font-size:1.3rem; font-weight:700; margin-bottom:.35rem; }
+    .kc-page .sublead{ font-size:1rem; color:#333; }
+
+    /* CTA pill row */
+    .kc-page .cta-pill{ display:flex; justify-content:center; margin:14px 0 20px; }
+    .kc-page .cta-pill__inner{ display:flex; gap:12px; flex-wrap:wrap; }
+    .kc-page .cta-pill__btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 18px; border:1px solid #222; border-radius:999px; text-decoration:none;
+      font-size:15px; font-weight:600; color:#222; background:#fff; transition:background .15s ease;
+      min-height:44px;
+    }
+    .kc-page .cta-pill__btn:hover{ background:#f7f7f7; }
+    .kc-page .cta-pill__btn:first-child{ background:#111; color:#fff; border-color:#111; }
+    @media (max-width:520px){ .kc-page .cta-pill__btn{ flex:1 1 100%; } }
+
+    /* Gallery grid: 3 → 2 → 1 */
+    .kc-page .gallery{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+      max-width:1120px; margin: 0 auto 26px; padding: 0 16px;
+    }
+    @media (max-width:900px){ .kc-page .gallery{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:560px){ .kc-page .gallery{ grid-template-columns:1fr; } }
+    .kc-page .gallery img{ width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); }
+
+    /* Section divider */
+    .kc-page .divider{ height:1px; background:var(--line); margin:24px auto; max-width:1120px; }
   </style>
-      
 </head>
+
 <body>
+  <!-- Header (unchanged) -->
   <header>
     <img src="images/logo.png" alt="Kool Concepts Logo" class="logo" style="width:350px; height:auto;" />
-
-   <nav>
+    <nav>
       <a href="index.html">Home</a>
-      <a href="whatwecreate.html">Craftsmanship</a>
+      <a href="craftsmanship.html">Craftsmanship</a>
       <div class="dropdown">
         <button class="dropbtn">Market Insights ▼</button>
         <div class="dropdown-content">
           <a href="trends2024.html">2024</a>
           <a href="trends2025.html">2025</a>
           <a href="trends2026.html">2026 (Forecasts)</a>
-        </div>    
-      </div>  
-        <a href="concepts.html">Concepts</a>
+        </div>
       </div>
+      <a href="concepts.html">Concepts</a>
       <a href="about.html">About</a>
     </nav>
   </header>
 
-  <main>
-    <h1>2026 Jewelry Forecast</h1>
-    <p class="trend-description">
-      Every year, Kool Concepts decodes the shifts shaping the jewelry world—looking to the past, tracking the present, and forecasting what’s next.
-For 2026, we’ve gone deeper: analyzing editorials, runway coverage, cultural conversations, and social media signals to understand not just what is trending, but why. 
-By studying how cultural movements, consumer behavior, and global aesthetics converge, we’ve identified the forces shaping jewelry’s future.</p>
+  <!-- Page content (scoped) -->
+  <main class="kc-page">
 
-<p class="trend-description">
-  This page is the result of that research—a curated set of concept designs built from our trend analysis. 
-  Each proposal interprets where jewelry is headed in 2026, blending insight and imagination to show how these movements can be designed, manufactured, and worn today.
-</p>
+    <h1 style="font-family:'Kugile', cursive;">Welcome to Kool Concepts</h1>
 
+    <p class="lead">Your Jewelry Manufacturing &amp; Design Partner</p>
+    <p class="sublead">Trusted by leading retailers worldwide &nbsp;|&nbsp; Over 35 years of combined experience &nbsp;|&nbsp; 10,000+ pieces produced annually</p>
 
+    <p class="sublead" style="max-width:900px;">
+      Trend-driven design. Client-focused creation. Our artisans and analysts unite manufacturing expertise with forward-looking design.
+      From timeless classics to trend-led collections, we deliver jewelry that helps retailers and merchandisers win the next season.
+    </p>
 
-<!-- Start of expandable section Gem-Centric Storytelling -->
-<details class="trend-block" style="margin-top: 40px;">
-  <summary style="font-size: 1.3rem; margin-bottom: 20px; font-family: 'Times New Roman', Times;">Gem-Centric Storytelling</summary>
-  <div class="trend-content" style="text-align: center; padding: 20px 40px;">
-    
-    <p style="font-size: 1rem; line-height: 1.8; margin-top: 20px; font-family: Georgia, serif; text-align: center;">
-  At Kool Concepts, we predict that 2026 will be the year gemstones take center stage. Rare and vivid stones—Paraíba tourmalines, alexandrites, and pink or yellow diamonds—will move from accents to the very heart of design. 
-  Each gemstone becomes more than decoration; it tells a story of exclusivity, indulgence, devotion, or serenity. From oceanic opals to decadent Chocolate Diamonds, jewelry evolves into an emotional narrative—a ring that embodies love, a pendant that radiates calm, a bracelet that declares bold self-expression.
-</p>
+    <div class="divider"></div>
 
-<ul style="font-size: 1rem; line-height: 1.8; margin-top: 20px; 
-           font-family: Georgia, serif !important; 
-           text-align: center; 
-           list-style-position: inside; 
-           padding: 0; margin: 20px auto; display: inline-block;">
-  <li style="font-family: Georgia, serif !important;">Exclusivity: One-of-a-kind treasures that celebrate individuality and scarcity.</li>
-  <li style="font-family: Georgia, serif !important;">Indulgence: Warm, dessert-inspired tones such as Chocolate Diamonds and ombré palettes.</li>
-  <li style="font-family: Georgia, serif !important;">Serenity: Ocean-inspired hues—opals, teal sapphires, and tourmalines.</li>
-</ul>
+    <p class="lead">From Trend to Collection</p>
+    <p class="sublead">Our trend research team identifies tomorrow’s winning designs and translates insights into commercially ready concepts for retail partners.</p>
 
-    
+    <!-- Top CTA -->
+     <!-- call to action -->
+<nav class="cta-pill" aria-label="Concept actions">
+    <div class="cta-pill__inner">
+    <a class="cta-pill__btn" href="craftsmanship.html" aria-label="View our manufacturing capabilities">View Our Capabilities</a>
+    </div>
+    </nav>
 
+    <p class="lead" style="margin-top:8px;">See What We Can Manufacture</p>
 
-    <!-- Key Design Elements -->
-<!-- Key Design Elements -->
-<h3 style="font-size: 1.4rem; margin-bottom: 20px; font-family: Georgia, serif;">Key Elements Across the Collection: </h3>
+    <!-- Gallery -->
+    <section class="gallery" aria-label="Representative designs">
+      <!-- Add/replace with your real images; keep alt text descriptive -->
+      <img src="images/design1.png" alt="Jewelry design 1" loading="lazy" width="900" height="900" />
+      <img src="images/design2.png" alt="Jewelry design 2" loading="lazy" width="900" height="900" />
+      <img src="images/design3.png" alt="Jewelry design 3" loading="lazy" width="900" height="900" />
+      <img src="images/design4.png" alt="Jewelry design 4" loading="lazy" width="900" height="900" />
+      <img src="images/design5.png" alt="Jewelry design 5" loading="lazy" width="900" height="900" />
+      <img src="images/design6.png" alt="Jewelry design 6" loading="lazy" width="900" height="900" />
+      <img src="images/design7.png" alt="Jewelry design 7" loading="lazy" width="900" height="900" />
+      <img src="images/design8.png" alt="Jewelry design 8" loading="lazy" width="900" height="900" />
+      <img src="images/design9.png" alt="Jewelry design 9" loading="lazy" width="900" height="900" />
+      <img src="images/design10.png" alt="Jewelry design 10" loading="lazy" width="900" height="900" />
+      <img src="images/design11.png" alt="Jewelry design 11" loading="lazy" width="900" height="900" />
+      <img src="images/design12.png" alt="Jewelry design 12" loading="lazy" width="900" height="900" />
+      <img src="images/design13.png" alt="Jewelry design 13" loading="lazy" width="900" height="900" />
+      <img src="images/design14.png" alt="Jewelry design 14" loading="lazy" width="900" height="900" />
+      <img src="images/design15.png" alt="Jewelry design 15" loading="lazy" width="900" height="900" />
+      <img src="images/design16.png" alt="Jewelry design 16" loading="lazy" width="900" height="900" />
+      <img src="images/design17.png" alt="Jewelry design 17" loading="lazy" width="900" height="900" />
+      <img src="images/design18.png" alt="Jewelry design 18" loading="lazy" width="900" height="900" />
+      <img src="images/design19.png" alt="Jewelry design 19" loading="lazy" width="900" height="900" />
+      <img src="images/design20.png" alt="Jewelry design 20" loading="lazy" width="900" height="900" />
+      <img src="images/design21.png" alt="Jewelry design 21" loading="lazy" width="900" height="900" />
+      <img src="images/design22.png" alt="Jewelry design 22" loading="lazy" width="900" height="900" />
+      <img src="images/design23.png" alt="Jewelry design 23" loading="lazy" width="900" height="900" />
+      <img src="images/design24.png" alt="Jewelry design 24" loading="lazy" width="900" height="900" />
+    </section>
 
-<p style="font-size: 1.2rem; font-weight: bold; font-family: Georgia, serif;"">The Exclusivity Collection</p>
-<p style="font-size: 1rem; font-weight: bold; font-family: Georgia, serif;"">Concept:</p>
-<p style="font-size: 0.95rem; margin-bottom: 20px; font-family: Georgia, serif;" >
-  One-of-a-kind treasures built around rare, hard-to-source stones like Paraíba tourmalines, alexandrites, and fancy-color diamonds. 
-  Each jewel feels like a personal signature.
-  </p
+    <!-- call to action -->
+<nav class="cta-pill" aria-label="Concept actions">
+    <div class="cta-pill__inner">
+    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
+      Request Line Sheet
+    </a>
+    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
+      Book a 15-min Review
+    </a>
+    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
+      Ask for Costing
+    </a>
+    </div>
+    </nav>
 
-  <ul style="font-size: 1rem; line-height: 1.8; margin-top: 20px; 
-           font-family: Georgia, serif !important; 
-           text-align: center; 
-           list-style-position: inside; 
-           padding: 0; margin: 20px auto; display: inline-block;">
-  <li style="font-family: Georgia, serif !important;">Single-stone showpieces with asymmetric or sculptural settings.</li>
-  <li style="font-family: Georgia, serif !important;">High jewelry inspiration but in wearable silhouettes (cocktail rings, drop pendants, bold studs).</li>
- </ul>
+  </main>
 
-
-<!-- Wrapper -->
-<div style="position:relative; width:100%; max-width:1000px; margin:auto; overflow:hidden;">
-
-  <!-- Scrollable container -->
-  <div id="scroll-container-19"
-       style="display:flex; overflow-x:auto; scroll-behavior:smooth; gap:20px; padding:20px;">
-    <img src="images/ec1.png" alt="Design 1" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/ec2.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/ec3.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/ec4.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/ec5.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;"> 
-    <img src="images/ec6.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
-
-  </div>
-
-  <!-- Left -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-19', -500)"
-          style="position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ‹
-  </button>
-
-  <!-- Right -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-19', 500)"
-          style="position:absolute; right:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ›
-  </button>
-</div>
-
-<script>
-  // Use a unique name so other scripts can't overwrite it
-  function scrollGalleryBy(id, amount) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    // Prefer scrollBy; fall back to scrollLeft for broader support
-    if (typeof el.scrollBy === 'function') {
-      el.scrollBy({ left: amount, behavior: 'smooth' });
-    } else {
-      el.scrollLeft += amount;
-    }
-  }
-</script>
-
-
-<p style="font-size: 1.2rem; font-weight: bold; font-family: Georgia, serif;"">The Indulgence Collection</p>
-<p style="font-size: 1rem; font-weight: bold; font-family: Georgia, serif;"">Concept:</p>
-<p style="font-size: 0.95rem; margin-bottom: 20px; font-family: Georgia, serif;" >
-  Jewelry as dessert—decadent, warm tones, ombré palettes, and tactile luxury. 
-  Chocolate Diamonds, cognac diamonds, and champagne sapphires dominate.
-  </p
-
-  <ul style="font-size: 1rem; line-height: 1.8; margin-top: 20px; 
-  font-family: Georgia, serif !important; 
-  text-align: center; 
-  list-style-position: inside; 
-  padding: 0; margin: 20px auto; display: inline-block;">
-<li style="font-family: Georgia, serif !important;"> Gradient pavé (from golden brown to honey to soft pink).</li>
-<li style="font-family: Georgia, serif !important;">Layered stack rings that feel like layers of cake.</li>
-<li style="font-family: Georgia, serif !important;">Chubby signet rings, bubble bands, and draped necklaces with richness in both color and form.</li>
-</ul>
-
-<!-- Wrapper -->
-<div style="position:relative; width:100%; max-width:1000px; margin:auto; overflow:hidden;">
-
-  <!-- Scrollable container -->
-  <div id="scroll-container-20"
-       style="display:flex; overflow-x:auto; scroll-behavior:smooth; gap:20px; padding:20px;">
-    <img src="images/brown1.png" alt="Design 1" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/brown2.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/brown3.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/brown5.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/brown6.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;"> 
-    <img src="images/brown7.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
-
-  </div>
-
-  <!-- Left -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-20', -500)"
-          style="position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ‹
-  </button>
-
-  <!-- Right -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-20', 500)"
-          style="position:absolute; right:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ›
-  </button>
-</div>
-
-<script>
-  // Use a unique name so other scripts can't overwrite it
-  function scrollGalleryBy(id, amount) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    // Prefer scrollBy; fall back to scrollLeft for broader support
-    if (typeof el.scrollBy === 'function') {
-      el.scrollBy({ left: amount, behavior: 'smooth' });
-    } else {
-      el.scrollLeft += amount;
-    }
-  }
-</script>
-
-
-<p style="font-size: 1.2rem; font-weight: bold; font-family: Georgia, serif;"">The Serenity Collection</p>
-<p style="font-size: 1rem; font-weight: bold; font-family: Georgia, serif;"">Concept:</p>
-<p style="font-size: 0.95rem; margin-bottom: 20px; font-family: Georgia, serif;" >
-  Jewelry that channels calm, fluidity, and the restorative power of nature. 
-  Opals, teal sapphires, tourmalines, and aquamarines dominate—stones whose shifting colors and watery depths evoke tranquility and flow. 
-  Each jewel feels like a moment of stillness, a wearable breath of serenity.
-  </p
-
-  <ul style="font-size: 1rem; line-height: 1.8; margin-top: 20px; 
-  font-family: Georgia, serif !important; 
-  text-align: center; 
-  list-style-position: inside; 
-  padding: 0; margin: 20px auto; display: inline-block;">
-<li style="font-family: Georgia, serif !important;">Soft curves, flowing lines, and organic silhouettes that mirror waves, ripples, and natural movement.</li>
-<li style="font-family: Georgia, serif !important;">Light, airy settings that allow gemstones to glow with transparency and dimension.</li>
-<li style="font-family: Georgia, serif !important;">Pieces designed to bring harmony—pendants that rest near the heart, rings that balance symmetry and asymmetry, earrings that move like droplets of water.</li>
-</ul>
-
-<!-- Wrapper -->
-<div style="position:relative; width:100%; max-width:1000px; margin:auto; overflow:hidden;">
-
-  <!-- Scrollable container -->
-  <div id="scroll-container-20"
-       style="display:flex; overflow-x:auto; scroll-behavior:smooth; gap:20px; padding:20px;">
-    <img src="images/serenity1.png" alt="Design 1" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/serenity2.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/serenity3.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/serenity4.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">
-    <img src="images/serenity5.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;"> 
-    <img src="images/serenity6.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
-    <img src="images/serenity7.png" alt="Design 2" style="flex:0 0 auto; width:260px; height:auto; border-radius:10px;">   
-
-  </div>
-
-  <!-- Left -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-20', -500)"
-          style="position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ‹
-  </button>
-
-  <!-- Right -->
-  <button type="button"
-          onclick="scrollGalleryBy('scroll-container-20', 500)"
-          style="position:absolute; right:0; top:50%; transform:translateY(-50%); z-index:10; background:#555; color:#fff; border:none; padding:8px 10px; cursor:pointer;">
-    ›
-  </button>
-</div>
-
-<script>
-  // Use a unique name so other scripts can't overwrite it
-  function scrollGalleryBy(id, amount) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    // Prefer scrollBy; fall back to scrollLeft for broader support
-    if (typeof el.scrollBy === 'function') {
-      el.scrollBy({ left: amount, behavior: 'smooth' });
-    } else {
-      el.scrollLeft += amount;
-    }
-  }
-</script>
-
-
-
-
-</details>
-
-
-</main>
-  
-
-<footer>
-  <p>© 2025 Kool Concepts</p>
-</footer>
-  <!-- last content / last </details> above this -->
-  <script>
-    function scrollGallery(id, dir) {
-      const track = document.querySelector(`#${id} .gallery-track`);
-      if (!track) return;
-      const firstCard = track.querySelector('img');
-      const step = firstCard ? firstCard.clientWidth + 20 : 300; // 20 = CSS gap
-      track.scrollBy({ left: dir * step, behavior: 'smooth' });
-    }
-  </script>
-</body>
-</html>
-
+  <footer>
+    <p style="text-align:center;color:#666;margin:24px 0;">© 2025 Kool Concepts</p>
+  </footer>
 </body>
 </html>
