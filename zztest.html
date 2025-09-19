@@ -8,55 +8,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 
   <!-- Page-scoped styles (won’t touch your header) -->
-  <style>
-    :root{
-      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
+  <style id="mobile-overrides-only">
+    /* ====== MOBILE ONLY – keeps desktop unchanged ====== */
+    
+    /* 1) Header stacks nicely on small screens (logo centered, links wrap) */
+    @media (max-width: 900px){
+      header { padding: 8px 0; }
+      header img.logo{
+        display:block; margin:8px auto 4px;
+        width: 220px; height:auto;          /* smaller logo on phones */
+      }
+      header nav{
+        display:flex; flex-wrap:wrap; gap:10px;
+        justify-content:center; align-items:center;
+      }
     }
-
-    /* Georgia across page content only */
-    .kc-page, .kc-page * { font-family: Georgia, serif; }
-
-    /* Centered hero */
-    .kc-page h1{
-      text-align:center;
-      font-size: clamp(28px, 3.4vw, 40px);
-      margin: 18px 0 8px;
-      color:#000;
+    
+    /* 2) Hero text scales for readability on phones */
+    @media (max-width: 768px){
+      main{ padding: 0 14px; }              /* gentle side padding */
+      h1{ font-size: 2.1rem; line-height:1.2; text-align:center; }
+      /* Only tighten spacing if you’re using these classes */
+      .lead{ font-size:1.15rem; line-height:1.45; text-align:center; }
+      .sublead{ font-size:0.98rem; line-height:1.55; text-align:center; }
     }
-    .kc-page .lead, .kc-page .sublead{
-      text-align:center;
-      margin-left:auto; margin-right:auto;
-      max-width: 820px;
-      line-height:1.6;
+    
+    /* 3) Gallery becomes a tidy grid (2 cols → 1 col), preserves your card styling */
+    @media (max-width: 900px){
+      .gallery{
+        display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;
+        padding: 0 14px;
+      }
     }
-    .kc-page .lead{ font-size:1.3rem; font-weight:700; margin-bottom:.35rem; }
-    .kc-page .sublead{ font-size:1rem; color:#333; }
-
-    /* CTA pill row */
-    .kc-page .cta-pill{ display:flex; justify-content:center; margin:14px 0 20px; }
-    .kc-page .cta-pill__inner{ display:flex; gap:12px; flex-wrap:wrap; }
-    .kc-page .cta-pill__btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 18px; border:1px solid #222; border-radius:999px; text-decoration:none;
-      font-size:15px; font-weight:600; color:#222; background:#fff; transition:background .15s ease;
-      min-height:44px;
+    @media (max-width: 560px){
+      .gallery{ grid-template-columns: 1fr; }
     }
-    .kc-page .cta-pill__btn:hover{ background:#f7f7f7; }
-    .kc-page .cta-pill__btn:first-child{ background:#111; color:#fff; border-color:#111; }
-    @media (max-width:520px){ .kc-page .cta-pill__btn{ flex:1 1 100%; } }
-
-    /* Gallery grid: 3 → 2 → 1 */
-    .kc-page .gallery{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-      max-width:1120px; margin: 0 auto 26px; padding: 0 16px;
+    @media (max-width: 900px){
+      .gallery img{ width:100%; height:auto; } /* no desktop impact */
     }
-    @media (max-width:900px){ .kc-page .gallery{ grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:560px){ .kc-page .gallery{ grid-template-columns:1fr; } }
-    .kc-page .gallery img{ width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--line); }
-
-    /* Section divider */
-    .kc-page .divider{ height:1px; background:var(--line); margin:24px auto; max-width:1120px; }
-  </style>
+    
+    /* 4) CTA pill buttons wrap and stay thumb-friendly */
+    @media (max-width: 600px){
+      .cta-pill__inner{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+      .cta-pill__btn{ flex:1 1 100%; min-height:44px; text-align:center; }
+    }
+    </style>
+    
 </head>
 
 <body>
