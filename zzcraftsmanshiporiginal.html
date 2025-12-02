@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Craftsmanship | Kool Concepts</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
+      /* Adjustable defaults */
+      --row-img-width: 320px;    /* main row image width (changed by top slider) */
+      --modal-img-maxh: 78vh;    /* popup image max-height (changed by popup slider) */
+    }
+
+    /* Georgia everywhere on this page */
+    html, body, header, nav, footer, h1, h2, h3, h4, p, a, button, input, summary, details,
+    .dropbtn, .dropdown, .dropdown-content, .trend-description { font-family: Georgia, serif !important; }
+
+    body { color:var(--ink); margin:0; }
+    .no-scroll{ overflow:hidden; }
+
+    .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+    h1{font-size:clamp(28px,3.4vw,40px);margin:18px 0 4px}
+    .lede{max-width:860px;color:var(--muted);margin:.5rem 0 1.25rem}
+
+    /* Sticky index + toolbar */
+    .indexbar{position:sticky;top:0;background:#fff;border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);z-index:20;margin-top:8px}
+    .indexwrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;padding:.6rem 0}
+    nav.index{display:flex;flex-wrap:wrap;gap:.5rem}
+    nav.index a{display:inline-block;padding:.35rem .7rem;border:1px solid #ddd;border-radius:999px;
+      text-decoration:none;font-size:.9rem}
+    .toolbar{display:flex;align-items:center;gap:.5rem;color:#444}
+    .toolbar input[type="range"]{width:180px}
+
+    /* Trend blocks */
+    .block{margin:2.25rem 0}
+    .kicker{color:var(--muted);font-size:.95rem}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+    .pills{margin:.5rem 0 .25rem}
+    .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;
+      padding:.2rem .55rem;margin:.2rem .35rem .2rem 0;font-size:.85rem}
+    .proof details{border:1px solid var(--line);background:#fafafa;border-radius:12px;padding:.75rem 1rem}
+
+    /* MAIN IMAGE ROW: 4 across (scrolls on small screens) */
+    .imgs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
+    .imgs img{flex:0 0 var(--row-img-width); max-width:var(--row-img-width);
+      height:auto;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+
+    .cta a{display:inline-block;margin-top:.75rem;padding:.5rem .85rem;border:1px solid #222;border-radius:10px;text-decoration:none}
+    .div{height:1px;background:var(--line);margin:2rem 0}
+    .morebtn{margin-top:10px;display:inline-block;padding:.45rem .75rem;border:1px solid #222;border-radius:10px;
+      background:#fff;cursor:pointer}
+
+    footer{color:#666;margin:24px 0;text-align:center}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+
+    /* ===== Lightbox (DIV-based) ===== */
+    .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none}
+    .lb.is-open{display:block}
+    .lb-inner{position:absolute;inset:0;display:flex;flex-direction:column}
+    .lb-topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:#eee}
+    .lb-close{background:transparent;border:1px solid #666;color:#eee;border-radius:8px;padding:.35rem .6rem;cursor:pointer}
+    .lb-canvas{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px}
+    .lb-img{max-height:var(--modal-img-maxh);max-width:92vw;border-radius:12px;border:1px solid #333}
+    .lb-arrow{background:rgba(255,255,255,.1);border:1px solid #666;color:#eee;border-radius:10px;
+      padding:.5rem .7rem;cursor:pointer}
+    .lb-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-top:1px solid #333;background:rgba(0,0,0,.2)}
+    .lb-thumbs img{height:90px;border-radius:8px;border:2px solid transparent;cursor:pointer}
+    .lb-thumbs img.active{border-color:#fff}
+
+    .lb-ctl{display:flex;align-items:center;gap:.5rem;color:#ddd}
+    .lb-ctl input[type="range"]{width:180px}
+    /* Center heading + intro paragraphs */
+h1 {
+  text-align: center;
+}
+
+.trend-description {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px; /* keeps lines readable */
+}
+/* === Show 3 images per row (no scrolling) === */
+.wrap .imgs{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+  overflow-x: visible;   /* override old overflow-x:auto */
+}
+
+/* Override the old flex-based sizes so grid fills neatly */
+.wrap .imgs img{
+  flex: none !important;
+  max-width: 100% !important;
+  width: 100%;
+  height: auto;
+}
+
+/* Hide anything after the 3rd image in the row */
+.wrap .imgs img:nth-child(n+4){
+  display:none;
+}
+
+/* Optional: on small screens show 2 without scroll
+@media (max-width: 700px){
+  .wrap .imgs{ grid-template-columns: repeat(2, 1fr); }
+  .wrap .imgs img:nth-child(n+3){ display:none; }
+}
+*/
+/* === Hard-center each section and balance columns === */
+.wrap.block{
+  max-width: 1040px;         /* narrower than the page container */
+  margin-left: auto;
+  margin-right: auto;        /* centers the whole section under the heading */
+}
+
+.wrap.block .grid{
+  grid-template-columns: 1fr 1fr;  /* equal halves so it doesn't lean left */
+  justify-content: center;         /* center the two tracks */
+  gap: 24px;
+}
+
+/* Mobile: stack neatly */
+@media (max-width: 900px){
+  .wrap.block{ max-width: 680px; }
+  .wrap.block .grid{ grid-template-columns: 1fr; justify-items: center; }
+}
+
+nav .dropbtn {
+  font-weight: 600 !important;
+}
+
+  </style>
+</head>
+<body>
+
+
+  <!-- Header (unchanged) -->
+  <header>
+    <img src="images/logo.png" alt="Kool Concepts Logo" class="logo" style="width:350px; height:auto;" />
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="craftsmanship.html">Craftsmanship</a>
+      <div class="dropdown">
+        <button class="dropbtn">Market Insights ▼</button>
+        <div class="dropdown-content">
+          <a href="trends2024.html">2024</a>
+          <a href="trends2025.html">2025</a>
+          <a href="trends2026.html">2026</a>
+        </div>
+      </div>
+      <a href="concepts.html">Concepts</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+    
+
+      <main>
+
+  <p style="font-size: 2.75rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Craftsmanship</p>
+  <p class="subtagline">
+  <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;""> Kool Concepts, craftsmanship is more than creating jewelry — it’s a process of precision. From the first pencil sketch to detailed CAD modeling, from wax prototypes to final stone setting, we bring every idea to life with care and expertise.
+  <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">We are a full-stack jewelry manufacturer—design studio + CAD + casting + setting + QC—built for retail scale. Typical lead time: 3–5 weeks; MOQs from 30–100 units per SKU depending on complexity</p>
+
+
+<!-- call to action -->
+<nav class="cta-pill" aria-label="Concept actions">
+  <div class="cta-pill__inner">
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
+    Request Line Sheet
+  </a>
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
+    Book a 15-min Review
+  </a>
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
+    Ask for Costing
+  </a>
+  </div>
+  </nav>
+
+
+  <p style="font-size:1.5rem; line-height:1.6; font-weight:bold; font-family:Georgia, serif; margin-bottom:25px;">
+   Process Timeline Visual
+  </p>
+
+
+
+  <section class="process-band" aria-label="Our process">
+    <div class="process-step">
+      <h3>Sketch</h3>
+      <p>Pencil ideation; proportions and motif decisions.</p>
+    </div>
+    <div class="process-step">
+      <h3>CAD</h3>
+      <p>Precise 3D modeling; prong, seat, and tolerance checks.</p>
+    </div>
+    <div class="process-step">
+      <h3>Wax & Cast</h3>
+      <p>Wax prototype and casting in chosen alloy; polish prep.</p>
+    </div>
+    <div class="process-step">
+      <h3>Set & QC</h3>
+      <p>Stone setting, finishing, plating; dimensional QA.</p>
+    </div>
+  </section>
+  
+
+<img src="images/mockup1.png" alt="Design 1" style="max-height: 300px; border-radius: 15px;">
+
+
+
+
+<section class="specs">
+  <h3>Production Specs at a Glance</h3>
+  <ul style="font-size: 1rem; line-height: 1.6; margin-top: 20px; 
+  font-family: Georgia, serif !important; 
+  text-align: center; 
+  list-style-position: inside; 
+  padding: 0; margin: 20px auto; display: inline-block;">
+<li style="font-family: Georgia, serif !important;">MOQs: 30–100 units per SKU (complexity-based)</li>
+<li style="font-family: Georgia, serif !important;">Typical lead time: 3–5 weeks</li>
+<li style="font-family: Georgia, serif !important;">10K / 14K / 18K Gold, Sterling Silver, GOS</li>
+<li style="font-family: Georgia, serif !important;">Natural & Lab Diamonds, Colored Gemstones, Pearl</li>
+<li style="font-family: Georgia, serif !important;">High polish, satin, rhodium, yellow/rose vermeil</li>
+</ul>
+</section>
+
+<style>
+.specs {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  padding: 20px 24px;
+  border-radius: 12px;
+  margin: 32px auto;
+  max-width: 800px;
+  font-family: Georgia, serif;
+}
+
+.specs h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+  font-family: Georgia, serif;
+}
+
+.specs ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.specs li {
+  margin-bottom: 8px;
+}
+</style>
+
+
+
+             
+<p style="font-size:1.5rem; line-height:1.6; font-weight:bold; font-family:Georgia, serif; margin-bottom:25px;">
+  Explore the Design Styles We Craft:
+</p>
+      <p style="font-size: 1.3rem; line-height: 1.2; font-family: Georgia, serif;"">Classic Heritage:</p>  
+      <h3 style="font-size: 1.0rem; margin-bottom: 20px; font-family: Georgia, serif;">
+        Classics: Expertise in vintage motifs—Art Deco filigree, Victorian Silhouettes, Edwardian-Inspired Milgrain—Executed with Modern Precision.
+      </h3>
+      
+
+<!-- Horizontal Scroll with Arrows -->
+
+<div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
+
+    <!-- Scrollable container -->
+    <div id="scroll-container-1" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+
+
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-1.png" alt="Golden Filigree Teardrop Earrings" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Golden Filigree Teardrop Earrings</figcaption>
+      </figure>
+    
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-2.png" alt="Art Deco Fan Drop Earrings" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Art Deco Fan Drop Earrings</figcaption>
+      </figure>
+
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-3.png" alt="Geometric Deco Statement Earrings" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Geometric Deco Statement Earrings</figcaption>
+      </figure>
+    
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-4.png" alt="Golden Vine Cuff Bracelet" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Golden Vine Cuff Bracelet</figcaption>
+      </figure>
+
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-5.png" alt="Diamond Lattice Teardrop Earrings" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Diamond Lattice Teardrop Earrings</figcaption>
+      </figure>
+    
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-6.png" alt="Deco Petal Drop Earrings" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Deco Petal Drop Earrings</figcaption>
+      </figure>
+
+
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-7.png" alt="Vintage Oval Diamond Cocktail Ring" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Vintage Oval Diamond Cocktail Ring</figcaption>
+      </figure>
+    
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-8.png" alt="Art Deco Petal Pendant Necklace" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Art Deco Pendant Necklace</figcaption>
+      </figure>
+
+      <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+        <img src="images/design-9.png" alt="Golden Mandala Diamond Pendant" style="max-height:300px; border-radius:10px;">
+        <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Golden Mandala Diamond Pendant</figcaption>
+      </figure>
+    </div>
+  
+    <!-- Left Arrow -->
+    <button onclick="scrollGallery('scroll-container-1', -300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
+  
+    <!-- Right Arrow -->
+    <button onclick="scrollGallery('scroll-container-1', 300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
+  
+  </div>
+  
+  <!-- JS for Scrolling -->
+  <script>
+    function scrollGallery(amount) {
+      const container = document.getElementById('scroll-container');
+      container.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  </script>
+  
+  
+  
+
+      </main> 
+
+  
+          <p style="font-size: 1.3rem; line-height: 1.3; font-family: Georgia, serif;"">Modern Icons:</p>  
+          <h3 style="font-size: 1.0rem; margin-bottom: 20px; font-family: Georgia, serif;">
+            Modern: Minimalist Chains, Stackable Rings, and Everyday Essentials Designed for Wearability and Efficient Scaling.
+          </h3>
+          
+    <!-- Horizontal Scroll with Arrows -->
+    <div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
+    
+        <!-- Scrollable container -->
+        <div id="scroll-container-2" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-1.png" alt="Diamond Link Drop Earrings" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Diamond Link Drop Earrings</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-2.png" alt="Floral Diamond Band" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Floral Diamond Band</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-3.png" alt="Bezel Station Necklace" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Bezel Station Necklace</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-4.png" alt="Gold Bead Bangles" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Gold Bead Bangles</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-5.png" alt="Diamond Link Bracelet" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Diamond Link Bracelet</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-6.png" alt="Stacked Mixed-Metal Rings" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Stacked Mixed-Metal Rings</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-7.png" alt="Diamond Cross Band" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Diamond Cross Band</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-8.png" alt="Trinity Rolling Ring" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Trinity Rolling Ring</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-9.png" alt="Golden Love Knot Ring" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Golden Love Knot Ring</figcaption>
+          </figure>
+
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/everyday-10.png" alt="Sculpted Gold Hoops" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Sculpted Gold Hoops</figcaption>
+          </figure> 
+        </div>
+      
+        <!-- Left Arrow -->
+        <button onclick="scrollGallery('scroll-container-2', -300)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10094;</button>
+      
+        <!-- Right Arrow -->
+        <button onclick="scrollGallery('scroll-container-2', 300)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px;">&#10095;</button>
+      
+      </div>
+      
+      <!-- JS for Scrolling -->
+      <script>
+        function scrollGallery(containerId, amount) {
+          const container = document.getElementById(containerId);
+          container.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+      </script>
+      
+     </main> 
+    </details> <!-- CLOSE Modern & Everyday Essentials -->
+          
+
+      <p style="font-size: 1.3rem; line-height: 1.3; font-family: Georgia, serif;"">Trendy:</p>  
+      <h3 style="font-size: 1.0rem; margin-bottom: 20px; font-family: Georgia, serif;">
+        Latest Trends: Charms, Coquette Inspired, Zodiac & Celestial Themes, Spiritual & Mystical.
+      </h3>
+    </div>
+  
+    <!-- Horizontal Scroll with Arrows -->
+    <div style="position: relative; width: 100%; max-width: 1000px; margin: auto; overflow: hidden;">
+  
+      <!-- Scrollable container (unique ID) -->
+      <div id="scroll-container-3" 
+           style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px;">
+
+           
+           <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-1.png" alt="Bow & Heart Drop Earrings" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Bow & Heart Drop Earrings</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-2.png" alt="Cowboy Boot Charm" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Cowboy Boot Charm</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-3.png" alt="Aries Zodiac Stud" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Aries Zodiac Stud</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-4.png" alt="Bow Accent Ring" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Bow Accent Ring</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-5.png" alt="Leo Zodiac Stud" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Leo Zodiac Stud</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-6.png" alt="Witch Hat Charm" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Witch Hat Charm</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-7.png" alt="Heart Lock Hoop Earrings" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Heart Lock Hoop Earrings</figcaption>
+          </figure>
+        
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-8.png" alt="Diamond Butterfly Studs" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Diamond Butterfly Studs</figcaption>
+          </figure>
+    
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-9.png" alt="Bull Skull Charm" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Bull Skull Charm</figcaption>
+          </figure>
+
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-10.png" alt="Evil Eye Pendant" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Evil Eye Pendant</figcaption>
+          </figure> 
+          <figure style="text-align:center; font-family:Georgia, serif; max-width:220px; margin:0;">
+            <img src="images/trendy-11.png" alt="Ribbon Bow Earrings" style="max-height:300px; border-radius:10px;">
+            <figcaption style="margin-top:6px; font-size:14px; font-family:Georgia, serif;">Ribbon Bow Earrings</figcaption>
+          </figure> 
+      </div>
+  
+      <!-- Left Arrow -->
+      <button onclick="scrollGallery('scroll-container-3', -300)" 
+              style="position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+                     background-color: rgba(0,0,0,0.5); color: white; border: none;
+                     padding: 10px; cursor: pointer; z-index: 1; font-size: 24px;">
+        &#10094;
+      </button>
+  
+      <!-- Right Arrow -->
+      <button onclick="scrollGallery('scroll-container-3', 300)" 
+              style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+                     background-color: rgba(0,0,0,0.5); color: white; border: none;
+                     padding: 10px; cursor: pointer; z-index: 1; font-size: 24px;">
+        &#10095;
+      </button>
+    </div>
+  </details>
+  
+
+  <!-- call to action -->
+<nav class="cta-pill" aria-label="Concept actions">
+  <div class="cta-pill__inner">
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
+    Request Line Sheet
+  </a>
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
+    Book a 15-min Review
+  </a>
+  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
+    Ask for Costing
+  </a>
+  </div>
+  </nav>
+
+          
+
+
+  <footer>
+    <p>© 2025 Kool Concepts</p>
+  </footer>
+</body>
+</html>

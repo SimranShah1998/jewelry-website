@@ -6,9 +6,9 @@
     /* Luxury Gold Hover Overwrite — no need to touch main CSS */
     .cta-pill__btn:hover {
       background: #b89a5e !important;   /* soft luxury gold */
-      color: #fff !important;            /* clean white text */
-      border-color: #b89a5e !important;  /* seamless border */
-      transition: 0.25s ease-in-out;     /* smooth luxury fade */
+      color: #fff !important;           /* clean white text */
+      border-color: #b89a5e !important; /* seamless border */
+      transition: 0.25s ease-in-out;    /* smooth luxury fade */
     }
   </style>
   
@@ -40,7 +40,6 @@
       margin: 0;
     }
 
-    /* Shared layout bits from other pages (safe to keep) */
     .wrap {
       max-width: 1120px;
       margin: 0 auto;
@@ -53,7 +52,7 @@
       text-align: center;
     }
 
-    /* ===== HOMEPAGE-STYLE HERO FOR CRAFTSMANSHIP ===== */
+    /* ===== HERO ===== */
     .hero-wrapper {
       padding: 40px 0 10px;
     }
@@ -100,7 +99,7 @@
 
     .section-title {
       font-weight: 600;
-      color: #b89a5e; /* gold tone */
+      color: #b89a5e;
       margin-top: 20px;
       margin-bottom: 4px;
     }
@@ -121,42 +120,48 @@
       to { opacity: 1; }
     }
 
-    /* ===== Process band ===== */
-    .process-band {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
+    /* ===== PROCESS GRID (TEXT + IMAGE UNDERNEATH) ===== */
+    .process-wrapper {
+      padding: 10px 16px 0;
+    }
+
+    .process-grid {
       max-width: 900px;
-      margin: 20px auto 10px;
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      background: #fafafa;
+      margin: 0 auto 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+      text-align: center;
     }
 
     .process-step h3 {
       margin: 0 0 6px;
       font-size: 1rem;
+      font-weight: 700;
     }
 
     .process-step p {
       margin: 0;
       font-size: 0.9rem;
       line-height: 1.5;
+      color: #555;
     }
 
-    .process-mockup {
-      text-align: center;
-      margin: 12px 0 0;
+    .process-img {
+      width: 100%;
+      aspect-ratio: 3 / 4.2;   /* portrait tiles, like your other gallery */
+      object-fit: cover;
+      border-radius: 18px;
     }
 
-    .process-mockup img {
-      max-height: 300px;
-      border-radius: 15px;
-      width: auto;
-    }
-
-    /* ===== Specs card ===== */
+    /* ===== SPECS – centered card + centered bullet block ===== */
     .specs {
       background: #fafafa;
       border: 1px solid #e0e0e0;
@@ -164,7 +169,7 @@
       border-radius: 12px;
       margin: 32px auto;
       max-width: 800px;
-      text-align: left;
+      text-align: center;    /* center heading & wrapper */
     }
 
     .specs h3 {
@@ -176,8 +181,11 @@
     }
 
     .specs ul {
-      margin: 0;
-      padding-left: 20px;
+      margin: 0 auto;              /* center the list block */
+      padding-left: 0;             /* remove default left padding */
+      list-style-position: inside; /* bullets stay with text */
+      display: inline-block;       /* allows centering as a block */
+      text-align: left;            /* bullet text stays readable */
       font-size: 16px;
       line-height: 1.6;
     }
@@ -188,8 +196,8 @@
 
     /* ===== Style sections with horizontal gallery ===== */
     .style-section {
-      max-width: 1000px;
-      margin: 36px auto;
+      max-width: 1500px;
+      margin: 5px auto;
       padding: 0 20px 10px;
       text-align: center;
     }
@@ -202,7 +210,7 @@
     .scroll-shell {
       position: relative;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1200px;      /* wider gallery */
       margin: 0 auto;
       overflow: hidden;
     }
@@ -211,25 +219,26 @@
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
-      gap: 20px;
-      padding: 18px 20px;
+      gap: 24px;              /* more space between cards */
+      padding: 18px 10px;
     }
 
     .scroll-item {
       text-align: center;
-      max-width: 220px;
+      max-width: 200px;       /* wider cards */
       margin: 0;
       flex: 0 0 auto;
     }
 
     .scroll-item img {
-      max-height: 300px;
-      border-radius: 10px;
-      width: auto;
+      width: 100%;
+      aspect-ratio: 2 / 3;    /* tall rectangular tiles */
+      object-fit: cover;
+      border-radius: 18px;
     }
 
     .scroll-item figcaption {
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 14px;
     }
 
@@ -237,17 +246,17 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.55);
       color: white;
       border: none;
-      padding: 10px;
+      padding: 10px 12px;
       cursor: pointer;
       font-size: 20px;
       z-index: 1;
     }
 
-    .scroll-arrow.left { left: 0; }
-    .scroll-arrow.right { right: 0; }
+    .scroll-arrow.left { left: 4px; }
+    .scroll-arrow.right { right: 4px; }
 
     /* CTA pill (same as home) */
     .cta-pill {
@@ -274,10 +283,22 @@
       background: #fff;
     }
 
+    @media (max-width: 992px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 700px) {
       .scroll-arrow {
         font-size: 18px;
-        padding: 8px;
+        padding: 8px 10px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .process-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -314,13 +335,13 @@
         <p class="hero-subtitle">Where design, engineering, and manufacturing meet.</p>
 
         <p class="hero-intro">
-          Kool Concepts, craftsmanship is more than creating jewelry — it’s a process of precision. 
-          From the first pencil sketch to detailed CAD modeling,from wax prototypes to final stone setting, 
+          At Kool Concepts, craftsmanship is more than creating jewelry — it’s a process of precision.
+          From the first pencil sketch to detailed CAD modeling, from wax prototypes to final stone setting,
           we bring every idea to life with care and expertise.
         </p>
 
         <p class="hero-meta">
-          We are a full-stack jewelry manufacturer—design studio + CAD + casting + setting + QC—built for retail scale. 
+          We are a full-stack jewelry manufacturer—design studio + CAD + casting + setting + QC—built for retail scale.
           Typical lead time: 3–5 weeks; MOQs from 30–100 units per SKU depending on complexity.
         </p>
 
@@ -337,28 +358,48 @@
           </p>
         </div>
 
-        <section class="process-band" aria-label="Our process">
-          <div class="process-step">
-            <h3>Sketch</h3>
-            <p>Pencil ideation, motif exploration, and proportion decisions.</p>
-          </div>
-          <div class="process-step">
-            <h3>CAD</h3>
-            <p>Precise 3D modeling with prong, seat, and tolerance checks built in.</p>
-          </div>
-          <div class="process-step">
-            <h3>Wax &amp; Cast</h3>
-            <p>Wax prototypes and casting in chosen alloy, prepped for finishing.</p>
-          </div>
-          <div class="process-step">
-            <h3>Set &amp; QC</h3>
-            <p>Stone setting, finishing, plating, and dimensional quality assurance.</p>
+        <!-- text + matching image under each step -->
+        <section class="process-wrapper" aria-label="Our process">
+          <div class="process-grid">
+
+            <!-- SKETCH -->
+            <div class="process-step">
+              <div>
+                <h3>Sketch</h3>
+                <p>Pencil ideation, motif exploration, and proportion decisions.</p>
+              </div>
+              <img src="images/sketch.png" alt="Sketch stage" class="process-img">
+            </div>
+
+            <!-- CAD -->
+            <div class="process-step">
+              <div>
+                <h3>CAD</h3>
+                <p>Precise 3D modeling with prong, seat, and tolerance checks built in.</p>
+              </div>
+              <img src="images/cad.png" alt="CAD stage" class="process-img">
+            </div>
+
+            <!-- WAX -->
+            <div class="process-step">
+              <div>
+                <h3>Wax &amp; Cast</h3>
+                <p>Wax prototypes and casting in chosen alloy, prepped for finishing.</p>
+              </div>
+              <img src="images/wax.png" alt="Wax and casting stage" class="process-img">
+            </div>
+
+            <!-- SET & QC -->
+            <div class="process-step">
+              <div>
+                <h3>Set &amp; QC</h3>
+                <p>Stone setting, finishing, plating, and dimensional quality assurance.</p>
+              </div>
+              <img src="images/setqc.png" alt="Setting and quality control stage" class="process-img">
+            </div>
+
           </div>
         </section>
-
-        <div class="process-mockup">
-          <img src="images/mockup1.png" alt="Craftsmanship Process Mockup">
-        </div>
 
         <!-- SPECS -->
         <section class="specs">
@@ -382,7 +423,6 @@
             reliability in production.
           </p>
 
-    
           <div class="scroll-shell">
             <div id="scroll-classic" class="scroll-track">
               <figure class="scroll-item">
@@ -435,8 +475,6 @@
             <button class="scroll-arrow right" onclick="scrollGallery('scroll-classic', 300)">&#10095;</button>
           </div>
         </section>
-
-     
 
         <section class="style-section">
           <h2 class="section-title">Modern Icons</h2>
@@ -579,7 +617,7 @@
     </section>
   </main>
 
-  <!-- CTA (same pattern as home, at bottom) -->
+  <!-- CTA -->
   <nav class="cta-pill" aria-label="Concept actions">
     <div class="cta-pill__inner">
       <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
