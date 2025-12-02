@@ -465,7 +465,6 @@
 @media (max-width: 900px){ .process-band { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px){ .process-band { grid-template-columns: 1fr; } }
 
-<style>
 /* CTA row layout */
 .cta-row{
   display:flex; flex-wrap:wrap; gap:12px; 
@@ -503,5 +502,30 @@
   .cta-row{ gap:10px }
   .cta-row a{ flex:1 1 calc(50% - 10px); text-align:center; padding:12px 14px }
 }
-</style>
 
+/* ===== Global page fade-in ===== */
+body {
+  opacity: 0;
+  animation: page-fade-in 0.9s ease-out forwards;
+}
+
+/* Keyframes for the fade (with a slight slide up) */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
