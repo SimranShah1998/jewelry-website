@@ -185,6 +185,110 @@
         nav .dropbtn {
   font-weight: 600 !important;
 }
+        /* ======================
+           MOBILE OVERRIDES
+           ====================== */
+
+        /* Tablets / small laptops */
+        @media (max-width: 900px) {
+
+/* Let the nav breathe + wrap */
+nav {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+header img {
+  height: 65px;
+}
+
+.hero-content {
+  padding: 0 16px;
+}
+
+.hero-title {
+  font-size: clamp(28px, 3.4vw, 36px);
+}
+
+.hero-intro,
+.section p {
+  font-size: 0.98rem;
+}
+
+/* Make gallery a bit tighter */
+.gallery {
+  gap: 16px;
+}
+}
+
+/* Phones */
+@media (max-width: 600px) {
+
+header {
+  padding: 8px 0;
+}
+
+header img {
+  height: 56px;
+}
+
+/* Stack nav links vertically */
+nav {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+nav a,
+.dropbtn {
+  font-size: 16px;
+}
+
+.hero-wrapper {
+  padding-top: 24px;
+}
+
+.hero-content {
+  padding: 0 12px;
+}
+
+.hero-title {
+  font-size: 26px;
+}
+
+.hero-meta {
+  font-size: 0.9rem;
+}
+
+.section {
+  margin: 16px auto;
+}
+
+.section-title {
+  font-size: 1.05rem;
+}
+
+/* Force gallery into 1 column so each image is big */
+.gallery {
+  grid-template-columns: 1fr;
+  max-width: 480px;
+  margin: 24px auto 16px;
+}
+
+.gallery img {
+  border-radius: 12px;
+}
+
+.cta-pill__inner {
+  flex-direction: column;
+}
+
+.cta-pill__btn {
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
+}
+}
 
 
     </style>
