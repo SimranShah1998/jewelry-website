@@ -1,146 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2025 Jewelry Trends | Kool Concepts</title>
+
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
   <style>
-    :root{
-      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
-      /* Adjustable defaults */
-      --row-img-width: 320px;    /* main row image width (changed by top slider) */
-      --modal-img-maxh: 78vh;    /* popup image max-height (changed by popup slider) */
+    :root {
+      --ink: #222;
+      --muted: #666;
+      --line: #eaeaea;
+      --chip: #f7f7f7;
+      --row-img-width: 320px;
     }
 
     /* Georgia everywhere on this page */
     html, body, header, nav, footer, h1, h2, h3, h4, p, a, button, input, summary, details,
-    .dropbtn, .dropdown, .dropdown-content, .trend-description { font-family: Georgia, serif !important; }
+    .dropbtn, .dropdown, .dropdown-content, .trend-description {
+      font-family: Georgia, serif !important;
+    }
 
-    body { color:var(--ink); margin:0; }
-    .no-scroll{ overflow:hidden; }
+    body {
+      color: var(--ink);
+      margin: 0;
+    }
 
-    .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-    h1{font-size:clamp(28px,3.4vw,40px);margin:18px 0 4px}
-    .lede{max-width:860px;color:var(--muted);margin:.5rem 0 1.25rem}
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
 
-    /* Sticky index + toolbar */
-    .indexbar{position:sticky;top:0;background:#fff;border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);z-index:20;margin-top:8px}
-    .indexwrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;padding:.6rem 0}
-    nav.index{display:flex;flex-wrap:wrap;gap:.5rem}
-    nav.index a{display:inline-block;padding:.35rem .7rem;border:1px solid #ddd;border-radius:999px;
-      text-decoration:none;font-size:.9rem}
-    .toolbar{display:flex;align-items:center;gap:.5rem;color:#444}
-    .toolbar input[type="range"]{width:180px}
+    h1 {
+      font-size: clamp(28px, 3.4vw, 40px);
+      margin: 18px 0 4px;
+      text-align: center;
+    }
+
+    .lede {
+      max-width: 860px;
+      color: var(--muted);
+      margin: 0.5rem auto 1.25rem;
+    }
+
+    .trend-description {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 700px;
+    }
+
+    /* Sticky index */
+    .indexbar {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      z-index: 20;
+      margin-top: 8px;
+    }
+
+    .indexwrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+    }
+
+    nav.index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    nav.index a {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #444;
+    }
 
     /* Trend blocks */
-    .block{margin:2.25rem 0}
-    .kicker{color:var(--muted);font-size:.95rem}
-    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-    .pills{margin:.5rem 0 .25rem}
-    .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;
-      padding:.2rem .55rem;margin:.2rem .35rem .2rem 0;font-size:.85rem}
-    .proof details{border:1px solid var(--line);background:#fafafa;border-radius:12px;padding:.75rem 1rem}
+    .block {
+      margin: 2.25rem 0;
+    }
 
-    /* MAIN IMAGE ROW: 4 across (scrolls on small screens) */
-    .imgs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
-    .imgs img{flex:0 0 var(--row-img-width); max-width:var(--row-img-width);
-      height:auto;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+    .kicker {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-    .cta a{display:inline-block;margin-top:.75rem;padding:.5rem .85rem;border:1px solid #222;border-radius:10px;text-decoration:none}
-    .div{height:1px;background:var(--line);margin:2rem 0}
-    .morebtn{margin-top:10px;display:inline-block;padding:.45rem .75rem;border:1px solid #222;border-radius:10px;
-      background:#fff;cursor:pointer}
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
 
-    footer{color:#666;margin:24px 0;text-align:center}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    .pills {
+      margin: 0.5rem 0 0.25rem;
+    }
 
-    /* ===== Lightbox (DIV-based) ===== */
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none}
-    .lb.is-open{display:block}
-    .lb-inner{position:absolute;inset:0;display:flex;flex-direction:column}
-    .lb-topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:#eee}
-    .lb-close{background:transparent;border:1px solid #666;color:#eee;border-radius:8px;padding:.35rem .6rem;cursor:pointer}
-    .lb-canvas{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px}
-    .lb-img{max-height:var(--modal-img-maxh);max-width:92vw;border-radius:12px;border:1px solid #333}
-    .lb-arrow{background:rgba(255,255,255,.1);border:1px solid #666;color:#eee;border-radius:10px;
-      padding:.5rem .7rem;cursor:pointer}
-    .lb-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-top:1px solid #333;background:rgba(0,0,0,.2)}
-    .lb-thumbs img{height:90px;border-radius:8px;border:2px solid transparent;cursor:pointer}
-    .lb-thumbs img.active{border-color:#fff}
+    .pill {
+      display: inline-block;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      margin: 0.2rem 0.35rem 0.2rem 0;
+      font-size: 0.85rem;
+    }
 
-    .lb-ctl{display:flex;align-items:center;gap:.5rem;color:#ddd}
-    .lb-ctl input[type="range"]{width:180px}
-    /* Center heading + intro paragraphs */
-h1 {
-  text-align: center;
-}
+    .proof details {
+      border: 1px solid var(--line);
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+    }
 
-.trend-description {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 700px; /* keeps lines readable */
-}
-/* === Show 3 images per row (no scrolling) === */
-.wrap .imgs{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:10px;
-  overflow-x: visible;   /* override old overflow-x:auto */
-}
+    /* MAIN IMAGE ROW: 3 across, expandable */
+    .wrap .imgs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      overflow-x: visible;
+    }
 
-/* Override the old flex-based sizes so grid fills neatly */
-.wrap .imgs img{
-  flex: none !important;
-  max-width: 100% !important;
-  width: 100%;
-  height: auto;
-}
+    .wrap .imgs img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: block;
+    }
 
-/* Hide anything after the 3rd image in the row */
-.wrap .imgs img:nth-child(n+4){
-  display:none;
-}
+    /* Show only first 3 by default */
+    .wrap .imgs img:nth-child(n+4) {
+      display: none;
+    }
 
-/* Optional: on small screens show 2 without scroll
-@media (max-width: 700px){
-  .wrap .imgs{ grid-template-columns: repeat(2, 1fr); }
-  .wrap .imgs img:nth-child(n+3){ display:none; }
-}
-*/
-/* === Hard-center each section and balance columns === */
-.wrap.block{
-  max-width: 1040px;         /* narrower than the page container */
-  margin-left: auto;
-  margin-right: auto;        /* centers the whole section under the heading */
-}
+    /* When expanded, show all */
+    .wrap .imgs.show-all img {
+      display: block;
+    }
 
-.wrap.block .grid{
-  grid-template-columns: 1fr 1fr;  /* equal halves so it doesn't lean left */
-  justify-content: center;         /* center the two tracks */
-  gap: 24px;
-}
+    .cta a {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid #222;
+      border-radius: 10px;
+      text-decoration: none;
+    }
 
-/* Mobile: stack neatly */
-@media (max-width: 900px){
-  .wrap.block{ max-width: 680px; }
-  .wrap.block .grid{ grid-template-columns: 1fr; justify-items: center; }
-}
-nav .dropbtn {
-  font-weight: 600 !important;
-}
+    .div {
+      height: 1px;
+      background: var(--line);
+      margin: 2rem 0;
+    }
 
+    .morebtn {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 0.45rem 0.75rem;
+      border: 1px solid #222;
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
 
+    footer {
+      color: #666;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    /* Center each block and balance columns */
+    .wrap.block {
+      max-width: 1040px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .wrap.block .grid {
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .wrap.block {
+        max-width: 680px;
+      }
+      .wrap.block .grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .wrap .imgs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .wrap .imgs img:nth-child(n+3) {
+        display: none;
+      }
+      .wrap .imgs.show-all img {
+        display: block;
+      }
+    }
+
+    nav .dropbtn {
+      font-weight: 600 !important;
+    }
   </style>
 </head>
 <body>
-
-
-  <!-- Header (unchanged) -->
+  <!-- Header -->
   <header>
     <img src="images/logo.png" alt="Kool Concepts Logo" style="height:75px; width:auto;" />
     <nav>
@@ -159,8 +251,7 @@ nav .dropbtn {
     </nav>
   </header>
 
-<!-- Main Page Summary 2025 Jewelry Trends -->
-
+  <!-- Main Page Summary 2025 Jewelry Trends -->
   <main class="wrap">
     <h1>2025 Jewelry Trends</h1>
     <p class="trend-description lede">
@@ -174,19 +265,19 @@ nav .dropbtn {
     </p>
   </main>
 
-  <!-- Sticky Jump Index + global image-size control -->
+  <!-- Sticky Jump Index -->
   <div class="indexbar">
     <div class="wrap indexwrap">
-      <nav class="index" id="trendIndex"><strong style="color:#666">Jump to:</strong></nav>
+      <nav class="index" id="trendIndex">
+        <strong style="color:#666">Jump to:</strong>
+      </nav>
       <div class="toolbar">
+        <!-- reserved for future controls -->
+      </div>
     </div>
   </div>
 
-
-
-
   <!-- ===== Modern Pearls Reimagined ===== -->
-
   <section class="wrap block" id="modern-pearls" data-gallery="pearls"
            data-main="images/pearl25-1.png,images/pearl25-2.png,images/pearl25-3.png,images/pearl25-15.png"
            data-more="images/pearl25-5.png,images/pearl25-6.png,images/pearl25-7.png,images/pearl25-8.png,images/pearl25-10.png,images/pearl25-11.png,images/pearl25-12.png,images/pearl25-14.png">
@@ -195,19 +286,21 @@ nav .dropbtn {
     <div class="grid">
       <div>
         <p>Pearls in 2025 are no longer delicate heirlooms—they’re bold, sculptural, and contemporary. From oversized cuffs to asymmetrical drops, designers are reshaping pearls into artful statements that carry both heritage and modernity.</p>
-        <div class="pills"><span class="pill">Baroque pearls</span><span class="pill">Quiet luxury</span><span class="pill">Gender-neutral styling</span></div>
+        <div class="pills">
+          <span class="pill">Baroque pearls</span>
+          <span class="pill">Quiet luxury</span>
+          <span class="pill">Gender-neutral styling</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
-          
-      <details><summary>Why now?</summary>
-            <p>Chanel’s Spring/Summer 2025 runway layered ropes of oversized pearls into sculptural silhouettes, while Bottega Veneta showcased baroque pearl earrings with architectural metalwork. 
-                Gender-neutral styling and “quiet luxury” pushed pearls into everyday wear, Business Insider even called them a core unisex accessory for 2025.</p>
+          <details><summary>Why now?</summary>
+            <p>Chanel’s Spring/Summer 2025 runway layered ropes of oversized pearls into sculptural silhouettes, while Bottega Veneta showcased baroque pearl earrings with architectural metalwork.
+              Gender-neutral styling and “quiet luxury” pushed pearls into everyday wear, Business Insider even called them a core unisex accessory for 2025.</p>
           </details>
 
-    <details><summary>Key Elements Across the Collection:</summary>
-    <p>Pearls in 2025 appear in bold, unexpected forms. Oversized cuffs, chokers, and sculptural drop earrings frame pearls in gold and architectural metals, while asymmetrical and baroque shapes celebrate natural imperfection. 
-        No longer tied to tradition, pearls are styled as gender-neutral accents, making them everyday essentials across all wardrobes.</p>
-    </details>
-
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>Pearls in 2025 appear in bold, unexpected forms. Oversized cuffs, chokers, and sculptural drop earrings frame pearls in gold and architectural metals, while asymmetrical and baroque shapes celebrate natural imperfection.
+              No longer tied to tradition, pearls are styled as gender-neutral accents, making them everyday essentials across all wardrobes.</p>
+          </details>
         </div>
         <button class="morebtn" data-open="pearls">More images</button>
       </div>
@@ -216,9 +309,7 @@ nav .dropbtn {
     <div class="div"></div>
   </section>
 
-<!-- ===== Vibrant Colored Gemstones ===== -->
-
-
+  <!-- ===== Vibrant Colored Gemstones ===== -->
   <section class="wrap block" id="vibrant-colored-gemstones" data-gallery="gems"
            data-main="images/gem1.png,images/gem2.png,images/gem6.png"
            data-more="images/gem5.png,images/gem4.png,images/gem7.png,images/gem8.png,images/gem9.png,images/gem10.png,images/gem11.png,images/gem12.png,images/gem14.png">
@@ -226,18 +317,22 @@ nav .dropbtn {
     <h2>Vibrant Colored Gemstones</h2>
     <div class="grid">
       <div>
-        <p>2025 is defined by joyful gemstone palettes—emeralds, sapphires, aquamarines, and pastel tones that brighten up even minimalist wardrobes. 
-            Gemstones this year aren’t just accents—they’re the main event.</p>
-        <div class="pills"><span class="pill">Rainbow stacks</span><span class="pill">Sapphire Glow</span><span class="pill">Statement drops</span></div>
+        <p>2025 is defined by joyful gemstone palettes—emeralds, sapphires, aquamarines, and pastel tones that brighten up even minimalist wardrobes.
+          Gemstones this year aren’t just accents—they’re the main event.</p>
+        <div class="pills">
+          <span class="pill">Rainbow stacks</span>
+          <span class="pill">Sapphire Glow</span>
+          <span class="pill">Statement drops</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
           <details><summary>Why now?</summary>
-            <p>Mejuri spotlighted pastel gemstones (lavender, blush, aquamarine) in their Spring 2025 campaign, while Harper’s Bazaar named rainbow gemstone stacking rings one of summer’s top looks. 
-                At the Met Gala 2025, Gigi Hadid paired a custom Schiaparelli gown with oversized emerald drops, cementing color stones as couture essentials.</p>
+            <p>Mejuri spotlighted pastel gemstones (lavender, blush, aquamarine) in their Spring 2025 campaign, while Harper’s Bazaar named rainbow gemstone stacking rings one of summer’s top looks.
+              At the Met Gala 2025, Gigi Hadid paired a custom Schiaparelli gown with oversized emerald drops, cementing color stones as couture essentials.</p>
           </details>
-    <details><summary>Key Elements Across the Collection:</summary>
-    <p>This year celebrates color in every form, from rainbow stacking rings with tourmalines and sapphires to delicate pastel palettes in lavender, blush, and sky blue for spring. 
-        At the other end of the spectrum, jewel-tone center stones like emeralds, rubies, and aquamarines dominate statement rings and earrings, bringing vibrancy and individuality to fine jewelry.</p>
-    </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>This year celebrates color in every form, from rainbow stacking rings with tourmalines and sapphires to delicate pastel palettes in lavender, blush, and sky blue for spring.
+              At the other end of the spectrum, jewel-tone center stones like emeralds, rubies, and aquamarines dominate statement rings and earrings, bringing vibrancy and individuality to fine jewelry.</p>
+          </details>
         </div>
         <button class="morebtn" data-open="gems">More images</button>
       </div>
@@ -246,29 +341,28 @@ nav .dropbtn {
     <div class="div"></div>
   </section>
 
-  
-<!-- ===== Stacked Rings & Quiet Luxury ===== -->
-
-<section class="wrap block" id="stacked-rings-quiet-luxury"
-data-gallery="quiet-stacks"
-data-main="images/stack1.png,images/stack2.png,images/stack3.png,images/stack4.png"
-data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.png,images/stack9.png,images/stack10.png,images/stack11.png,images/stack12.png">
+  <!-- ===== Stacked Rings & Quiet Luxury ===== -->
+  <section class="wrap block" id="stacked-rings-quiet-luxury"
+           data-gallery="quiet-stacks"
+           data-main="images/stack1.png,images/stack2.png,images/stack3.png,images/stack4.png"
+           data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.png,images/stack9.png,images/stack10.png,images/stack11.png,images/stack12.png">
     <div class="kicker">2025 Highlight</div>
     <h2>Stacked Rings & Quiet Luxury</h2>
     <div class="grid">
       <div>
         <p>"Quiet luxury" finds its expression in 2025 through stacked rings, slender bands, and understated brilliance. Rather than one statement piece, luxury is whispered in curated combinations.</p>
-        <div class="pills"><span class="pill">Slim diamond lines</span><span class="pill">Mixed metals</span><span class="pill">Everyday wear</span></div>
+        <div class="pills">
+          <span class="pill">Slim diamond lines</span>
+          <span class="pill">Mixed metals</span>
+          <span class="pill">Everyday wear</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
-
           <details><summary>Why now?</summary>
             <p>Business Insider and Vogue Business reported that “quiet luxury” continues to dominate styling, favoring polished restraint. Celebrities like Sofia Richie Grainge and Zoë Kravitz embraced fine stacked bands and diamond eternity rings as daily staples, spotlighted across Instagram.</p>
           </details>
-
           <details><summary>Key Elements Across the Collection:</summary>
             <p>Quiet luxury finds expression in refined stacks of slim bands and eternity rings, layered to create subtle sparkle. Slim diamond lines and pavé details emphasize restraint, while versatility comes through mixed metals—yellow, white, and rose gold blended together for an understated yet luxurious effect.</p>
           </details>
-
         </div>
         <button class="morebtn" data-open="quiet-stacks">More images</button>
       </div>
@@ -277,10 +371,7 @@ data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.p
     <div class="div"></div>
   </section>
 
-
-<!-- ===== Brooches & Baroque Renaissance ===== -->
-
-
+  <!-- ===== Brooches & Baroque Renaissance ===== -->
   <section class="wrap block" id="brooches-baroque-renaissance" data-gallery="baroque"
            data-main="images/baroque1.png,images/baroque2.png,images/baroque3.png,images/baroque4.png"
            data-more="images/baroque5.png,images/baroque6.png,images/baroque7.png,images/baroque8.png,images/baroque9.png,images/baroque10.png,images/baroque11.png,images/baroque12.png">
@@ -288,21 +379,22 @@ data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.p
     <h2>Brooches & Baroque Renaissance</h2>
     <div class="grid">
       <div>
-        <p>Brooches return in 2025 as expressive statement pieces, no longer confined to vintage jewelry boxes. 
-            Paired with blazers, handbags, and even swimwear, they add personality and flair.</p>
-        <div class="pills"><span class="pill">Enamel motifs</span><span class="pill">Pearl cabochons</span><span class="pill">Runway styling</span></div>
+        <p>Brooches return in 2025 as expressive statement pieces, no longer confined to vintage jewelry boxes.
+          Paired with blazers, handbags, and even swimwear, they add personality and flair.</p>
+        <div class="pills">
+          <span class="pill">Enamel motifs</span>
+          <span class="pill">Pearl cabochons</span>
+          <span class="pill">Runway styling</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
-
           <details><summary>Why now?</summary>
-            <p>Marie Claire named oversized brooches a Fall 2025 must-have. On red carpets, Florence Pugh wore a gem-studded pin on her Met Gala gown, while Gucci FW25 reintroduced enamel and gemstone brooches styled on outerwear. 
-                Simultaneously, baroque jewelry in jade and pearl tones brought dramatic flair to couture collections.</p>
+            <p>Marie Claire named oversized brooches a Fall 2025 must-have. On red carpets, Florence Pugh wore a gem-studded pin on her Met Gala gown, while Gucci FW25 reintroduced enamel and gemstone brooches styled on outerwear.
+              Simultaneously, baroque jewelry in jade and pearl tones brought dramatic flair to couture collections.</p>
           </details>
-
           <details><summary>Key Elements Across the Collection:</summary>
-            <p>Brooches return as statement icons, styled not just on blazers but on handbags, coats, and even casual looks. This revival is paired with a baroque sensibility, using jade, pearl, and enamel in sculptural forms. 
-                The result is a cross-over aesthetic—heritage-inspired pieces reimagined for both couture and streetwear.</p>
+            <p>Brooches return as statement icons, styled not just on blazers but on handbags, coats, and even casual looks. This revival is paired with a baroque sensibility, using jade, pearl, and enamel in sculptural forms.
+              The result is a cross-over aesthetic—heritage-inspired pieces reimagined for both couture and streetwear.</p>
           </details>
-
         </div>
         <button class="morebtn" data-open="baroque">More images</button>
       </div>
@@ -311,10 +403,7 @@ data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.p
     <div class="div"></div>
   </section>
 
-
-
-<!-- ===== Mismatched Earrings ===== -->
-
+  <!-- ===== Mismatched Earrings ===== -->
   <section class="wrap block" id="mismatched-earrings" data-gallery="mm"
            data-main="images/mm1.png,images/mm2.png,images/mm3.png,images/mm4.png"
            data-more="images/mm5.png,images/mm6.png,images/mm7.png,images/mm8.png,images/mm9.png,images/mm10.png,images/mm12.png,images/mm14.png">
@@ -322,23 +411,24 @@ data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.p
     <h2>Mismatched Earrings</h2>
     <div class="grid">
       <div>
-        <p>Mismatched earrings in 2025 are no longer seen as quirky outliers—they’re intentional, artful, and daringly chic. 
-            From asymmetrical studs paired with long drops to contrasting metals and motifs, designers are transforming mismatched earrings into refined statements of individuality and confidence.</p>
-        <div class="pills"><span class="pill">Asymmetry chic</span><span class="pill">Mixed metals</span><span class="pill">Effortless edge</span></div>
+        <p>Mismatched earrings in 2025 are no longer seen as quirky outliers—they’re intentional, artful, and daringly chic.
+          From asymmetrical studs paired with long drops to contrasting metals and motifs, designers are transforming mismatched earrings into refined statements of individuality and confidence.</p>
+        <div class="pills">
+          <span class="pill">Asymmetry chic</span>
+          <span class="pill">Mixed metals</span>
+          <span class="pill">Effortless edge</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
-
           <details><summary>Why now?</summary>
-            <p>The Spring/Summer 2025 runways embraced asymmetry as a form of balance in itself: Valentino paired sculptural gold hoops with pearl studs, while Dior played with geometric drop earrings opposite delicate climbers. 
-                Celebrities like Emma Watson and Billie Eilish amplified the look on the red carpet, while street style stars made it an everyday staple. 
-                With fashion embracing imperfection, asymmetry now reads as modern, effortless luxury—an accessory language that celebrates personality over uniformity.</p>
+            <p>The Spring/Summer 2025 runways embraced asymmetry as a form of balance in itself: Valentino paired sculptural gold hoops with pearl studs, while Dior played with geometric drop earrings opposite delicate climbers.
+              Celebrities like Emma Watson and Billie Eilish amplified the look on the red carpet, while street style stars made it an everyday staple.
+              With fashion embracing imperfection, asymmetry now reads as modern, effortless luxury—an accessory language that celebrates personality over uniformity.</p>
           </details>
-
           <details><summary>Key Elements Across the Collection:</summary>
-            <p>In 2025, mismatched earrings turn asymmetry into elegance, pairing oversized hoops with delicate studs or sculptural drops with minimal climbers. 
-                Designers embrace playful contrasts in scale, shape, and metal—gold, silver, and rose gold now mix seamlessly, often accented with bold gemstones. 
-                More than fashion, each pairing tells a story through subtle echoes of color, motif, or material, creating looks that feel spontaneous yet intentional.</p>
+            <p>In 2025, mismatched earrings turn asymmetry into elegance, pairing oversized hoops with delicate studs or sculptural drops with minimal climbers.
+              Designers embrace playful contrasts in scale, shape, and metal—gold, silver, and rose gold now mix seamlessly, often accented with bold gemstones.
+              More than fashion, each pairing tells a story through subtle echoes of color, motif, or material, creating looks that feel spontaneous yet intentional.</p>
           </details>
-
         </div>
         <button class="morebtn" data-open="mm">More images</button>
       </div>
@@ -347,45 +437,40 @@ data-more="images/stack5.png,images/stack6.png,images/stack7.png,images/stack8.p
     <div class="div"></div>
   </section>
 
+  <!-- ===== Stacked & Styled ===== -->
+  <section class="wrap block" id="stacked-styled" data-gallery="stacks"
+           data-main="images/earringstack1.png,images/earringstack2.png,images/earringstack3.png,images/earringstack4.png"
+           data-more="images/earringstack5.png,images/earringstack6.png,images/earringstack7.png,images/earringstack8.png,images/earringstack9.png,images/earringstack10.png,images/earringstack11.png,images/earringstack12.png">
+    <div class="kicker">2025 Highlight</div>
+    <h2>Stacked & Styled</h2>
+    <div class="grid">
+      <div>
+        <p>Earring stacks are no longer just about symmetry—they’re about self-expression. From dainty studs and cuffs to bold hoops and drops, curating a stack turns the ear into a personalized canvas that reflects mood, identity, and style.</p>
+        <div class="pills">
+          <span class="pill">Curated layers</span>
+          <span class="pill">Personal canvas</span>
+          <span class="pill">Layering</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>Once rooted in punk rebellion, ear stacking has become a mainstream fashion statement. Celebrities, influencers, and runway stylists are layering pieces across multiple piercings, embracing asymmetry and contrast.
+              Who What Wear highlights stacked ears as a trend that “will never feel dated,” while jewelers like Catbird and Mejuri have made the look synonymous with modern minimalism and individuality.</p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>The key elements of earring stacks lie in their curated layers and infinite personality.
+              A thoughtful mix of studs, hoops, huggies, and cuffs across multiple piercings allows for endless creativity, while asymmetry becomes an intentional design choice that ensures each ear tells its own story.
+              Their versatility makes them perfect for every occasion—subtle, minimal stacks for daytime polish and bolder, maximalist layers for evening drama.
+              By balancing metals, gemstones, and shapes, earring stacks highlight individuality and turn personal style into a wearable statement.</p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="stacks">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="stacks"></div>
+    </div>
+    <div class="div"></div>
+  </section>
 
-<!-- ===== Stacked & Styled ===== -->
-
-
-<section class="wrap block" id="stacked-styled"
-data-gallery="stacks"
-data-main="images/earringstack1.png,images/earringstack2.png,images/earringstack3.png,images/earringstack4.png"
-data-more="images/earringstack5.png,images/earringstack6.png,images/earringstack7.png,images/earringstack8.png,images/earringstack9.png,images/earringstack10.png,images/earringstack11.png,images/earringstack12.png">
-<div class="kicker">2025 Highlight</div>
-<h2>Stacked & Styled</h2>
-<div class="grid">
-<div>
-<p>Earring stacks are no longer just about symmetry—they’re about self-expression. From dainty studs and cuffs to bold hoops and drops, curating a stack turns the ear into a personalized canvas that reflects mood, identity, and style.</p>
-<div class="pills"><span class="pill">Curated layers</span><span class="pill">Personal canvas</span><span class="pill">Layering</span></div>
-<div class="proof" style="margin-top:.75rem">
-
- <details><summary>Why now?</summary>
-   <p>Once rooted in punk rebellion, ear stacking has become a mainstream fashion statement. Celebrities, influencers, and runway stylists are layering pieces across multiple piercings, embracing asymmetry and contrast. 
-    Who What Wear highlights stacked ears as a trend that “will never feel dated,” while jewelers like Catbird and Mejuri have made the look synonymous with modern minimalism and individuality.</p>
- </details>
-
- <details><summary>Key Elements Across the Collection:</summary>
-   <p>The key elements of earring stacks lie in their curated layers and infinite personality. 
-    A thoughtful mix of studs, hoops, huggies, and cuffs across multiple piercings allows for endless creativity, while asymmetry becomes an intentional design choice that ensures each ear tells its own story. 
-    Their versatility makes them perfect for every occasion—subtle, minimal stacks for daytime polish and bolder, maximalist layers for evening drama. 
-    By balancing metals, gemstones, and shapes, earring stacks highlight individuality and turn personal style into a wearable statement.</p>
- </details>
-
- 
-</div>
-<button class="morebtn" data-open="stacks">More images</button>
-</div>
-<div class="imgs" data-thumbs="stacks"></div>
-</div>
-<div class="div"></div>
-</section>
-
-<!-- ===== Coquette Charm ===== -->
-
+  <!-- ===== Coquette Charm ===== -->
   <section class="wrap block" id="coquette-charm" data-gallery="coquette"
            data-main="images/coquette1.png,images/coquette2.png,images/coquette3.png"
            data-more="images/coquette4.png,images/coquette5.png,images/coquette6.png,images/coquette7.png,images/coquette8.png,images/coquette10.png,images/coquette11.png,images/coquette12.png">
@@ -393,22 +478,23 @@ data-more="images/earringstack5.png,images/earringstack6.png,images/earringstack
     <h2>Coquette Charm</h2>
     <div class="grid">
       <div>
-        <p>2025 marked the rise of hyper-femininity—a powerful revival of softness, sweetness, and unapologetic self-expression. The coquette aesthetic, embraced by Gen Z and Millennials, fuses vintage charm with modern luxury. 
-            Bows, butterflies, and hearts—once delicate, doll-like details—are being reimagined as bold yet refined statements of playful sophistication.</p>
-        <div class="pills"><span class="pill">Pavé bows</span><span class="pill">Butterfly motifs</span><span class="pill">Delicate expressions</span></div>
+        <p>2025 marked the rise of hyper-femininity—a powerful revival of softness, sweetness, and unapologetic self-expression. The coquette aesthetic, embraced by Gen Z and Millennials, fuses vintage charm with modern luxury.
+          Bows, butterflies, and hearts—once delicate, doll-like details—are being reimagined as bold yet refined statements of playful sophistication.</p>
+        <div class="pills">
+          <span class="pill">Pavé bows</span>
+          <span class="pill">Butterfly motifs</span>
+          <span class="pill">Delicate expressions</span>
+        </div>
         <div class="proof" style="margin-top:.75rem">
-
           <details><summary>Why now?</summary>
-            <p>On the Spring/Summer 2025 runways, Sandy Liang leaned heavily into bows as sculptural accessories, while Simone Rocha showcased butterfly-inspired detailing on jewelry and hair ornaments. TikTok trends like #CoquetteAesthetic (with over 1 billion views) and celebrity styling—Olivia Rodrigo’s bow-adorned red carpet looks and Bella Hadid’s butterfly jewelry—have fueled mainstream adoption. 
-                Editorials from Vogue and The Cut note that this revival reflects a cultural longing for nostalgia, romance, and feminine identity, reinterpreted through a modern lens.</p>
+            <p>On the Spring/Summer 2025 runways, Sandy Liang leaned heavily into bows as sculptural accessories, while Simone Rocha showcased butterfly-inspired detailing on jewelry and hair ornaments. TikTok trends like #CoquetteAesthetic (with over 1 billion views) and celebrity styling—Olivia Rodrigo’s bow-adorned red carpet looks and Bella Hadid’s butterfly jewelry—have fueled mainstream adoption.
+              Editorials from Vogue and The Cut note that this revival reflects a cultural longing for nostalgia, romance, and feminine identity, reinterpreted through a modern lens.</p>
           </details>
-
           <details><summary>Key Elements Across the Collection:</summary>
-            <p>This collection reimagines delicate motifs—bows, butterflies, and hearts—into bold yet refined statements of femininity. 
-                Sculptural forms in polished gold and pavé diamonds blend vintage sweetness with contemporary edge, creating pieces that feel nostalgic yet unmistakably modern. 
-                Designed for layering or wearing as stand-alone icons, these charms embody a love letter to softness, romance, and unapologetic self-expression.</p>
+            <p>This collection reimagines delicate motifs—bows, butterflies, and hearts—into bold yet refined statements of femininity.
+              Sculptural forms in polished gold and pavé diamonds blend vintage sweetness with contemporary edge, creating pieces that feel nostalgic yet unmistakably modern.
+              Designed for layering or wearing as stand-alone icons, these charms embody a love letter to softness, romance, and unapologetic self-expression.</p>
           </details>
-
         </div>
         <button class="morebtn" data-open="coquette">More images</button>
       </div>
@@ -417,134 +503,83 @@ data-more="images/earringstack5.png,images/earringstack6.png,images/earringstack
     <div class="div"></div>
   </section>
 
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
+  <!-- Call to action -->
+  <nav class="cta-pill" aria-label="Concept actions">
+    <div class="cta-pill__inner">
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
+        Request Line Sheet
+      </a>
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
+        Book a 15-min Review
+      </a>
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
+        Ask for Costing
+      </a>
+    </div>
   </nav>
 
   <footer>© 2025 Kool Concepts</footer>
 
-  <!-- ===== Lightbox (DIV-based) ===== -->
-  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
-    <div class="lb-inner">
-      <div class="lb-topbar">
-        <div class="lb-ctl">
-          <span>Image Size</span>
-          <input id="lbSize" type="range" min="50" max="100" step="1" value="78" />
-        </div>
-        <button class="lb-close" data-lb-close aria-label="Close">Close ✕</button>
-      </div>
-      <div class="lb-canvas">
-        <button class="lb-arrow" data-prev aria-label="Previous">‹</button>
-        <img class="lb-img" id="lbImg" src="" alt="">
-        <button class="lb-arrow" data-next aria-label="Next">›</button>
-      </div>
-      <div class="lb-thumbs" id="lbThumbs"></div>
-    </div>
-  </div>
-
   <script>
-  (function(){
-    // Build Jump Index
-    const nav = document.getElementById('trendIndex');
-    document.querySelectorAll('section.wrap.block h2').forEach(h=>{
-      const id = (h.id || h.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-')).replace(/^-|-$/g,'');
-      h.id = id;
-      const a = document.createElement('a'); a.href = '#' + id; a.textContent = h.textContent.trim();
-      nav.appendChild(a);
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+      /* ========== Build "Jump to" Index ========== */
+      const indexNav = document.getElementById('trendIndex');
+      if (indexNav) {
+        document.querySelectorAll('section.wrap.block h2').forEach(function (h) {
+          let id = h.id;
+          if (!id) {
+            id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            h.id = id;
+          }
+          const link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = h.textContent.trim();
+          indexNav.appendChild(link);
+        });
+      }
 
-    
+      /* ========== Simple Galleries (NO LIGHTBOX) ========== */
+      document.querySelectorAll('section.wrap.block').forEach(function (sec) {
+        const main = (sec.getAttribute('data-main') || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
 
-    // Build main rows & wire "More images"
-    const galleries = {}; // key -> array of urls
-    document.querySelectorAll('[data-gallery]').forEach(sec=>{
-      const key = sec.dataset.gallery;
-      const main = (sec.dataset.main || '').split(',').map(s=>s.trim()).filter(Boolean);
-      const more = (sec.dataset.more || '').split(',').map(s=>s.trim()).filter(Boolean);
-      galleries[key] = [...main, ...more];
+        const more = (sec.getAttribute('data-more') || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
 
-      // Show 4 main images
-      const row = sec.querySelector('[data-thumbs="'+key+'"]');
-      main.forEach((src, i) => {
-        const img = new Image();
-        img.src = src; img.alt = ''; img.loading = 'lazy';
-        img.addEventListener('click', ()=> openLightbox(key, i));
-        row.appendChild(img);
+        const allImgs = main.concat(more);
+        const row = sec.querySelector('.imgs');
+        if (!row || !allImgs.length) return;
+
+        allImgs.forEach(function (src) {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          row.appendChild(img);
+        });
+
+        const btn = sec.querySelector('.morebtn');
+        if (btn) {
+          if (more.length === 0) {
+            btn.style.display = 'none';
+          } else {
+            btn.addEventListener('click', function () {
+              const expanded = row.classList.toggle('show-all');
+              btn.textContent = expanded ? 'Show fewer images' : 'More images';
+            });
+          }
+        }
       });
 
-      // Open lightbox from button
-      const btn = sec.querySelector('[data-open="'+key+'"]');
-      if(btn){ btn.addEventListener('click', ()=> openLightbox(key, main.length)); }
-    });
-
-    // ===== Lightbox logic (div-based) =====
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbThumbs = document.getElementById('lbThumbs');
-    const lbSize = document.getElementById('lbSize');
-    let curKey = null, curIdx = 0;
-
-    function renderThumbs(key){
-      lbThumbs.innerHTML = '';
-      galleries[key].forEach((src, i)=>{
-        const t = new Image();
-        t.src = src; t.alt = '';
-        t.addEventListener('click', ()=> showIndex(i));
-        if(i===curIdx) t.classList.add('active');
-        lbThumbs.appendChild(t);
+      /* ========== Add lazy-loading to any other imgs ========== */
+      document.querySelectorAll('img:not([loading])').forEach(function (im) {
+        im.setAttribute('loading', 'lazy');
       });
-    }
-    function showIndex(i){
-      const arr = galleries[curKey];
-      if(!arr || !arr.length) return;
-      curIdx = (i + arr.length) % arr.length;
-      lbImg.src = arr[curIdx];
-      [...lbThumbs.children].forEach((n, ix)=> n.classList.toggle('active', ix===curIdx));
-    }
-    function openLightbox(key, startIdx){
-      curKey = key; curIdx = startIdx || 0;
-      renderThumbs(key);
-      showIndex(curIdx);
-      lb.classList.add('is-open');
-      document.body.classList.add('no-scroll');
-    }
-    function closeLightbox(){
-      lb.classList.remove('is-open');
-      document.body.classList.remove('no-scroll');
-    }
-
-    lb.querySelector('[data-prev]').addEventListener('click', ()=> showIndex(curIdx-1));
-    lb.querySelector('[data-next]').addEventListener('click', ()=> showIndex(curIdx+1));
-    lb.querySelector('[data-lb-close]').addEventListener('click', closeLightbox);
-    lb.addEventListener('click', e=>{ if(e.target === lb) closeLightbox(); });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', e=>{
-      if(!lb.classList.contains('is-open')) return;
-      if(e.key==='Escape'){ closeLightbox(); }
-      if(e.key==='ArrowLeft'){ showIndex(curIdx-1); }
-      if(e.key==='ArrowRight'){ showIndex(curIdx+1); }
     });
-
-    // Popup size slider (controls max-height % of viewport)
-    const setLbSize = v => document.documentElement.style.setProperty('--modal-img-maxh', v + 'vh');
-    lbSize.addEventListener('input', e => setLbSize(e.target.value));
-    setLbSize(lbSize.value);
-
-    // Add lazy-loading if any <img> lacks it
-    document.querySelectorAll('img:not([loading])').forEach(im=> im.setAttribute('loading','lazy'));
-  })();
   </script>
 </body>
 </html>

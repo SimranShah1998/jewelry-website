@@ -21,7 +21,7 @@ body {
 
 header {
   background-color: #000;
-  padding: 10px;
+  padding: 0px;
 }
 
 nav {
@@ -87,13 +87,12 @@ main h1 {
   font-size: 48px;
   margin-top: 40px;
 }
-
 .tagline {
   font-size: 20px;
   font-weight: bold;
   margin-top: 10px;
-}
-
+}  
+  
 main p {
   font-family: Verdana, sans-serif;
   font-size: 16px;
@@ -102,10 +101,10 @@ main p {
   line-height: 1.6;
   color: #111;
 }
-
 .bold {
   font-weight: bold;
-}
+}  
+
 
 /* === Image Grid === */
 .gallery {
@@ -135,8 +134,7 @@ footer {
   color: #b67c2f;
   padding: 20px 0;
   font-size: 14px;
-}
-
+}  
 /* === Trends Page Layout === */
 .trends-page {
   display: flex;
@@ -197,405 +195,444 @@ footer {
 
 /* --- Concept Card Styling --- */
 .concept-card {
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  border-radius: 16px;
-  padding: 28px;
-  margin: 40px auto;
-  max-width: 980px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+background: #fff;
+border: 1px solid #e6e6e6;
+border-radius: 16px;
+padding: 28px;
+margin: 40px auto;
+max-width: 980px;
+box-shadow: 0 8px 28px rgba(0,0,0,0.05);
 }
 
 .concept-card h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
+font-family: Georgia, serif;
+font-size: 28px;
+margin-bottom: 8px;
 }
 
 .concept-tagline {
-  font-style: italic;
-  font-size: 18px;
-  color: #444;
-  margin-bottom: 16px;
+font-style: italic;
+font-size: 18px;
+color: #444;
+margin-bottom: 16px;
 }
 
 .concept-intro {
-  font-size: 16px;
-  margin-bottom: 22px;
+font-size: 16px;
+margin-bottom: 22px;
 }
 
 /* spec table */
 .concept-spec {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 24px;
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 24px;
 }
 
 .concept-spec th {
-  text-align: left;
-  padding: 10px;
-  font-weight: bold;
-  background: #fafafa;
-  border: 1px solid #e0e0e0;
-  width: 30%;
-  font-size: 15px;
+text-align: left;
+padding: 10px;
+font-weight: bold;
+background: #fafafa;
+border: 1px solid #e0e0e0;
+width: 30%;
+font-size: 15px;
 }
 
 .concept-spec td {
-  padding: 10px;
-  border: 1px solid #e0e0e0;
-  font-size: 15px;
+padding: 10px;
+border: 1px solid #e0e0e0;
+font-size: 15px;
 }
 
-/* --- Georgia Serif Global Override for card --- */
+/* gallery */
+.concept-gallery {
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+.concept-gallery img {
+width: 30%;
+border-radius: 12px;
+object-fit: cover;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* CTA inside the card */
+.concept-cta {
+text-align: center;
+}
+
+/* --- Georgia Serif Global Override --- */
 .concept-card,
 .concept-card * {
-  font-family: Georgia, serif !important;
+font-family: Georgia, serif !important;
+}
+
+/* --- Concept Card Styling --- */
+.concept-card {
+background: #fff;
+border: 1px solid #e6e6e6;
+border-radius: 16px;
+padding: 28px;
+margin: 40px auto;
+max-width: 980px;
+box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+}
+
+.concept-card h2 {
+font-size: 28px;
+margin-bottom: 8px;
+}
+
+.concept-tagline {
+font-style: italic;
+font-size: 18px;
+color: #444;
+margin-bottom: 16px;
+}
+
+.concept-intro {
+font-size: 16px;
+margin-bottom: 22px;
+}
+
+/* spec table */
+.concept-spec {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 24px;
+}
+
+.concept-spec th {
+text-align: left;
+padding: 10px;
+font-weight: bold;
+background: #fafafa;
+border: 1px solid #e0e0e0;
+width: 30%;
+font-size: 15px;
+}
+
+.concept-spec td {
+padding: 10px;
+border: 1px solid #e0e0e0;
+font-size: 15px;
+}
+
+/* gallery */
+.concept-gallery {
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+.concept-gallery img {
+width: 30%;
+border-radius: 12px;
+object-fit: cover;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* CTA inside the card */
+.concept-cta {
+text-align: center;
 }
 
 /* --- Classy pill container CTA --- */
 .cta-pill {
-  font-family: Georgia, serif;
-  display: flex;
-  justify-content: center;
-  margin: 28px auto;
-  padding: 8px;                       /* outer pill padding */
-  max-width: 980px;                   /* keeps it elegant on wide screens */
-  border-radius: 9999px;              /* pill shape */
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+font-family: Georgia, serif;
+display: flex;
+justify-content: center;
+margin: 28px auto;
+padding: 8px;                       /* outer pill padding */
+max-width: 980px;                   /* keeps it elegant on wide screens */
+border-radius: 9999px;              /* pill shape */
+background: #ffffff;
+border: 1px solid rgba(0,0,0,0.08);
+box-shadow: 0 6px 24px rgba(0,0,0,0.06);
 }
 
 .cta-pill__inner {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;                    /* wraps on small screens */
-  border-radius: 9999px;
-  padding: 6px;                       /* space around the buttons */
-  background: rgba(0,0,0,0.02);       /* subtle inner tint */
+display: flex;
+gap: 10px;
+align-items: center;
+flex-wrap: wrap;                    /* wraps on small screens */
+border-radius: 9999px;
+padding: 6px;                       /* space around the buttons */
+background: rgba(0,0,0,0.02);       /* subtle inner tint */
 }
 
 /* Individual pill buttons */
 .cta-pill__btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 9999px;
-  background: #111;                   /* elegant dark pill */
-  color: #fff;
-  text-decoration: none;
-  font-size: 15.5px;
-  line-height: 1;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
-  white-space: nowrap;
+display: inline-block;
+padding: 10px 18px;
+border-radius: 9999px;
+background: #111;                   /* elegant dark pill */
+color: #fff;
+text-decoration: none;
+font-size: 15.5px;
+line-height: 1;
+border: 1px solid rgba(255,255,255,0.12);
+box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+white-space: nowrap;
 }
 
 /* Hover / focus states for that “expensive” feel */
 .cta-pill__btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  background: #222;
+transform: translateY(-1px);
+box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+background: #222;
 }
 
 .cta-pill__btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(17,17,17,0.25), 0 6px 18px rgba(0,0,0,0.12);
+outline: none;
+box-shadow: 0 0 0 3px rgba(17,17,17,0.25), 0 6px 18px rgba(0,0,0,0.12);
 }
 
 /* Light variant if you prefer mixed emphasis: just add 'is-ghost' to a link */
 .cta-pill__btn.is-ghost {
-  background: #fff;
-  color: #111;
-  border: 1px solid rgba(0,0,0,0.12);
+background: #fff;
+color: #111;
+border: 1px solid rgba(0,0,0,0.12);
 }
-
 .cta-pill__btn.is-ghost:hover {
-  background: #f5f5f5;
+background: #f5f5f5;
 }
 
-/* Responsive tweaks for CTA pill */
+/* Responsive tweaks */
 @media (max-width: 720px) {
-  .cta-pill {
-    padding: 10px;
-    margin: 22px 12px;               /* slight side breathing */
-  }
-  .cta-pill__inner {
-    gap: 8px;
-  }
-  .cta-pill__btn {
-    flex: 1 1 auto;                  /* allow buttons to grow */
-    text-align: center;
-    font-size: 15px;
-    padding: 11px 14px;
-  }
+.cta-pill {
+  padding: 10px;
+  margin: 22px 12px;               /* slight side breathing */
 }
-
-/* --- Concept Gallery with captions --- */
+.cta-pill__inner {
+  gap: 8px;
+}
+.cta-pill__btn {
+  flex: 1 1 auto;                  /* allow buttons to grow */
+  text-align: center;
+  font-size: 15px;
+  padding: 11px 14px;
+}
+}
 .concept-gallery {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+justify-content: center;
+margin-bottom: 20px;
 }
 
 .concept-gallery figure {
-  width: 30%;
-  min-width: 220px;
-  margin: 0;
-  text-align: center;
+width: 30%;
+min-width: 220px;
+margin: 0;
+text-align: center;
 }
 
 .concept-gallery img {
-  width: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+width: 100%;
+border-radius: 12px;
+object-fit: cover;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .concept-gallery figcaption {
-  margin-top: 8px;
-  font-size: 15px;
-  color: #333;
-  font-style: italic;
+margin-top: 8px;
+font-size: 15px;
+color: #333;
+font-style: italic;
 }
 
-/* --- Process band --- */
+
+
 .process-band {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  background: #fff;
-  border: 1px solid #eaeaea;
-  border-radius: 14px;
-  padding: 14px;
-  margin: 22px auto;
-  max-width: 1100px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.05);
+display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+background: #fff; border: 1px solid #eaeaea; border-radius: 14px;
+padding: 14px; margin: 22px auto; max-width: 1100px; box-shadow: 0 6px 24px rgba(0,0,0,.05);
 }
+.process-step { background: #fafafa; border: 1px solid #eee; border-radius: 12px; padding: 14px; text-align: center; }
+.process-step h3 { margin: 0 0 6px; font-size: 18px; }
+.process-step p { margin: 0; font-size: 14.5px; color: #444; }
 
-.process-step {
-  background: #fafafa;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-}
-
-.process-step h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-
-.process-step p {
-  margin: 0;
-  font-size: 14.5px;
-  color: #444;
-}
-
-@media (max-width: 900px) {
-  .process-band {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .process-band {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 900px){ .process-band { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .process-band { grid-template-columns: 1fr; } }
 
 /* CTA row layout */
-.cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 20px 0;
-  align-items: center;
-  justify-content: center;
+.cta-row{
+display:flex; flex-wrap:wrap; gap:12px; 
+margin:20px 0; align-items:center; justify-content:center;
 }
 
 /* Turn existing links into buttons */
-.cta-row a {
-  font-family: Georgia, serif;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  border: 1px solid #222;
-  border-radius: 999px;
-  text-decoration: none;
-  line-height: 1;
-  font-size: 15px;
-  font-weight: 600;
-  color: #222;
-  background: #fff;
-  box-shadow: 0 0 0 0 rgba(0,0,0,0);
-  transition: box-shadow .15s ease, background .15s ease, transform .02s ease;
+.cta-row a{
+font-family: Georgia, serif;
+display:inline-flex; align-items:center; justify-content:center;
+padding:10px 18px; border:1px solid #222; border-radius:999px;
+text-decoration:none; line-height:1; font-size:15px; font-weight:600;
+color:#222; background:#fff;
+box-shadow: 0 0 0 0 rgba(0,0,0,0);
+transition: box-shadow .15s ease, background .15s ease, transform .02s ease;
 }
 
 /* Primary emphasis for the first CTA */
-.cta-row a:first-child {
-  background: #111;
-  color: #fff;
-  border-color: #111;
+.cta-row a:first-child{
+background:#111; color:#fff; border-color:#111;
 }
 
 /* Hover & focus states (accessibility) */
-.cta-row a:hover {
-  background: #f7f7f7;
-}
-
-.cta-row a:first-child:hover {
-  background: #000;
-}
-
-.cta-row a:focus-visible {
-  outline: 3px solid #8fb5ff;
-  outline-offset: 2px;
+.cta-row a:hover{ background:#f7f7f7 }
+.cta-row a:first-child:hover{ background:#000 }
+.cta-row a:focus-visible{
+outline: 3px solid #8fb5ff; outline-offset: 2px;
 }
 
 /* Icon-friendly spacing if you add one later */
-.cta-row a > svg,
-.cta-row a > span.icon {
-  margin-right: 8px;
-}
+.cta-row a > svg, .cta-row a > span.icon{ margin-right:8px }
 
 /* Mobile: wider tap targets */
-@media (max-width:700px) {
-  .cta-row {
-    gap: 10px;
-  }
-  .cta-row a {
-    flex: 1 1 calc(50% - 10px);
-    text-align: center;
-    padding: 12px 14px;
-  }
-}
-
-/* === Global Mobile Layout Tweaks === */
-@media (max-width: 900px) {
-
-  /* Nav: allow wrapping and slightly tighter spacing */
-  nav {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  /* Hero text slightly smaller on tablets/phones */
-  main h1 {
-    font-size: 34px;
-    margin-top: 28px;
-  }
-
-  .tagline {
-    font-size: 18px;
-  }
-
-  /* Gallery: 4 columns → 2 columns */
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 24px 16px;
-    max-width: 100%;
-  }
-
-  /* Trends page: stack sidebar above content */
-  .trends-page {
-    flex-direction: column;
-    gap: 24px;
-    margin: 24px auto;
-  }
-
-  .sidebar {
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  .trend-content {
-    padding: 16px;
-  }
-
-  /* Concept card: tighter padding on smaller screens */
-  .concept-card {
-    margin: 24px 12px;
-    padding: 20px;
-  }
-
-  /* Concept gallery: two per row on medium screens */
-  .concept-gallery figure {
-    width: 48%;
-    min-width: 0;
-  }
-}
-
-/* Extra-tight phones */
-@media (max-width: 540px) {
-
-  header {
-    padding: 8px;
-  }
-
-  .logo {
-    max-height: 60px;
-    margin-bottom: 6px;
-  }
-
-  /* Stack nav links vertically on very small screens */
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav a,
-  .dropbtn {
-    font-size: 16px;
-  }
-
-  /* Gallery: 1 column on narrow phones */
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  /* Paragraphs: side padding so text isn’t edge-to-edge */
-  main p {
-    padding: 0 14px;
-    font-size: 15px;
-  }
-
-  /* Concept gallery: each image full width on tiny screens */
-  .concept-gallery figure {
-    width: 100%;
-  }
+@media (max-width:700px){
+.cta-row{ gap:10px }
+.cta-row a{ flex:1 1 calc(50% - 10px); text-align:center; padding:12px 14px }
 }
 
 /* ===== Global page fade-in ===== */
 body {
-  opacity: 0;
-  animation: page-fade-in 0.9s ease-out forwards;
+opacity: 0;
+animation: page-fade-in 0.9s ease-out forwards;
 }
 
 /* Keyframes for the fade (with a slight slide up) */
 @keyframes page-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
 }
 
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  body {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
+body {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+}
+
+
+/* Prevent scroll when lightbox is open */
+.no-scroll {
+overflow: hidden;
+}
+
+/* ===== Lightbox overlay for "More images" ===== */
+.lightbox {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.75);
+display: none;                 /* hidden by default */
+align-items: center;
+justify-content: center;
+z-index: 9999;
+padding: 20px;
+}
+
+.lightbox--open {
+display: flex;
+}
+
+.lightbox__inner {
+position: relative;
+max-width: 900px;
+width: 100%;
+max-height: 90vh;
+background: #111;
+border-radius: 18px;
+padding: 18px 48px;
+box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Centered image */
+.lightbox__img {
+display: block;
+max-width: 100%;
+max-height: 70vh;
+margin: 0 auto 12px auto;
+border-radius: 14px;
+object-fit: contain;
+background: #000;
+}
+
+/* Close / arrows */
+.lightbox__close,
+.lightbox__prev,
+.lightbox__next {
+position: absolute;
+border: none;
+background: rgba(0, 0, 0, 0.55);
+color: #fff;
+font-size: 22px;
+width: 34px;
+height: 34px;
+border-radius: 999px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.lightbox__close {
+top: 10px;
+right: 10px;
+}
+
+.lightbox__prev {
+top: 50%;
+left: 10px;
+transform: translateY(-50%);
+}
+
+.lightbox__next {
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+}
+
+.lightbox__close:hover,
+.lightbox__prev:hover,
+.lightbox__next:hover {
+background: rgba(255, 255, 255, 0.18);
+}
+
+/* Counter text */
+.lightbox__counter {
+text-align: center;
+color: #f4f5f7;
+font-size: 14px;
+margin-top: 2px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+.lightbox__inner {
+  padding: 14px 14px 18px;
+}
+
+.lightbox__prev,
+.lightbox__next {
+  width: 30px;
+  height: 30px;
+}
 }
 
