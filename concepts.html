@@ -1,762 +1,1049 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concepts | Kool Concepts</title>
-  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- TEMP: external CSS disabled while we stabilize this page -->
+  <!-- <link rel="stylesheet" href="css/styles.css" /> -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
   <style>
-    :root{
-      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
-      /* Adjustable defaults */
-      --row-img-width: 320px;    /* main row image width (changed by top slider) */
-      --modal-img-maxh: 78vh;    /* popup image max-height (changed by popup slider) */
+    :root {
+      --ink: #222;
+      --muted: #666;
+      --line: #eaeaea;
+      --chip: #f7f7f7;
+      --gold: #b89a5e;
+      --bg-soft: #f5f4f2;
     }
 
-    /* Georgia everywhere on this page */
-    html, body, header, nav, footer, h1, h2, h3, h4, p, a, button, input, summary, details,
-    .dropbtn, .dropdown, .dropdown-content, .trend-description { font-family: Georgia, serif !important; }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      color: var(--ink);
+      background-color: var(--bg-soft);
+      -webkit-font-smoothing: antialiased;
+    }
 
-    body { color:var(--ink); margin:0; }
-    .no-scroll{ overflow:hidden; }
+    /* ===== HEADER (same style as Home) ===== */
+    .site-header {
+      background-color: #000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+    }
 
-    .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-    h1{font-size:clamp(28px,3.4vw,40px);margin:18px 0 4px}
-    .lede{max-width:860px;color:var(--muted);margin:.5rem 0 1.25rem}
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-    /* Sticky index + toolbar */
-    .indexbar{position:sticky;top:0;background:#fff;border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);z-index:20;margin-top:8px}
-    .indexwrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;padding:.6rem 0}
-    nav.index{display:flex;flex-wrap:wrap;gap:.5rem}
-    nav.index a{display:inline-block;padding:.35rem .7rem;border:1px solid #ddd;border-radius:999px;
-      text-decoration:none;font-size:.9rem}
-    .toolbar{display:flex;align-items:center;gap:.5rem;color:#444}
-    .toolbar input[type="range"]{width:180px}
+    .site-logo {
+      height: 95px;
+      width: auto;
+      display: block;
+    }
 
-    /* Trend blocks */
-    .block{margin:2.25rem 0}
-    .kicker{color:var(--muted);font-size:.95rem}
-    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-    .pills{margin:.5rem 0 .25rem}
-    .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;
-      padding:.2rem .55rem;margin:.2rem .35rem .2rem 0;font-size:.85rem}
-    .proof details{border:1px solid var(--line);background:#fafafa;border-radius:12px;padding:.75rem 1rem}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-    /* MAIN IMAGE ROW: 4 across (scrolls on small screens) */
-    .imgs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
-    .imgs img{flex:0 0 var(--row-img-width); max-width:var(--row-img-width);
-      height:auto;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+    nav a,
+    nav .dropbtn {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      cursor: pointer;
+      position: relative;
+    }
 
-    .cta a{display:inline-block;margin-top:.75rem;padding:.5rem .85rem;border:1px solid #222;border-radius:10px;text-decoration:none}
-    .div{height:1px;background:var(--line);margin:2rem 0}
-    .morebtn{margin-top:10px;display:inline-block;padding:.45rem .75rem;border:1px solid #222;border-radius:10px;
-      background:#fff;cursor:pointer}
+    nav a::after,
+    nav .dropbtn::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: width 0.2s ease-out;
+    }
 
-    footer{color:#666;margin:24px 0;text-align:center}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    nav a:hover::after,
+    nav .dropbtn:hover::after {
+      width: 100%;
+    }
 
-    /* ===== Lightbox (DIV-based) ===== */
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none}
-    .lb.is-open{display:block}
-    .lb-inner{position:absolute;inset:0;display:flex;flex-direction:column}
-    .lb-topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:#eee}
-    .lb-close{background:transparent;border:1px solid #666;color:#eee;border-radius:8px;padding:.35rem .6rem;cursor:pointer}
-    .lb-canvas{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px}
-    .lb-img{max-height:var(--modal-img-maxh);max-width:92vw;border-radius:12px;border:1px solid #333}
-    .lb-arrow{background:rgba(255,255,255,.1);border:1px solid #666;color:#eee;border-radius:10px;
-      padding:.5rem .7rem;cursor:pointer}
-    .lb-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-top:1px solid #333;background:rgba(0,0,0,.2)}
-    .lb-thumbs img{height:90px;border-radius:8px;border:2px solid transparent;cursor:pointer}
-    .lb-thumbs img.active{border-color:#fff}
+    nav .dropbtn {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-    .lb-ctl{display:flex;align-items:center;gap:.5rem;color:#ddd}
-    .lb-ctl input[type="range"]{width:180px}
-    /* Center heading + intro paragraphs */
-h1 {
-  text-align: center;
-}
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-.trend-description {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 700px; /* keeps lines readable */
-}
-/* === Show 3 images per row (no scrolling) === */
-.wrap .imgs{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:10px;
-  overflow-x: visible;   /* override old overflow-x:auto */
-}
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #111;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+      border-radius: 6px;
+      padding: 8px 0;
+      z-index: 1000;
+    }
 
-/* Override the old flex-based sizes so grid fills neatly */
-.wrap .imgs img{
-  flex: none !important;
-  max-width: 100% !important;
-  width: 100%;
-  height: auto;
-}
+    .dropdown-content a {
+      display: block;
+      padding: 8px 14px;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
 
-/* Hide anything after the 3rd image in the row */
-.wrap .imgs img:nth-child(n+4){
-  display:none;
-}
+    .dropdown-content a:hover {
+      background-color: #1f1f1f;
+      color: var(--gold);
+    }
 
-/* Optional: on small screens show 2 without scroll
-@media (max-width: 700px){
-  .wrap .imgs{ grid-template-columns: repeat(2, 1fr); }
-  .wrap .imgs img:nth-child(n+3){ display:none; }
-}
-*/
-/* === Hard-center each section and balance columns === */
-.wrap.block{
-  max-width: 1040px;         /* narrower than the page container */
-  margin-left: auto;
-  margin-right: auto;        /* centers the whole section under the heading */
-}
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-.wrap.block .grid{
-  grid-template-columns: 1fr 1fr;  /* equal halves so it doesn't lean left */
-  justify-content: center;         /* center the two tracks */
-  gap: 24px;
-}
+    /* ===== MAIN LAYOUT ===== */
+    main {
+      padding: 34px 16px 26px;
+    }
 
-/* Mobile: stack neatly */
-@media (max-width: 900px){
-  .wrap.block{ max-width: 680px; }
-  .wrap.block .grid{ grid-template-columns: 1fr; justify-items: center; }
-}
+    .hero-wrapper {
+      padding: 24px 0 10px;
+    }
 
-nav .dropbtn {
-  font-weight: 600 !important;
-}
+    .hero-content {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.7;
+      padding: 0 12px 32px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    }
 
+    .hero-inner-padding {
+      padding: 32px 32px 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 42px);
+      margin: 0 0 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 6px 0 10px;
+      color: var(--gold);
+    }
+
+    .hero-intro {
+      font-size: 0.98rem;
+      margin: 10px 0 8px;
+      color: #333;
+    }
+
+    .divider {
+      width: 48%;
+      margin: 22px auto 16px;
+      border: 0;
+      border-top: 1px solid #dedede;
+    }
+
+    /* ===== CONCEPTS WRAPPER ===== */
+    .concepts-wrapper {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 4px 10px;
+    }
+
+    .concept-card {
+      background-color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      padding: 24px 22px 26px;
+      margin: 22px 0;
+    }
+
+    .concept-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .concept-title {
+      font-size: clamp(22px, 3vw, 26px);
+      margin: 0 0 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .concept-tagline {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .concept-underline {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 12px auto 0;
+      border-radius: 999px;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+      margin-top: 14px;
+    }
+
+    .concept-intro {
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: #333;
+      margin: 0 0 10px;
+    }
+
+    .concept-spec {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .concept-spec th,
+    .concept-spec td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .concept-spec th {
+      width: 32%;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .concept-spec tr:last-child th,
+    .concept-spec tr:last-child td {
+      border-bottom: none;
+    }
+
+    .concept-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .concept-gallery figure {
+      margin: 0;
+      background-color: #fafafa;
+      border-radius: 14px;
+      border: 1px solid #e4e4e4;
+      padding: 8px 8px 10px;
+      text-align: center;
+    }
+
+    .concept-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 6px;
+      object-fit: cover;
+    }
+
+    .concept-gallery figcaption {
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    /* ===== READ MORE DETAILS ===== */
+    details.readmore {
+      margin-top: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background-color: #fafafa;
+      padding: 8px 10px 10px;
+    }
+
+    details.readmore[open] {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .pill-summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .pill-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .pill-btn {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pill-btn.is-ghost {
+      border: 1px solid #ddd;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .pill-btn.is-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .readmore__content {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .readmore__content p {
+      margin: 4px 0 6px;
+    }
+
+    /* ===== CTA PILL (reuse from Home) ===== */
+    .cta-pill {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      padding: 0 6px;
+    }
+
+    .cta-pill__inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      background-color: #000;
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-pill__btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 0.8rem;
+      background: transparent;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cta-pill__btn:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      transition: 0.25s ease-in-out;
+    }
+
+    footer {
+      color: #777;
+      margin: 18px 0 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid #ddd;
+      padding-top: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .site-logo {
+        height: 64px;
+      }
+
+      nav {
+        justify-content: flex-start;
+        gap: 18px;
+      }
+
+      .hero-inner-padding {
+        padding: 22px 18px 6px;
+      }
+
+      .hero-content {
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      }
+
+      .concept-card {
+        padding: 18px 16px 22px;
+      }
+
+      .concept-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   </style>
 </head>
+
 <body>
+  <!-- Header (same structure as Home) -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
 
-
-  <!-- Header (unchanged) -->
-  <header>
-    <img src="images/logo.png" alt="Kool Concepts Logo" style="height:100px; width:auto;" />
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="craftsmanship.html">Craftsmanship</a>
-      <div class="dropdown">
-        <button class="dropbtn">Market Insights ▼</button>
-        <div class="dropdown-content">
-          <a href="trends2024.html">2024</a>
-          <a href="trends2025.html">2025</a>
-          <a href="trends2026.html">2026</a>
+        <div class="dropdown">
+          <button class="dropbtn">Market Insights ▼</button>
+          <div class="dropdown-content">
+            <a href="trends2024.html">2024</a>
+            <a href="trends2025.html">2025</a>
+            <a href="trends2026.html">2026</a>
+          </div>
         </div>
-      </div>
-      <a href="concepts.html">Concepts</a>
-      <a href="about.html">About</a>
-    </nav>
+
+        <a href="concepts.html">Concepts</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <h1>Concepts</h1>
+    <!-- Intro / Hero -->
+    <section class="hero-wrapper">
+      <div class="hero-content">
+        <div class="hero-inner-padding">
+          <h1 class="hero-title">Concepts</h1>
+          <p class="hero-subtitle">Future-Facing Ideas, Ready to Be Built</p>
 
-  <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">
-      At Kool Concepts, creativity never stops. Beyond what we manufacture today, our team is constantly developing fresh ideas and forward-thinking designs that anticipate where the market is headed. 
-      These potential concepts are born from our ongoing research, trend analysis, and in-house design innovation. 
-      They are explorations of what jewelry could look like tomorrow—blending artistry, cultural shifts, and commercial viability.</p>
-
-<p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">
-  By sharing these concepts, we invite our clients to see what’s possible—to imagine new product lines, seasonal drops, or capsule collections that push boundaries while staying true to consumer demand. 
-  Whether it’s bold statement pieces, symbolic designs with deeper meaning, or playful motifs reimagined for modern wearers, these ideas showcase the breadth of what our team can envision and bring to life.
-</p>
-
-
-<p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">
-  At Kool Concepts, potential isn’t just theoretical—it’s the starting point for the next big trend.
-</p>
-
-
-
-
-  <!----------------------------------------------------------- Modern Heirlooms --------------------------------------------------------------->
-
-
-<section class="concept-card">
-  <h2>Modern Heirlooms</h2>
-  <p class="concept-tagline">Heirlooms don’t have to be inherited—start the legacy.</p>
-
-  <p class="concept-intro">
-    Every milestone has a heartbeat—your first promotion, a move to a new city, a chapter closing, another beginning. 
-    Modern Heirlooms was created to honor these moments while they’re happening, not years later. 
-    These are pieces designed for the present, yet destined to be passed forward.
-  </p>
-
-  <!-- mini spec table -->
-  <table class="concept-spec">
-
-    <tr>
-      <th>Core SKUs</th>
-      <td>Trilogy Ring, Memory Bar Necklace, Milestone Bangle</td>
-    </tr>
-    <tr>
-      <th>Materials</th>
-      <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-    </tr>
-    <tr>
-      <th>Lead Time</th>
-      <td>6–8 weeks</td>
-    </tr>
-    <tr>
-      <th>Personalization</th>
-      <td>Year count stones, initials, custom milestone markers</td>
-    </tr>
-  </table>
-
-  <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/heirloom1.png" alt="Trilogy Ring — 3-stone past/present/future" loading="lazy" />
-      <figcaption>Trilogy Ring</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/heirloom4.png" alt="Memory Bar Necklace — year-count diamonds" loading="lazy" />
-      <figcaption>Memory Bar Necklace</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/heirloom9.png" alt="Milestone Bangle — interval diamonds" loading="lazy" />
-      <figcaption>Milestone Bangle</figcaption>
-    </figure>
-  </div>
-  
-
-
-  <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-    <div class="readmore__content">
-      <p><strong>Why now:</strong> Customers are choosing their own legacy pieces to mark life chapters.</p>
-      <p><strong>Key elements:</strong> Trilogy symbolism, milestone counts, engraveable planes, upgrade paths in metal/stone.</p>
-      <p><strong>Merch notes:</strong> Hits AUR ladders in sterling/14K with lab-grown options; easy to build 6-SKU capsules.</p>
-    </div>
-  </details>
-
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>
-
-  <!----------------------------------------------------------- Cipher Collection --------------------------------------------------------------->
-
-  <section class="concept-card">
-    <h2>The Cipher Collection</h2>
-    <p class="concept-tagline">Delicate language. Loud meaning.</p>
-  
-    <p class="concept-intro">
-      Minimal, gender-neutral pieces that encode initials, names, or dates in Morse code—
-      dots and dashes translated into diamonds and bars for a private message you can wear.
-    </p>
-  
-    <!-- mini spec table -->
-    <table class="concept-spec">
-      <tr>
-        <th>Core SKUs</th>
-        <td>Single-Initial Ring, Two-Initial Band, “MOM” 3-Ring Stack, Cipher Bar Necklace</td>
-      </tr>
-      <tr>
-        <th>Materials</th>
-        <td>Sterling Silver, 10K/14K Gold, Lab-grown Diamonds (dots = rounds; dashes = bars/baguettes)</td>
-      </tr>
-      <tr>
-        <th>Lead Time</th>
-        <td>6–8 weeks</td>
-      </tr>
-      <tr>
-        <th>Personalization</th>
-        <td>Initials / short words / dates in Morse code; stacking options for multi-word sets</td>
-      </tr>
-    </table>
-  
-    <!-- base gallery: always visible -->
-
-    <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/cipher5.png" alt="Letter-A" loading="lazy" />
-      <figcaption>Letter A</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/cipher7.png" alt="Letter-K" loading="lazy" />
-      <figcaption>Letter K</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/cipher1.png" alt="Letter-U" loading="lazy" />
-      <figcaption>Letter U</figcaption>
-    </figure>
-
-      <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-        <p><strong>Why now:</strong> Discreet personalization is booming—shoppers want meaning without overt monograms. Morse code lets them wear private messages (initials, names, dates) in a clean, gender-neutral form.</p>
-    
-        <p><strong>Key elements:</strong> Dots = round diamonds; dashes = bar/baguette settings; precise spacing for legibility; stackable bands and bar pendants; mixed-metal options; engraveable backs for decoded text.</p>
+          <p class="hero-intro">
+            At Kool Concepts, creativity never stops. Beyond what we manufacture today, our team is constantly
+            developing fresh ideas and forward-thinking designs that anticipate where the market is headed.
+            These potential concepts are born from ongoing research, trend analysis, and in-house design innovation.
+          </p>
+          <p class="hero-intro">
+            By sharing these concepts, we invite our clients to imagine new product lines, seasonal drops, or capsule
+            collections that push boundaries while staying rooted in commercial reality and consumer demand.
+          </p>
+          <p class="hero-intro">
+            For us, potential isn’t theoretical—it’s the starting point for the next big trend.
+          </p>
+        </div>
       </div>
-    </details>
-    
-  
-    <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>
+    </section>
 
+    <hr class="divider" />
 
+    <section class="concepts-wrapper">
 
-<!----------------------------------------------------------- The Stitch Collection --------------------------------------------------------------->
-<section class="concept-card">
-  <h2>The Stitch Collection</h2>
-  <p class="concept-tagline">Where Love Weaves the Past into the Future.</p>
+      <!-- =================== Modern Heirlooms =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">Modern Heirlooms</h2>
+          <p class="concept-tagline">Heirlooms don’t have to be inherited—start the legacy.</p>
+          <div class="concept-underline"></div>
+        </header>
 
-  <p class="concept-intro">
-    The Stitch Collection celebrates the invisible threads that bind us—love, memory, legacy, and the moments that shape who we are.
-    Inspired by a technique invented in-house, each piece features 14K gold wire “stitches” that symbolize connection—the emotional ties we choose to honor.
-    A gold plate above and below represents the past and the future, anchoring the design in time. At the center sits a diamond—symbolizing love—held securely between the 22K stitches and the gold plates.
-  </p>
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              Every milestone has a heartbeat—your first promotion, a move to a new city, a chapter closing, another
+              beginning. Modern Heirlooms was created to honor these moments while they’re happening, not years later.
+              These are pieces designed for the present, yet destined to be passed forward.
+            </p>
 
-  <!-- mini spec table -->
-  <table class="concept-spec">
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Trilogy Ring, Memory Bar Necklace, Milestone Bangle</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Year-count stones, initials, custom milestone markers</td>
+              </tr>
+            </table>
 
-    <tr>
-      <th>Core SKUs</th>
-      <td>Stitch Studs, Stitch Pendant Necklace, Stitch Stack Rings,</td>
-    </tr>
-    <tr>
-      <th>Materials</th>
-      <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-    </tr>
-    <tr>
-      <th>Lead Time</th>
-      <td>6–8 weeks</td>
-    </tr>
-    <tr>
-      <th>Personalization</th>
-      <td>Choice of diamond size, stitch color (yellow/rose), engravable back plates, mix-metal customization.</td>
-    </tr>
-  </table>
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Customers are choosing their own legacy pieces to mark life chapters.</p>
+                <p><strong>Key elements:</strong> Trilogy symbolism, milestone counts, engravable planes, upgrade paths
+                  in metal/stone.</p>
+                <p><strong>Merch notes:</strong> Hits AUR ladders in sterling/14K with lab-grown options; easy to build
+                  6-SKU capsules.</p>
+              </div>
+            </details>
+          </div>
 
-  <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/stitch_1.png" alt="Stitch Stud" loading="lazy" />
-      <figcaption>Stitch Stud</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/stitch_2.png" alt="Stitch Pendant Necklace" loading="lazy" />
-      <figcaption>Stitch Pendant Necklace</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/stitch_3.png" alt="Stitch Drop Earrings" loading="lazy" />
-      <figcaption>Stitch Drop Earrings</figcaption>
-    </figure>
-  </div>
-  
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/heirloom1.png" alt="Trilogy Ring — 3-stone past/present/future" loading="lazy" />
+              <figcaption>Trilogy Ring</figcaption>
+            </figure>
+            <figure>
+              <img src="images/heirloom4.png" alt="Memory Bar Necklace — year-count diamonds" loading="lazy" />
+              <figcaption>Memory Bar Necklace</figcaption>
+            </figure>
+            <figure>
+              <img src="images/heirloom9.png" alt="Milestone Bangle — interval diamonds" loading="lazy" />
+              <figcaption>Milestone Bangle</figcaption>
+            </figure>
+          </div>
+        </div>
 
+        <nav class="cta-pill" aria-label="Modern Heirlooms actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-  <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-    <div class="readmore__content">
-      <p><strong>Why now:</strong> Consumers are gravitating toward jewelry with purpose—pieces that feel personal, symbolic, and emotionally expressive. Stitch-set designs tap into the rise of connection jewelry, the modern heirloom movement, and story-driven minimalism.</p>
-      <p><strong>Key elements:</strong> Featuring a 14K “connection stitch,” the collection highlights a center diamond framed by symbolic past-and-future plates. Thoughtfully built with dimensional architecture and subtle mixed-metal moments, each piece transforms everyday silhouettes into elevated expressions of meaning and connection.</p>
-      <p><strong>Merch notes:</strong> The collection offers a clear AUR progression between silver and gold versions, performing strongly as both singles and sets—from stacking rings to stud duos. Its versatility makes it highly giftable across relationships and milestones, while stone-size variations allow it to easily expand into 6–10 SKU capsules with minimal complexity.</p>
-    </div>
-  </details>
+      <!-- =================== Cipher Collection =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">The Cipher Collection</h2>
+          <p class="concept-tagline">Delicate language. Loud meaning.</p>
+          <div class="concept-underline"></div>
+        </header>
 
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>  
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              Minimal, gender-neutral pieces that encode initials, names, or dates in Morse code—dots and dashes
+              translated into diamonds and bars for a private message you can wear.
+            </p>
 
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Single-Initial Ring, Two-Initial Band, “MOM” 3-Ring Stack, Cipher Bar Necklace</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 10K/14K Gold, Lab-grown Diamonds (dots = rounds; dashes = bars/baguettes)</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Initials / short words / dates in Morse code; stacking options for multi-word sets</td>
+              </tr>
+            </table>
 
-<!----------------------------------------------------------- Aura Collection --------------------------------------------------------------->
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Discreet personalization is booming—shoppers want meaning without overt
+                  monograms. Morse code lets them wear private messages (initials, names, dates) in a clean,
+                  gender-neutral form.</p>
+                <p><strong>Key elements:</strong> Dots = round diamonds; dashes = bar/baguette settings; precise
+                  spacing for legibility; stackable bands and bar pendants; mixed-metal options; engravable backs for
+                  decoded text.</p>
+              </div>
+            </details>
+          </div>
 
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/cipher5.png" alt="Letter A" loading="lazy" />
+              <figcaption>Letter A</figcaption>
+            </figure>
+            <figure>
+              <img src="images/cipher7.png" alt="Letter K" loading="lazy" />
+              <figcaption>Letter K</figcaption>
+            </figure>
+            <figure>
+              <img src="images/cipher1.png" alt="Letter U" loading="lazy" />
+              <figcaption>Letter U</figcaption>
+            </figure>
+          </div>
+        </div>
 
+        <nav class="cta-pill" aria-label="Cipher Collection actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-  <section class="concept-card">
-    <h2>The Aura Collection</h2>
-    <p class="concept-tagline">Energy made tangible.</p>
-  
-    <p class="concept-intro">
-      Jewelry inspired by energy, chakras, and emotional states—fusing color, shape, and form with spiritual or wellness symbolism. 
-      Ideal for the wellness-minded and Gen Z/Millennial shoppers interested in mindfulness, astrology, or personal development.
-    </p>
-  
-    <!-- mini spec table -->
-    <table class="concept-spec">
-  
-      <tr>
-        <th>Core SKUs</th>
-        <td>Aura Pendants, Pulse Rings, Alignment Earrings</td>
-      </tr>
-      <tr>
-        <th>Materials</th>
-        <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-      </tr>
-      <tr>
-        <th>Lead Time</th>
-        <td>6–8 weeks</td>
-      </tr>
-      <tr>
-        <th>Personalization</th>
-        <td>Aura color selections based on birth chart, mood, chakra focus, or aura scans</td>
-      </tr>
-    </table>
-  
-    <!-- images -->
-    <div class="concept-gallery">
-      <figure>
-        <img src="images/ac1.png" alt="Wave-Ring" loading="lazy" />
-        <figcaption>Radiant Energy Ring</figcaption>
-      </figure>
-    
-      <figure>
-        <img src="images/ac2.png" alt="Memory Bar Necklace — year-count diamonds" loading="lazy" />
-        <figcaption>Chakra Ladder Earrings</figcaption>
-      </figure>
-    
-      <figure>
-        <img src="images/ac3.png" alt="Milestone Bangle — interval diamonds" loading="lazy" />
-        <figcaption>Inner Light Pendant</figcaption>
-      </figure>
-    </div>
-    
-  
-  
-    <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-    <details class="readmore">
-      <summary class="pill-summary">
-        <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-      </summary>
-      <div class="readmore__content">
-        <p><strong>Why now:</strong> Consumers are leaning into self-knowledge, astrology, and energy work—seeking jewelry that reflects their internal world, not just external milestones.</p>
-        <p><strong>Key elements:</strong> Elemental and chakra-based color stories, symbolic stone choices, light + shadow finishes, subtle stacking to express emotional states.</p>
-        <p><strong>Merch notes:</strong> Modular construction supports SKU efficiency (4–5 core styles × 4 element variants); easy tiering across sterling, vermeil, and 14K. Ideal for storytelling drops and birth chart bundles.</p>
-      </div>
-    </details>
-  
-    <!-- call to action -->
-  <nav class="cta-pill" aria-label="Concept actions">
-    <div class="cta-pill__inner">
-    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-      Request Line Sheet
-    </a>
-    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-      Book a 15-min Review
-    </a>
-    <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-      Ask for Costing
-    </a>
-    </div>
-  </section>
-    </nav>
+      <!-- =================== Stitch Collection =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">The Stitch Collection</h2>
+          <p class="concept-tagline">Where Love Weaves the Past into the Future.</p>
+          <div class="concept-underline"></div>
+        </header>
 
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              The Stitch Collection celebrates the invisible threads that bind us—love, memory, legacy, and the
+              moments that shape who we are. Inspired by a technique invented in-house, each piece features 14K gold
+              wire “stitches” that symbolize connection. A gold plate above and below represents the past and the
+              future, anchoring the design in time, while a diamond at the center symbolizes love—held securely between
+              the stitches and plates.
+            </p>
 
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Stitch Studs, Stitch Pendant Necklace, Stitch Stack Rings</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Choice of diamond size, stitch color (yellow/rose), engravable back plates, mixed-metal
+                  customization.</td>
+              </tr>
+            </table>
 
-<!----------------------------------------------------------- Stellarity --------------------------------------------------------------->
-<section class="concept-card">
-  <h2>Stellarity</h2>
-  <p class="concept-tagline">Wear the Universe your Way.</p>
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Consumers are gravitating toward jewelry with purpose—pieces that feel
+                  personal, symbolic, and emotionally expressive.</p>
+                <p><strong>Key elements:</strong> 14K “connection stitches,” a center diamond framed by past-and-future
+                  plates, dimensional architecture, and subtle mixed-metal moments.</p>
+                <p><strong>Merch notes:</strong> Clear AUR progression between silver and gold versions; performs
+                  strongly as both singles and sets, with stone-size variations allowing 6–10 SKU capsules.</p>
+              </div>
+            </details>
+          </div>
 
-  <p class="concept-intro">
-    A personalized charm ring that brings cosmic energy to your fingertips. 
-    Designed with interchangeable symbolic charms—like stars, moons, planets, and custom aura totems —
-    this piece offers a playful yet profound way to express your inner world.
-  </p>
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/stitch_1.png" alt="Stitch Stud" loading="lazy" />
+              <figcaption>Stitch Stud</figcaption>
+            </figure>
+            <figure>
+              <img src="images/stitch_2.png" alt="Stitch Pendant Necklace" loading="lazy" />
+              <figcaption>Stitch Pendant Necklace</figcaption>
+            </figure>
+            <figure>
+              <img src="images/stitch_3.png" alt="Stitch Drop Earrings" loading="lazy" />
+              <figcaption>Stitch Drop Earrings</figcaption>
+            </figure>
+          </div>
+        </div>
 
-  <!-- mini spec table -->
-  <table class="concept-spec">
+        <nav class="cta-pill" aria-label="Stitch Collection actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-    <tr>
-      <th>Core SKUs</th>
-      <td>Orbit Rings, Totem Charms, Charm Stack Bands,</td>
-    </tr>
-    <tr>
-      <th>Materials</th>
-      <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-    </tr>
-    <tr>
-      <th>Lead Time</th>
-      <td>6–8 weeks</td>
-    </tr>
-    <tr>
-      <th>Personalization</th>
-      <td>Birth flower charm sets, Mood-based curation (e.g., “Protective,” “Radiant,” “Grounded”), or Mix & match stacking rings or multi-charm layouts</td>
-    </tr>
-  </table>
+      <!-- =================== Aura Collection =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">The Aura Collection</h2>
+          <p class="concept-tagline">Energy made tangible.</p>
+          <div class="concept-underline"></div>
+        </header>
 
-  <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/stellarity1.png" alt="Wave-Ring" loading="lazy" />
-      <figcaption>Celestial Stack Ring</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/stellarity2.png" alt="Memory Bar Necklace — year-count diamonds" loading="lazy" />
-      <figcaption>Planetary Ring</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/stellarity3.png" alt="Milestone Bangle — interval diamonds" loading="lazy" />
-      <figcaption>Birth Flower Stack </figcaption>
-    </figure>
-  </div>
-  
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              Jewelry inspired by energy, chakras, and emotional states—fusing color, shape, and form with spiritual or
+              wellness symbolism. Ideal for wellness-minded and Gen Z/Millennial shoppers interested in mindfulness,
+              astrology, or personal development.
+            </p>
 
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Aura Pendants, Pulse Rings, Alignment Earrings</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Aura color selections based on birth chart, mood, chakra focus, or aura scans</td>
+              </tr>
+            </table>
 
-  <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-    <div class="readmore__content">
-      <p><strong>Why now:</strong> Personal symbolism is trending—consumers want jewelry that mirrors their inner identity, emotional journey, and evolving sense of self. Charm rings offer a tactile, modular way to express individuality, astrology, mood, and meaning—one charm at a time.</p>
-      <p><strong>Key elements:</strong> Modular ring bases, interchangeable charms (zodiac, celestial, aura icons), elemental metal and stone combinations, and storytelling layers—designed to reflect identity shifts, lunar cycles, and emotional phases.</p>
-      <p><strong>Merch notes:</strong> Core structure supports SKU efficiency (3–4 ring bases × 5–6 charm families); scalable across sterling, vermeil, and 14K. Great for gift sets, stacking bundles, and drop-based personalization programs.</p>
-    </div>
-  </details>
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Consumers are leaning into self-knowledge, astrology, and energy work—
+                  seeking jewelry that reflects their internal world, not just external milestones.</p>
+                <p><strong>Key elements:</strong> Elemental and chakra-based color stories, symbolic stone choices,
+                  light-and-shadow finishes, and subtle stacking to express emotional states.</p>
+                <p><strong>Merch notes:</strong> Modular construction supports SKU efficiency (4–5 core styles × 4
+                  element variants); easy tiering across sterling, vermeil, and 14K.</p>
+              </div>
+            </details>
+          </div>
 
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/ac1.png" alt="Radiant Energy Ring" loading="lazy" />
+              <figcaption>Radiant Energy Ring</figcaption>
+            </figure>
+            <figure>
+              <img src="images/ac2.png" alt="Chakra Ladder Earrings" loading="lazy" />
+              <figcaption>Chakra Ladder Earrings</figcaption>
+            </figure>
+            <figure>
+              <img src="images/ac3.png" alt="Inner Light Pendant" loading="lazy" />
+              <figcaption>Inner Light Pendant</figcaption>
+            </figure>
+          </div>
+        </div>
 
-<!----------------------------------------------------------- Path Collection --------------------------------------------------------------->
-<section class="concept-card">
-  <h2>The Path Collection</h2>
-  <p class="concept-tagline">Every Journey Leaves a Mark</p>
+        <nav class="cta-pill" aria-label="Aura Collection actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-  <p class="concept-intro">
-    A collection shaped by life’s unfolding path, where each motif carries meaning—mountains for growth, 
-    waves for change, the sun for clarity, spirals for rebirth. 
-    Choose the symbols that mirror your own journey.
-  </p>
+      <!-- =================== Stellarity =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">Stellarity</h2>
+          <p class="concept-tagline">Wear the universe your way.</p>
+          <div class="concept-underline"></div>
+        </header>
 
-  <!-- mini spec table -->
-  <table class="concept-spec">
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              A personalized charm ring concept that brings cosmic energy to your fingertips. Designed with
+              interchangeable symbolic charms—stars, moons, planets, and custom aura totems—this piece offers a
+              playful yet profound way to express your inner world.
+            </p>
 
-    <tr>
-      <th>Core SKUs</th>
-      <td>Rebirth Bangle, Clarity Earring, Mountain Bands,</td>
-    </tr>
-    <tr>
-      <th>Materials</th>
-      <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-    </tr>
-    <tr>
-      <th>Lead Time</th>
-      <td>6–8 weeks</td>
-    </tr>
-    <tr>
-      <th>Personalization</th>
-      <td>Select 1–3 symbols from an 8–10 motif library; optional inside-band engraving</td>
-    </tr>
-  </table>
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Orbit Rings, Totem Charms, Charm Stack Bands</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Birth-flower charm sets, mood-based curation (“Protective,” “Radiant,” “Grounded”), and mix &amp;
+                  match stacking or multi-charm layouts.</td>
+              </tr>
+            </table>
 
-  <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/path1.png" alt="Rebirth Bangle" loading="lazy" />
-      <figcaption>Rebirth Bangle</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/path2.png" alt="Clarity Earring" loading="lazy" />
-      <figcaption>Clarity Earrings</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/path3.png" alt="Growth Band" loading="lazy" />
-      <figcaption>Growth Band </figcaption>
-    </figure>
-  </div>
-  
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Personal symbolism is trending—consumers want jewelry that mirrors their
+                  inner identity, emotional journey, and evolving sense of self.</p>
+                <p><strong>Key elements:</strong> Modular ring bases, interchangeable charms (zodiac, celestial, aura
+                  icons), elemental metal and stone combinations.</p>
+                <p><strong>Merch notes:</strong> Core structure supports SKU efficiency (3–4 ring bases × 5–6 charm
+                  families); scalable across sterling, vermeil, and 14K.</p>
+              </div>
+            </details>
+          </div>
 
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/stellarity1.png" alt="Celestial Stack Ring" loading="lazy" />
+              <figcaption>Celestial Stack Ring</figcaption>
+            </figure>
+            <figure>
+              <img src="images/stellarity2.png" alt="Planetary Ring" loading="lazy" />
+              <figcaption>Planetary Ring</figcaption>
+            </figure>
+            <figure>
+              <img src="images/stellarity3.png" alt="Birth Flower Stack" loading="lazy" />
+              <figcaption>Birth Flower Stack</figcaption>
+            </figure>
+          </div>
+        </div>
 
-  <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-    <div class="readmore__content">
-      <p><strong>Why now:</strong> Consumers are seeking meaning-driven jewelry that reflects personal growth, life transitions, and the stories that shape them. Path symbols offer a simple, modern way to express transformation—one motif at a time.</p>
-      <p><strong>Key elements:</strong> Modular bases with pre-set symbolic motifs (mountain, wave, sun, spiral), mix-and-match combinations, matte/polished contrast finishes, and clean engraving options—designed to represent milestones, change, clarity, and renewal.</p>
-      <p><strong>Merch notes:</strong> Standardized symbol library enables SKU efficiency (3–4 bases × 8–10 motifs). Easily scalable in sterling, vermeil, and 14K. Ideal for build-your-own sets, milestone gifting, and drop-based personalization programs.</p>
-    </div>
-  </details>
+        <nav class="cta-pill" aria-label="Stellarity actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>
+      <!-- =================== Path Collection =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">The Path Collection</h2>
+          <p class="concept-tagline">Every journey leaves a mark.</p>
+          <div class="concept-underline"></div>
+        </header>
 
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              A collection shaped by life’s unfolding path, where each motif carries meaning—mountains for growth,
+              waves for change, the sun for clarity, spirals for rebirth. Shoppers choose the symbols that mirror their
+              own journey.
+            </p>
 
-<!----------------------------------------------------------- The Seamless Collection --------------------------------------------------------------->
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Rebirth Bangle, Clarity Earrings, Mountain Bands</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Select 1–3 symbols from an 8–10 motif library; optional inside-band engraving.</td>
+              </tr>
+            </table>
 
-<section class="concept-card">
-  <h2>Seamless</h2>
-  <p class="concept-tagline">Where Pieces Become Whole.</p>
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Consumers are seeking meaning-driven jewelry that reflects personal
+                  growth, life transitions, and the stories that shape them.</p>
+                <p><strong>Key elements:</strong> Modular bases with pre-set symbolic motifs (mountain, wave, sun,
+                  spiral), mix-and-match combinations, matte/polished contrast finishes, and clean engraving options.
+                </p>
+                <p><strong>Merch notes:</strong> Symbol library enables SKU efficiency (3–4 bases × 8–10 motifs), ideal
+                  for build-your-own sets and milestone gifting.</p>
+              </div>
+            </details>
+          </div>
 
-  <p class="concept-intro">
-    Some love is quiet and steady—built from small moments that seamlessly become something whole. 
-    The Seamless Collection celebrates that feeling through Seamless Love, a breakthrough setting that transforms multiple small diamonds into the look of one larger, continuous brilliance. 
-    With precision micro-setting, custom-cut seats, and a unified structure that eliminates gaps, the result is a smooth, uninterrupted sparkle. 
-    A reminder that the little things, placed together with intention, create the brightest kind of love.
-  </p>
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/path1.png" alt="Rebirth Bangle" loading="lazy" />
+              <figcaption>Rebirth Bangle</figcaption>
+            </figure>
+            <figure>
+              <img src="images/path2.png" alt="Clarity Earrings" loading="lazy" />
+              <figcaption>Clarity Earrings</figcaption>
+            </figure>
+            <figure>
+              <img src="images/path3.png" alt="Growth Band" loading="lazy" />
+              <figcaption>Growth Band</figcaption>
+            </figure>
+          </div>
+        </div>
 
-  <!-- mini spec table -->
-  <table class="concept-spec">
+        <nav class="cta-pill" aria-label="Path Collection actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
-    <tr>
-      <th>Core SKUs</th>
-      <td>Seamless Studs, Seamless Cluster Ring, Seamless Pendant, Seamless Dome Ring, Seamless Halo Band</td>
-    </tr>
-    <tr>
-      <th>Materials</th>
-      <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
-    </tr>
-    <tr>
-      <th>Lead Time</th>
-      <td>6–8 weeks</td>
-    </tr>
-    <tr>
-      <th>Personalization</th>
-      <td>Choose diamond layout, silhouette (round/oval/pear clusters), metal color, and size variants based on desired “larger diamond illusion."</td>
-    </tr>
-  </table>
+      <!-- =================== Seamless Collection =================== -->
+      <article class="concept-card">
+        <header class="concept-header">
+          <h2 class="concept-title">Seamless</h2>
+          <p class="concept-tagline">Where pieces become whole.</p>
+          <div class="concept-underline"></div>
+        </header>
 
-  <!-- images -->
-  <div class="concept-gallery">
-    <figure>
-      <img src="images/seamless_1.png" alt="Seamless Pendant" loading="lazy" />
-      <figcaption>Seamless Pendant</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/seamless_2.png" alt="Seamless Studs" loading="lazy" />
-      <figcaption>Seamless Ring</figcaption>
-    </figure>
-  
-    <figure>
-      <img src="images/seamless_3.png" alt="Seamless Ring" loading="lazy" />
-      <figcaption>Seamless Studs</figcaption>
-    </figure>
-  </div>
-  
+        <div class="concept-grid">
+          <div>
+            <p class="concept-intro">
+              Some love is quiet and steady—built from small moments that seamlessly become something whole.
+              The Seamless Collection celebrates that feeling through Seamless Love, a breakthrough setting that
+              transforms multiple small diamonds into the look of one larger, continuous brilliance.
+            </p>
 
+            <table class="concept-spec">
+              <tr>
+                <th>Core SKUs</th>
+                <td>Seamless Studs, Seamless Cluster Ring, Seamless Pendant, Seamless Dome Ring, Seamless Halo Band</td>
+              </tr>
+              <tr>
+                <th>Materials</th>
+                <td>Sterling Silver, 14K Gold, Lab-grown Diamonds</td>
+              </tr>
+              <tr>
+                <th>Lead Time</th>
+                <td>6–8 weeks</td>
+              </tr>
+              <tr>
+                <th>Personalization</th>
+                <td>Diamond layout, silhouette (round/oval/pear clusters), metal color, and size variants based on
+                  desired “larger diamond illusion.”</td>
+              </tr>
+            </table>
 
-  <!-- dropdown: READ MORE ABOUT THE COLLECTION -->
-  <details class="readmore">
-    <summary class="pill-summary">
-      <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
-    </summary>
-    <div class="readmore__content">
-      <p><strong>Why now:</strong> Customers want impact without compromise—bigger shine, smaller stones, smarter price points. Seamless Love delivers elevated brilliance with emotional meaning, fitting the trend of quiet luxury with storytelling.</p>
-      <p><strong>Key elements:</strong> A refined Seamless Love setting with no gaps or breaks in sparkle, offering enhanced diamond illusion sizing and soft, fluid silhouettes. Cluster engineering is elevated into one smooth, radiant surface.</p>
-      <p><strong>Merch notes:</strong> Creates clear AUR tiering with strong sell-through across bridal, self-gifting, and milestone moments, all within a versatile 5–8 SKU hero capsule.</p>
-    </div>
-  </details>
+            <details class="readmore">
+              <summary class="pill-summary">
+                <span class="pill-btn is-ghost"><strong>Read more about this collection</strong></span>
+              </summary>
+              <div class="readmore__content">
+                <p><strong>Why now:</strong> Customers want impact without compromise—bigger shine, smaller stones,
+                  smarter price points. Seamless Love fits the trend of quiet luxury with built-in storytelling.</p>
+                <p><strong>Key elements:</strong> Refined Seamless Love setting with no gaps in sparkle; enhanced diamond
+                  illusion sizing; soft, fluid silhouettes where clusters become one smooth surface.</p>
+                <p><strong>Merch notes:</strong> Creates clear AUR tiering with strong sell-through across bridal,
+                  self-gifting, and milestone moments, within a versatile 5–8 SKU hero capsule.</p>
+              </div>
+            </details>
+          </div>
 
-  <!-- call to action -->
-<nav class="cta-pill" aria-label="Concept actions">
-  <div class="cta-pill__inner">
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
-    Request Line Sheet
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
-    Book a 15-min Review
-  </a>
-  <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
-    Ask for Costing
-  </a>
-  </div>
-</section>
-  </nav>  
+          <div class="concept-gallery">
+            <figure>
+              <img src="images/seamless_1.png" alt="Seamless Pendant" loading="lazy" />
+              <figcaption>Seamless Pendant</figcaption>
+            </figure>
+            <figure>
+              <img src="images/seamless_2.png" alt="Seamless Ring" loading="lazy" />
+              <figcaption>Seamless Ring</figcaption>
+            </figure>
+            <figure>
+              <img src="images/seamless_3.png" alt="Seamless Studs" loading="lazy" />
+              <figcaption>Seamless Studs</figcaption>
+            </figure>
+          </div>
+        </div>
 
+        <nav class="cta-pill" aria-label="Seamless Collection actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">Request Line Sheet</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">Book a 15-min Review</a>
+            <a class="cta-pill__btn"
+              href="mailto:simranshah.kc@outlook.com?subject=Request Costing">Ask for Costing</a>
+          </div>
+        </nav>
+      </article>
 
+    </section>
+  </main>
 
-
-</main>
-
-<footer>
-  <p>© 2025 Kool Concepts</p>
-</footer>
+  <footer>
+    <p>© 2025 Kool Concepts</p>
+  </footer>
 </body>
+
 </html>
+

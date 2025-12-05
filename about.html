@@ -2,217 +2,405 @@
 <html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Kool Concepts</title>
-  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- TEMP: external CSS disabled while we stabilize this page -->
+  <!-- <link rel="stylesheet" href="css/styles.css" /> -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
   <style>
-    :root{
-      --ink:#222; --muted:#666; --line:#eaeaea; --chip:#f7f7f7;
-      /* Adjustable defaults */
-      --row-img-width: 320px;    /* main row image width (changed by top slider) */
-      --modal-img-maxh: 78vh;    /* popup image max-height (changed by popup slider) */
+    :root {
+      --ink: #222;
+      --muted: #666;
+      --line: #eaeaea;
+      --chip: #f7f7f7;
+      --gold: #b89a5e;
+      --bg-soft: #f5f4f2;
     }
 
-    /* Georgia everywhere on this page */
-    html, body, header, nav, footer, h1, h2, h3, h4, p, a, button, input, summary, details,
-    .dropbtn, .dropdown, .dropdown-content, .trend-description { font-family: Georgia, serif !important; }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      color: var(--ink);
+      background-color: var(--bg-soft);
+      -webkit-font-smoothing: antialiased;
+    }
 
-    body { color:var(--ink); margin:0; }
-    .no-scroll{ overflow:hidden; }
+    /* ===== HEADER (same as Home) ===== */
+    .site-header {
+      background-color: #000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+    }
 
-    .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-    h1{font-size:clamp(28px,3.4vw,40px);margin:18px 0 4px}
-    .lede{max-width:860px;color:var(--muted);margin:.5rem 0 1.25rem}
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-    /* Sticky index + toolbar */
-    .indexbar{position:sticky;top:0;background:#fff;border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);z-index:20;margin-top:8px}
-    .indexwrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;padding:.6rem 0}
-    nav.index{display:flex;flex-wrap:wrap;gap:.5rem}
-    nav.index a{display:inline-block;padding:.35rem .7rem;border:1px solid #ddd;border-radius:999px;
-      text-decoration:none;font-size:.9rem}
-    .toolbar{display:flex;align-items:center;gap:.5rem;color:#444}
-    .toolbar input[type="range"]{width:180px}
+    .site-logo {
+      height: 95px;
+      width: auto;
+      display: block;
+    }
 
-    /* Trend blocks */
-    .block{margin:2.25rem 0}
-    .kicker{color:var(--muted);font-size:.95rem}
-    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-    .pills{margin:.5rem 0 .25rem}
-    .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;
-      padding:.2rem .55rem;margin:.2rem .35rem .2rem 0;font-size:.85rem}
-    .proof details{border:1px solid var(--line);background:#fafafa;border-radius:12px;padding:.75rem 1rem}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-    /* MAIN IMAGE ROW: 4 across (scrolls on small screens) */
-    .imgs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
-    .imgs img{flex:0 0 var(--row-img-width); max-width:var(--row-img-width);
-      height:auto;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+    nav a,
+    nav .dropbtn {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      cursor: pointer;
+      position: relative;
+    }
 
-    .cta a{display:inline-block;margin-top:.75rem;padding:.5rem .85rem;border:1px solid #222;border-radius:10px;text-decoration:none}
-    .div{height:1px;background:var(--line);margin:2rem 0}
-    .morebtn{margin-top:10px;display:inline-block;padding:.45rem .75rem;border:1px solid #222;border-radius:10px;
-      background:#fff;cursor:pointer}
+    nav a::after,
+    nav .dropbtn::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: width 0.2s ease-out;
+    }
 
-    footer{color:#666;margin:24px 0;text-align:center}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    nav a:hover::after,
+    nav .dropbtn:hover::after {
+      width: 100%;
+    }
 
-    /* ===== Lightbox (DIV-based) ===== */
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none}
-    .lb.is-open{display:block}
-    .lb-inner{position:absolute;inset:0;display:flex;flex-direction:column}
-    .lb-topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:#eee}
-    .lb-close{background:transparent;border:1px solid #666;color:#eee;border-radius:8px;padding:.35rem .6rem;cursor:pointer}
-    .lb-canvas{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px}
-    .lb-img{max-height:var(--modal-img-maxh);max-width:92vw;border-radius:12px;border:1px solid #333}
-    .lb-arrow{background:rgba(255,255,255,.1);border:1px solid #666;color:#eee;border-radius:10px;
-      padding:.5rem .7rem;cursor:pointer}
-    .lb-thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-top:1px solid #333;background:rgba(0,0,0,.2)}
-    .lb-thumbs img{height:90px;border-radius:8px;border:2px solid transparent;cursor:pointer}
-    .lb-thumbs img.active{border-color:#fff}
+    nav .dropbtn {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-    .lb-ctl{display:flex;align-items:center;gap:.5rem;color:#ddd}
-    .lb-ctl input[type="range"]{width:180px}
-    /* Center heading + intro paragraphs */
-h1 {
-  text-align: center;
-}
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-.trend-description {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 700px; /* keeps lines readable */
-}
-/* === Show 3 images per row (no scrolling) === */
-.wrap .imgs{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:10px;
-  overflow-x: visible;   /* override old overflow-x:auto */
-}
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #111;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+      border-radius: 6px;
+      padding: 8px 0;
+      z-index: 1000;
+    }
 
-/* Override the old flex-based sizes so grid fills neatly */
-.wrap .imgs img{
-  flex: none !important;
-  max-width: 100% !important;
-  width: 100%;
-  height: auto;
-}
+    .dropdown-content a {
+      display: block;
+      padding: 8px 14px;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
 
-/* Hide anything after the 3rd image in the row */
-.wrap .imgs img:nth-child(n+4){
-  display:none;
-}
+    .dropdown-content a:hover {
+      background-color: #1f1f1f;
+      color: var(--gold);
+    }
 
-/* Optional: on small screens show 2 without scroll
-@media (max-width: 700px){
-  .wrap .imgs{ grid-template-columns: repeat(2, 1fr); }
-  .wrap .imgs img:nth-child(n+3){ display:none; }
-}
-*/
-/* === Hard-center each section and balance columns === */
-.wrap.block{
-  max-width: 1040px;         /* narrower than the page container */
-  margin-left: auto;
-  margin-right: auto;        /* centers the whole section under the heading */
-}
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-.wrap.block .grid{
-  grid-template-columns: 1fr 1fr;  /* equal halves so it doesn't lean left */
-  justify-content: center;         /* center the two tracks */
-  gap: 24px;
-}
+    /* ===== MAIN / HERO CARD ===== */
+    main {
+      padding: 34px 16px 26px;
+    }
 
-/* Mobile: stack neatly */
-@media (max-width: 900px){
-  .wrap.block{ max-width: 680px; }
-  .wrap.block .grid{ grid-template-columns: 1fr; justify-items: center; }
-}
-nav .dropbtn {
-  font-weight: 600 !important;
-}
+    .about-wrapper {
+      max-width: 980px;
+      margin: 38px auto 32px;
+    }
 
+    .about-card {
+      background-color: #fff;
+      border-radius: 18px;
+      padding: 26px 26px 26px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      line-height: 1.8;
+    }
 
+    .about-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .about-title {
+      margin: 0 0 4px;
+      font-size: clamp(28px, 3.4vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: left;
+    }
+
+    .about-subtitle {
+      margin: 0 0 18px;
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .about-divider {
+      width: 70px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 999px;
+      margin: 6px 0 18px;
+    }
+
+    .about-section {
+      margin: 16px 0 18px;
+    }
+
+    .about-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .about-body {
+      font-size: 0.96rem;
+      color: #333;
+      margin: 0;
+    }
+
+    .about-body + .about-body {
+      margin-top: 6px;
+    }
+
+    .about-list {
+      font-size: 0.96rem;
+      color: #333;
+      margin: 10px 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .about-list li {
+      margin: 4px 0;
+    }
+
+    .about-tagline {
+      font-size: 0.92rem;
+      margin: 4px 0 0;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ===== CTA PILL ===== */
+    .cta-pill {
+      margin-top: 22px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .cta-pill__inner {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: #000;
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .cta-pill__btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #f0f0f0;
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 0.82rem;
+      background: transparent;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cta-pill__btn:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      transition: 0.25s ease-in-out;
+    }
+
+    footer {
+      color: #777;
+      margin: 18px 0 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid #ddd;
+      padding-top: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .site-logo {
+        height: 64px;
+      }
+
+      nav {
+        justify-content: flex-start;
+        gap: 18px;
+      }
+
+      .about-card {
+        padding: 20px 18px 22px;
+      }
+
+      .cta-pill {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
+
 <body>
-
-
-  <!-- Header (unchanged) -->
-  <header>
-    <img src="images/logo.png" alt="Kool Concepts Logo" style="height:100px; width:auto;" />
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="craftsmanship.html">Craftsmanship</a>
-      <div class="dropdown">
-        <button class="dropbtn">Market Insights ▼</button>
-        <div class="dropdown-content">
-          <a href="trends2024.html">2024</a>
-          <a href="trends2025.html">2025</a>
-          <a href="trends2026.html">2026</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <div class="dropdown">
+          <button class="dropbtn">Market Insights ▼</button>
+          <div class="dropdown-content">
+            <a href="trends2024.html">2024</a>
+            <a href="trends2025.html">2025</a>
+            <a href="trends2026.html">2026</a>
+          </div>
         </div>
-      </div>
-      <a href="concepts.html">Concepts</a>
-      <a href="about.html">About</a>
-    </nav>
+        <a href="concepts.html">Concepts</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section style="max-width:980px;margin:40px auto;padding:20px;line-height:1.6;font-family:Georgia,serif">
-      <div style="letter-spacing:.08em;font-size:.9rem;opacity:.8;margin-bottom:6px;text-transform:uppercase">About Us</div>
-      <h1 style="margin:0 0 8px">Kool Concepts</h1>
+    <section class="about-wrapper">
+      <div class="about-card">
+        <div class="about-kicker">About Us</div>
+        <h1 class="about-title">Kool Concepts</h1>
+        <p class="about-subtitle">Where analysis, design, and manufacturing work as one.</p>
+        <div class="about-divider"></div>
 
-    <p style="font-size: 1.2rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Who We Are</p>
-    <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">Kool Concepts bridges creativity and craftsmanship. 
-      As a jewelry manufacturer and design partner, 
-      we specialize in turning market signals into sell-through collections—balancing artistry with commercial performance for retailers and brands.</p>
-</p>
+        <!-- Who We Are -->
+        <div class="about-section">
+          <h2 class="about-heading">Who We Are</h2>
+          <p class="about-body">
+            Kool Concepts bridges creativity and craftsmanship. As a jewelry manufacturer and design partner,
+            we specialize in turning market signals into sell-through collections—balancing artistry with
+            commercial performance for retailers and brands.
+          </p>
+        </div>
 
-  <p style="font-size: 1.2rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Our Edge</p>
-  <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">Unlike traditional makers, our process begins with analysis. 
-    Our in-house team studies sales data, social media cycles, runway cues, and cultural shifts to anticipate consumer desire. 
-    Paired with a studio of designers and artisans, we don’t just make jewelry—we develop concepts that move.</p>
-  
-    <p style="font-size: 1.2rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Capabilities:</p>
-   
-   <ul style="font-size: 1rem; line-height: 1.6; margin-top: 20px; 
-    font-family: Georgia, serif !important; 
-    text-align: center; 
-    list-style-position: inside; 
-    padding: 0; margin: 20px auto; display: inline-block;">
-<li style="font-family: Georgia, serif !important;">Trend-led Concept Creation Through Sketches, CAD, and Prototyping</li>
-<li style="font-family: Georgia, serif !important;">Ethical & Full-Spectrum Sourcing—Including Natural, Lab-Grown Stones, Gem Stones and Pearls</li>
-<li style="font-family: Georgia, serif !important;">End-to-End Manufacturing: Casting, Setting, Finishing, Plating</li>
-<li style="font-family: Georgia, serif !important;">Designs Built to Meet your Retail Pricing and Margin Goals</li>
-<li style="font-family: Georgia, serif !important;">Guidance That Helps Select Designs Proven to Sell at Retail</li>
-</ul>
+        <!-- Our Edge -->
+        <div class="about-section">
+          <h2 class="about-heading">Our Edge</h2>
+          <p class="about-body">
+            Unlike traditional makers, our process begins with analysis. Our in-house team studies sales data,
+            social media cycles, runway cues, and cultural shifts to anticipate consumer desire.
+          </p>
+          <p class="about-body">
+            Paired with a studio of designers and artisans, we don’t just make jewelry—we develop concepts that move:
+            collections built to feel current, emotionally resonant, and ready to perform at retail.
+          </p>
+        </div>
 
+        <!-- Capabilities -->
+        <div class="about-section">
+          <h2 class="about-heading">Capabilities</h2>
+          <ul class="about-list">
+            <li>Trend-led concept creation through sketches, CAD, and prototyping</li>
+            <li>Ethical &amp; full-spectrum sourcing—including natural, lab-grown stones, gemstones, and pearls</li>
+            <li>End-to-end manufacturing: casting, setting, finishing, plating</li>
+            <li>Designs engineered to meet your retail pricing and margin goals</li>
+            <li>Guidance to help select designs proven to sell at retail</li>
+          </ul>
+        </div>
 
+        <!-- Experience -->
+        <div class="about-section">
+          <h2 class="about-heading">Experience</h2>
+          <p class="about-body">
+            We support U.S. and international partners across capsule drops and full seasonal assortments.
+            Our role is often behind the scenes, but our work is worn worldwide.
+          </p>
+          <p class="about-body">
+            Teams trust us for speed, precision, and clear communication from brief to delivery—whether
+            we’re building a focused 6-SKU capsule or a multi-department rollout.
+          </p>
+          <p class="about-tagline">
+            Analyst-led concepts · End-to-end execution · On-time deliveries
+          </p>
+        </div>
 
+        <!-- Vision -->
+        <div class="about-section">
+          <h2 class="about-heading">Vision</h2>
+          <p class="about-body">
+            Jewelry is storytelling. We partner with brands to bring narrative-driven, trend-smart designs to life—
+            collections that sell, connect, and stand the test of time.
+          </p>
+        </div>
 
-<p style="font-size: 1.2rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Experience </p>
-<p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">We support U.S. and international partners across capsule drops and full seasonal assortments. 
-  Our role is often behind the scenes, but our work is worn worldwide. 
-  Teams trust us for speed, precision, and clear communication from brief to delivery.</p>
-  <p style="font-size: 1.0rem; line-height: 1.6; font-family: Georgia, serif;"">Analyst-Led Concepts | End-to-End Execution | On-Time Deliveries</p>
-    
-
-  <p style="font-size: 1.2rem; line-height: 1.6; font-weight: bold; font-family: Georgia, serif;"">Vision </p>
-  <p style="font-size: 1rem; line-height: 1.6; font-family: Georgia, serif;"">Jewelry is storytelling. 
-    We partner with brands to bring narrative-driven, trend-smart designs to life—collections that sell, connect, and stand the test of time.</p>
-  
-    <a href="mailto:simranshah.kc@outlook.com" style="display:inline-block;margin-top:18px;padding:10px 16px;border-radius:999px;border:1px solid currentColor;text-decoration:none">
-      Let’s build your next collection →
-    </a>
-  </section>
-  
+        <!-- CTA -->
+        <nav class="cta-pill" aria-label="About page actions">
+          <div class="cta-pill__inner">
+            <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Let%E2%80%99s%20Build%20a%20Collection">
+              Let’s build your next collection →
+            </a>
+          </div>
+        </nav>
+      </div>
+    </section>
   </main>
 
   <footer>
     <p>© 2025 Kool Concepts</p>
   </footer>
 </body>
+
 </html>

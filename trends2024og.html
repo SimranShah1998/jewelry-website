@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 Jewelry Trends | Kool Concepts</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #222;
+      --muted: #666;
+      --line: #eaeaea;
+      --chip: #f7f7f7;
+      --row-img-width: 320px;
+    }
+
+    /* Georgia everywhere on this page */
+    html, body, header, nav, footer, h1, h2, h3, h4, p, a, button, input, summary, details,
+    .dropbtn, .dropdown, .dropdown-content, .trend-description {
+      font-family: Georgia, serif !important;
+    }
+
+    body {
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 3.4vw, 40px);
+      margin: 18px 0 4px;
+      text-align: center;
+    }
+
+    .lede {
+      max-width: 860px;
+      color: var(--muted);
+      margin: 0.5rem auto 1.25rem;
+    }
+
+    .trend-description {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 700px;
+    }
+
+    /* Sticky index */
+    .indexbar {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      z-index: 20;
+      margin-top: 8px;
+    }
+
+    .indexwrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+    }
+
+    nav.index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    nav.index a {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #444;
+    }
+
+    /* Trend blocks */
+    .block {
+      margin: 2.25rem 0;
+    }
+
+    .kicker {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .pills {
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      margin: 0.2rem 0.35rem 0.2rem 0;
+      font-size: 0.85rem;
+    }
+
+    .proof details {
+      border: 1px solid var(--line);
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+    }
+
+    /* MAIN IMAGE ROW: 3 across, expandable */
+    .wrap .imgs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      overflow-x: visible;
+    }
+
+    .wrap .imgs img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* Show only first 3 by default */
+    .wrap .imgs img:nth-child(n+4) {
+      display: none;
+    }
+
+    /* When expanded, show all */
+    .wrap .imgs.show-all img {
+      display: block;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid #222;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    .div {
+      height: 1px;
+      background: var(--line);
+      margin: 2rem 0;
+    }
+
+    .morebtn {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 0.45rem 0.75rem;
+      border: 1px solid #222;
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    footer {
+      color: #666;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    /* Center each block and balance columns */
+    .wrap.block {
+      max-width: 1040px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .wrap.block .grid {
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .wrap.block {
+        max-width: 680px;
+      }
+      .wrap.block .grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .wrap .imgs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .wrap .imgs img:nth-child(n+3) {
+        display: none;
+      }
+      .wrap .imgs.show-all img {
+        display: block;
+      }
+    }
+
+    nav .dropbtn {
+      font-weight: 600 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/logo.png" alt="Kool Concepts Logo" style="height:100px; width:auto;" />
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="craftsmanship.html">Craftsmanship</a>
+      <div class="dropdown">
+        <button class="dropbtn">Market Insights ▼</button>
+        <div class="dropdown-content">
+          <a href="trends2024.html">2024</a>
+          <a href="trends2025.html">2025</a>
+          <a href="trends2026.html">2026</a>
+        </div>
+      </div>
+      <a href="concepts.html">Concepts</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Main Page Summary -->
+  <main class="wrap">
+    <h1>2024 Jewelry Trends</h1>
+    <p class="trend-description lede">
+      Every year, Kool Concepts decodes the shifts shaping the jewelry world—looking to the past, tracking the present, and forecasting what’s next. 2024 is the year of bold expression: pieces that redefined everyday jewelry with a mix of nostalgia, maximalism, and playful experimentation.
+      From chunky gold chains and colorful gemstones to bows, hearts, and sculptural forms, the trends celebrated personality through statement styling.
+      It was a season of revival—where vintage inspirations collided with modern craftsmanship, and where jewelry became less about formality and more about joy, layering, and individuality.
+    </p>
+    <p class="trend-description lede">
+      At Kool Concepts, we didn’t just observe these movements—we manufactured them.
+      Our team translated these trends into tangible designs, showcasing how analysis and craftsmanship come together to create pieces that resonate with the spirit of the time.
+    </p>
+  </main>
+
+  <!-- Sticky Jump Index -->
+  <div class="indexbar">
+    <div class="wrap indexwrap">
+      <nav class="index" id="trendIndex">
+        <strong style="color:#666">Jump to:</strong>
+      </nav>
+      <div class="toolbar">
+        <!-- (Reserved for future controls if needed) -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Eternal Brilliance ===== -->
+  <section class="wrap block" id="modern-pearls" data-gallery="pearls"
+           data-main="images/eternal-b1.png,images/eternal-b2.png,images/eternal-b3.png,images/eternal-b4.png"
+           data-more="images/eternal-b5.png,images/eternal-b6.png,images/eternal-b7.png,images/eternal-b10.png,images/eternal-b9.png,images/eternal-b8.png,images/eternal-b11.png,images/eternal-b12.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Eternal Brilliance</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Eternal Brilliance celebrates modern luxury where sustainability meets timeless design. Lab-grown diamonds, now symbols of conscious elegance, shine with the same fire and clarity as mined stones—without the weight of exclusivity. This collection reframes diamonds for today: accessible, individual, and responsible.
+          This collection reframes diamonds for a new generation: less about exclusivity, more about accessibility, individuality, and responsibility.
+        </p>
+        <div class="pills">
+          <span class="pill">Ethical luxury</span>
+          <span class="pill">Quiet luxury</span>
+          <span class="pill">Modern classics</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              Lab-grown diamonds have crossed from niche to mainstream. Leading houses like Pandora, Tiffany & Co., and De Beers’ Lightbox have embraced them, while Vogue and Harper’s Bazaar highlight lab-grown as “the future of fine jewelry.”
+              Social platforms amplify this shift: Gen Z and Millennials are driving demand with #labgrowndiamonds trending on TikTok, and resale platforms report a spike in searches for ethical luxury.
+              With 2024–2025 as a tipping point, lab-grown diamonds are no longer just an alternative—they’re the first choice.
+            </p>
+          </details>
+
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              Modern classics reimagined with lab-grown diamonds—blending timeless silhouettes (solitaires, hoops, tennis lines) with innovative touches like mixed metals, architectural forms, and versatile layering.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="pearls">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="pearls"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Fusions ===== -->
+  <section class="wrap block" id="vibrant-colored-gemstones" data-gallery="gems"
+           data-main="images/fusion1.png,images/fusion2.png,images/fusion14.png"
+           data-more="images/fusion5.png,images/fusion6.png,images/fusion7.png,images/fusion8.png,images/fusion10.png,images/fusion11.png,images/fusion13.png,images/fusion16.png,images/fusion18.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Fusions</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Fusion redefines jewelry by mixing gold, silver, and rose tones into bold contrasts.
+          Once unconventional, this blend now symbolizes individuality, freedom, and modern elegance—encouraging wearers to layer, stack, and style across metals as a reflection of fluid, personal identity.
+        </p>
+
+        <div class="pills">
+          <span class="pill">Crafted in contrast</span>
+          <span class="pill">Modern balance</span>
+          <span class="pill">Mixed metals</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              Breaking Away from Tradition: Mixed metals have moved from unconventional to must-have. Runways from Chanel to Proenza Schouler showcased gold and silver worn together, while Harper’s Bazaar and Who What Wear spotlighted stacking across tones as a 2024 jewelry essential.
+              Social media amplifies the shift: TikTok stylists pair rose gold chains with silver hoops, making contrast the new language of self-expression. What was once rule-breaking is now trend-making, embraced for its versatility and individuality.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              The Fusion Collection thrives on contrast, blending yellow, white, and rose gold into designs that feel both timeless and boldly modern. Each piece is crafted to encourage layering and stacking, allowing wearers to mix, match, and build looks that reflect their individuality.
+              By breaking away from rigid rules of uniformity, the collection transforms metal into a language of versatility, self-expression, and everyday elegance.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="gems">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="gems"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Sacred Forms ===== -->
+  <section class="wrap block" id="stacked-rings-quiet-luxury" data-gallery="stacks"
+           data-main="images/sf1.png,images/sf2.png,images/sf16.png"
+           data-more="images/sf6.png,images/sf7.png,images/sf11.png,images/sf12.png,images/sf15.png,images/sf19.png,images/sf21.png,images/sf22.png,images/sf23.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Sacred Forms</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Sacred Forms transforms jewelry into symbols and talismans—pieces chosen for meaning, values, and intention. Blending celestial, ancient, and protective motifs, the collection reflects today’s desire for spirituality and self-expression.
+          From celestial symbols to ancient motifs and protective charms, this collection embraces the rising desire for spirituality and self-expression, turning jewelry into a wearable reflection of the inner self.
+        </p>
+        <div class="pills">
+          <span class="pill">Personal talismans</span>
+          <span class="pill">Celestial symbols</span>
+          <span class="pill">Spiritual style</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              In a cultural moment where individuality reigns supreme, jewelry has become a vessel for meaning, identity, and intention. Social media has amplified this movement—#spiritualjewelry and #symbolicstyle trends have racked up millions of views, and TikTok creators showcase charm necklaces, evil-eye pendants, and zodiac medallions as everyday essentials.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              The Sacred Forms Collection speaks in symbols—moons and stars whispering guidance, charms guarding with quiet strength, and natural forms blooming with renewal. Each design is a modern talisman, crafted not only to adorn but to awaken; jewelry that carries intention, channels spirit, and reflects the soul of the wearer.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="stacks">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="stacks"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Timeless Reverie ===== -->
+  <section class="wrap block" id="timeless-reverie"
+           data-gallery="reverie"
+           data-main="images/tr16.png,images/tr10.png,images/tr3.png,images/tr4.png"
+           data-more="images/tr5.png,images/tr6.png,images/tr7.png,images/tr8.png,images/tr14.png,images/tr2.png,images/tr11.png,images/tr12.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Timeless Reverie</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Timeless Reverie blends vintage and retro styles with modern sensibility—reviving bold ’70s chains and minimalist ’90s silhouettes.
+          Nostalgic yet fresh, the collection bridges eras, honoring heritage while letting wearers express personal stories through history’s echoes.
+        </p>
+        <div class="pills">
+          <span class="pill">Heritage revival</span>
+          <span class="pill">Retro elegance</span>
+          <span class="pill">Modern heirlooms</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              Nostalgia is reshaping jewelry. Prada, Miu Miu, and Saint Laurent revived retro silhouettes on the runway, while Vogue and Marie Claire spotlighted heirloom-style chains, lockets, and brooches as 2024 must-haves. On TikTok, #vintagejewelry surged and “charm bars” in stores like Mejuri and Catbird became cultural hotspots.
+              Resale platforms like The RealReal report spikes in vintage gold and talismanic pendants—showing how jewelry today doubles as memory, identity, and meaning reborn.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              The Timeless Reverie Collection blends the bold spirit of chunky gold chains, the refined geometry of Art Deco, and the understated elegance of ’90s minimalism into a tapestry of revival.
+              Each piece is designed as a modern heirloom—vintage in influence but renewed in craftsmanship—inviting wearers to layer eras, honor heritage, and express individuality through the language of the past reborn.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="reverie">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="reverie"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Revival of Charms ===== -->
+  <section class="wrap block" id="revival-of-charms"
+           data-gallery="charms"
+           data-main="images/c1.png,images/c14.png,images/c13.png,images/c4.png"
+           data-more="images/c5.png,images/c6.png,images/c15.png,images/c8.png,images/c9.png,images/c10.png,images/c11.png,images/c12.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Revival of Charms</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Charms have evolved from nostalgic keepsakes into bold statements of self-expression.
+          Worn on jewelry or bags, they embody individuality, memory, and mood—while viral bag charms and “charm bars” showcase their versatility as storytelling accessories.
+        </p>
+        <div class="pills">
+          <span class="pill">Storytelling charms</span>
+          <span class="pill">Playful layers</span>
+          <span class="pill">Personal keepsakes</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              2024 marked the official comeback year of charms, fueled by TikTok virality, Gen-Z’s nostalgia, and a cultural craving for personalization. From Vogue to Byrdie, fashion authorities spotlighted the resurgence of charm bracelets and necklaces, while “charm bars” became hubs for custom creations.
+              Online searches surged, with Lyst reporting triple-digit growth in charm interest and Dior’s charms skyrocketing 750% month-over-month.
+              This moment is bigger than nostalgia—it’s about individuality, storytelling, and self-expression, aligning perfectly with today’s demand for fashion that is both personal and forward-thinking.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              The key elements of the collection center on personalization, maximalist layering, and playful versatility, with charms designed to be mixed, matched, and styled across necklaces, bracelets, and bags.
+              Each piece acts as a storytelling token—capturing identity, memory, or mood—while embracing the cultural shift toward individuality and self-expression.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="charms">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="charms"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Vintage Revival & Statement Pieces ===== -->
+  <section class="wrap block" id="vintage-revival"
+           data-gallery="vintage"
+           data-main="images/vr1.png,images/vr2.png,images/vr3.png,images/vr4.png"
+           data-more="images/vr5.png,images/vr6.png,images/vr7.png,images/vr8.png,images/vr9.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Vintage Revival & Statement Pieces</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Vintage Revival & Statement Pieces reimagines heirloom brooches and bold jewels with modern proportions and intricate detail.
+          More than nostalgia, the collection channels opulence into empowerment, individuality, and storytelling for today’s style seekers.
+        </p>
+        <div class="pills">
+          <span class="pill">Opulent revival</span>
+          <span class="pill">Legacy reimagined</span>
+          <span class="pill">Ornate glamour</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              The return of statement pieces has surged across runways and red carpets. From Gucci and Schiaparelli showcasing oversized brooches to celebrities like Rihanna and Lady Gaga reviving vintage silhouettes, bold jewelry is reclaiming its place in modern wardrobes.
+              Editorials in Vogue and W Magazine celebrate the brooch as “the accessory of the moment,” while TikTok style creators spotlight maximalist jewels as everyday essentials.
+              Gen Z and Millennials are driving this revival, pairing statement brooches with blazers, dresses, and even denim jackets—proof that luxury no longer hides in safes, it lives in daily wear.
+              With fashion’s current embrace of maximalism and individuality, vintage-inspired statement pieces are not just relevant, they’re essential.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              Classic brooches reimagined as bold, versatile accents—adorned with intricate filigree, sculptural motifs, gemstone clusters, and dramatic silhouettes.
+              The collection blends old-world glamour with new-world styling: layering brooches across lapels, hats, and bags, or styling them as conversation-starting centerpieces. Versatile yet expressive, each piece transforms the ordinary into the unforgettable.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="vintage">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="vintage"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- ===== Pearls Reimagined ===== -->
+  <section class="wrap block" id="stacked-styled" data-gallery="tarot"
+           data-main="images/pearl1.png,images/pearl2.png,images/pearl3.png,images/pearl4.png"
+           data-more="images/pearl5.png,images/pearl6.png,images/pearl7.png,images/pearl9.png,images/pearl10.png,images/pearl11.png,images/pearl12.png,images/pearl13.png">
+    <div class="kicker">2024 Highlight</div>
+    <h2>Pearls Reimagined</h2>
+    <div class="grid">
+      <div>
+        <p>
+          Pearl Reimagined is a celebration of one of jewelry’s oldest symbols of refinement—reborn for a modern age. No longer confined to tradition, pearls take on fresh forms in bold silhouettes, unexpected pairings, and contemporary styling.
+          This collection honors their heritage of grace while reframing them as versatile, expressive, and fashion-forward treasures for every generation.
+          This collection reframes pearls for today: less about formality, more about creativity, individuality, and modern sophistication.
+        </p>
+        <div class="pills">
+          <span class="pill">Baroque drops</span>
+          <span class="pill">Contemporary pearlcore</span>
+          <span class="pill">Bold elegance</span>
+        </div>
+        <div class="proof" style="margin-top:.75rem">
+          <details><summary>Why now?</summary>
+            <p>
+              Pearls are in a renaissance, from Chanel and Dior’s dramatic cascades to Simone Rocha and Givenchy’s edgy reinterpretations.
+              Hailed by Vogue and The New York Times as “the comeback of a century,” pearls now bridge classic elegance and modern rebellion. Worn by icons like Rihanna and Harry Styles and embraced through #pearlcore on TikTok, they’ve become everyday essentials—timeless yet boldly of the moment.
+            </p>
+          </details>
+          <details><summary>Key Elements Across the Collection:</summary>
+            <p>
+              Traditional pearls reworked into bold new designs—layered chokers, baroque pearl drops, sculptural rings, and pearl-accented hoops.
+              Mixed with modern elements like gold links, enamel details, and geometric settings, these pieces merge timeless luster with trend-driven innovation.
+              The collection balances restraint and drama, offering pearls as both subtle accents and unforgettable statement pieces.
+            </p>
+          </details>
+        </div>
+        <button class="morebtn" data-open="tarot">More images</button>
+      </div>
+      <div class="imgs" data-thumbs="tarot"></div>
+    </div>
+    <div class="div"></div>
+  </section>
+
+  <!-- Call to action -->
+  <nav class="cta-pill" aria-label="Concept actions">
+    <div class="cta-pill__inner">
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Line Sheet">
+        Request Line Sheet
+      </a>
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Book a 15-min Review">
+        Book a 15-min Review
+      </a>
+      <a class="cta-pill__btn" href="mailto:simranshah.kc@outlook.com?subject=Request Costing">
+        Ask for Costing
+      </a>
+    </div>
+  </nav>
+
+  <footer>© 2025 Kool Concepts</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* ========== Build "Jump to" Index ========== */
+      const indexNav = document.getElementById('trendIndex');
+      if (indexNav) {
+        document.querySelectorAll('section.wrap.block h2').forEach(function (h) {
+          let id = h.id;
+          if (!id) {
+            id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            h.id = id;
+          }
+          const link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = h.textContent.trim();
+          indexNav.appendChild(link);
+        });
+      }
+
+      /* ========== Simple Galleries (NO LIGHTBOX) ========== */
+      document.querySelectorAll('section.wrap.block').forEach(function (sec) {
+        const main = (sec.getAttribute('data-main') || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+
+        const more = (sec.getAttribute('data-more') || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+
+        const allImgs = main.concat(more);
+        const row = sec.querySelector('.imgs');
+        if (!row || !allImgs.length) return;
+
+        allImgs.forEach(function (src) {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          row.appendChild(img);
+        });
+
+        const btn = sec.querySelector('.morebtn');
+        if (btn) {
+          if (more.length === 0) {
+            // No extra images; hide the button
+            btn.style.display = 'none';
+          } else {
+            btn.addEventListener('click', function () {
+              const expanded = row.classList.toggle('show-all');
+              btn.textContent = expanded ? 'Show fewer images' : 'More images';
+            });
+          }
+        }
+      });
+
+      /* ========== Add lazy-loading to any other imgs ========== */
+      document.querySelectorAll('img:not([loading])').forEach(function (im) {
+        im.setAttribute('loading', 'lazy');
+      });
+    });
+  </script>
+</body>
+</html>
+
