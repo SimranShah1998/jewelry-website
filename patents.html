@@ -30,7 +30,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== HEADER (same style as other new pages) ===== */
+    /* ===== HEADER (match Home page) ===== */
     .site-header {
       background-color: #000;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
@@ -42,30 +42,26 @@
       padding: 14px 24px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 24px;
-      flex-wrap: nowrap;
     }
 
     .site-logo {
       height: 95px;
       width: auto;
       display: block;
-      margin-right: 24px;
     }
 
-    nav {
+    .site-header nav {
       display: flex;
       align-items: center;
       gap: 28px;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: flex-end;
-      margin-left: auto;
-      white-space: nowrap;
     }
 
-    nav a,
-    nav .dropbtn {
+    .site-header nav a,
+    .site-header nav .dropbtn {
       color: #f5f5f5;
       text-decoration: none;
       font-size: 0.9rem;
@@ -79,8 +75,8 @@
       position: relative;
     }
 
-    nav a::after,
-    nav .dropbtn::after {
+    .site-header nav a::after,
+    .site-header nav .dropbtn::after {
       content: "";
       position: absolute;
       left: 0;
@@ -91,12 +87,12 @@
       transition: width 0.2s ease-out;
     }
 
-    nav a:hover::after,
-    nav .dropbtn:hover::after {
+    .site-header nav a:hover::after,
+    .site-header nav .dropbtn:hover::after {
       width: 100%;
     }
 
-    nav .dropbtn {
+    .site-header nav .dropbtn {
       font-weight: 600;
       display: inline-flex;
       align-items: center;
@@ -319,13 +315,12 @@
     }
 
     .patent-slides img {
-  display: none;
-  width: 100%;
-  max-height: 260px; /* adjust! */
-  height: auto;
-  object-fit: cover;
-}
-
+      display: none;
+      width: 100%;
+      max-height: 260px; /* adjust! */
+      height: auto;
+      object-fit: cover;
+    }
 
     .patent-slides img.active {
       display: block;
@@ -362,7 +357,6 @@
       border-color: var(--gold);
     }
 
-    /* Small dots under carousel (optional) */
     .patent-dots {
       display: flex;
       justify-content: center;
@@ -441,7 +435,8 @@
       padding-top: 14px;
     }
 
-    @media (max-width: 900px) {
+    /* Header responsiveness to match Home */
+    @media (max-width: 768px) {
       .header-inner {
         flex-direction: column;
         align-items: flex-start;
@@ -452,12 +447,14 @@
         height: 64px;
       }
 
-      nav {
+      .site-header nav {
         justify-content: flex-start;
         gap: 18px;
-        overflow-x: auto;
       }
+    }
 
+    /* Patents layout responsiveness */
+    @media (max-width: 900px) {
       .patents-card {
         padding: 20px 18px 22px;
       }
@@ -474,26 +471,28 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="craftsmanship.html">Craftsmanship</a>
-        <div class="dropdown">
-          <button class="dropbtn">Market Insights ▼</button>
-          <div class="dropdown-content">
-            <a href="trends2024.html">2024</a>
-            <a href="trends2025.html">2025</a>
-            <a href="trends2026.html">2026</a>
-          </div>
+    <header class="site-header">
+        <div class="header-inner">
+       <a href="index.html">
+       <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
+      </a>
+           <nav>
+            <a href="index.html">Home</a>
+            <a href="craftsmanship.html">Craftsmanship</a>
+            <div class="dropdown">
+              <button class="dropbtn">Market Insights ▼</button>
+              <div class="dropdown-content">
+                <a href="trends2024.html">2024</a>
+                <a href="trends2025.html">2025</a>
+                <a href="trends2026.html">2026</a>
+              </div>
+            </div>
+            <a href="concepts.html">Concepts</a>
+            <a href="patents.html">Our Patents</a>
+            <a href="about.html">About</a>
+          </nav>
         </div>
-        <a href="concepts.html">Concepts</a>
-        <a href="patents.html">Our Patents</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
+      </header>
 
   <main>
     <section class="patents-wrapper">
@@ -734,6 +733,7 @@
           current = (index + total) % total;
 
           slides[current].classList.add('active');
+          if (dots[current]) dots[current].add('active');
           if (dots[current]) dots[current].classList.add('active');
         }
 

@@ -30,7 +30,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== HEADER (same style as other new pages) ===== */
+    /* ===== HEADER (same as other pages) ===== */
     .site-header {
       background-color: #000;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
@@ -42,26 +42,22 @@
       padding: 14px 24px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 24px;
-      flex-wrap: nowrap;
     }
 
     .site-logo {
       height: 95px;
       width: auto;
       display: block;
-      margin-right: 24px;
     }
 
     nav {
       display: flex;
       align-items: center;
       gap: 28px;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: flex-end;
-      margin-left: auto;
-      white-space: nowrap;
     }
 
     nav a,
@@ -106,7 +102,6 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      flex-shrink: 0;
     }
 
     .dropdown-content {
@@ -210,7 +205,7 @@
       margin-top: 6px;
     }
 
-    /* ===== INFO BANNER ===== */
+    /* ===== HIGHLIGHT BANNER ===== */
     .patents-highlight {
       margin: 18px 0 20px;
       padding: 12px 14px;
@@ -303,84 +298,6 @@
       margin: 3px 0;
     }
 
-    /* ===== PER-CARD IMAGE CAROUSEL ===== */
-    .patent-carousel {
-      position: relative;
-      margin: 10px 0 12px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #e0e0e0;
-      background-color: #fff;
-    }
-
-    .patent-slides {
-      position: relative;
-      width: 100%;
-    }
-
-    .patent-slides img {
-  display: none;
-  width: 100%;
-  max-height: 260px; /* adjust! */
-  height: auto;
-  object-fit: cover;
-}
-
-
-    .patent-slides img.active {
-      display: block;
-    }
-
-    .patent-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.35);
-      background: rgba(0, 0, 0, 0.45);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    .patent-arrow.left {
-      left: 8px;
-    }
-
-    .patent-arrow.right {
-      right: 8px;
-    }
-
-    .patent-arrow:hover {
-      background: rgba(0, 0, 0, 0.75);
-      border-color: var(--gold);
-    }
-
-    /* Small dots under carousel (optional) */
-    .patent-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      padding: 6px 0 4px;
-    }
-
-    .patent-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #ccc;
-    }
-
-    .patent-dot.active {
-      background: var(--gold);
-    }
-
     /* ===== DISCLAIMER ===== */
     .patents-disclaimer {
       margin-top: 14px;
@@ -455,7 +372,6 @@
       nav {
         justify-content: flex-start;
         gap: 18px;
-        overflow-x: auto;
       }
 
       .patents-card {
@@ -474,26 +390,27 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="craftsmanship.html">Craftsmanship</a>
-        <div class="dropdown">
-          <button class="dropbtn">Market Insights ▼</button>
-          <div class="dropdown-content">
-            <a href="trends2024.html">2024</a>
-            <a href="trends2025.html">2025</a>
-            <a href="trends2026.html">2026</a>
-          </div>
+    <header class="site-header">
+        <div class="header-inner">
+          <img src="images/logo.png" alt="Kool Concepts Logo" class="site-logo" />
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="craftsmanship.html">Craftsmanship</a>
+            <div class="dropdown">
+              <button class="dropbtn">Market Insights ▼</button>
+              <div class="dropdown-content">
+                <a href="trends2024.html">2024</a>
+                <a href="trends2025.html">2025</a>
+                <a href="trends2026.html">2026</a>
+              </div>
+            </div>
+            <a href="concepts.html">Concepts</a>
+            <a href="patents.html">Our Patents</a>
+            <a href="about.html">About</a>
+          </nav>
         </div>
-        <a href="concepts.html">Concepts</a>
-        <a href="patents.html">Our Patents</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
+      </header>
+  
 
   <main>
     <section class="patents-wrapper">
@@ -517,13 +434,14 @@
           </p>
         </div>
 
+        <!-- Highlight band -->
         <div class="patents-highlight">
           <strong>Note</strong>
-          This page offers a friendly overview of some of our protected innovations. If you’d like full legal details—
-          including patent claims and jurisdiction coverage—we’re happy to share them privately under NDA.
+          The information below provides a high-level overview of our protected innovations. Formal legal details,
+          including full claims language and jurisdiction coverage, are available upon request under NDA.
         </div>
 
-        <!-- Protected innovations with per-card carousels -->
+        <!-- Protected innovations grid -->
         <div class="patents-section">
           <h2 class="patents-heading">Key Protected Innovations</h2>
 
@@ -537,23 +455,6 @@
                 <span class="badge">Utility / Design</span>
                 <span class="badge">Studs · Pendants · Rings</span>
               </div>
-
-              <!-- CAROUSEL FOR THIS PATENT -->
-              <div class="patent-carousel" data-patent="stitch">
-                <button class="patent-arrow left" aria-label="Previous image">&#10094;</button>
-                <div class="patent-slides">
-                  <img src="images/stitch_1.png" alt="Stitch-set earrings" class="active" />
-                  <img src="images/stitch_2.png" alt="Stitch-set pendant" />
-                  <img src="images/stitch_3.png" alt="Stitch-set ring" />
-                </div>
-                <button class="patent-arrow right" aria-label="Next image">&#10095;</button>
-                <div class="patent-dots">
-                  <span class="patent-dot active"></span>
-                  <span class="patent-dot"></span>
-                  <span class="patent-dot"></span>
-                </div>
-              </div>
-
               <p class="patent-text">
                 A proprietary setting structure using “stitch” elements to anchor a central stone between upper and
                 lower plates—symbolizing past and future—while maintaining structural integrity and comfort for
@@ -575,23 +476,6 @@
                 <span class="badge">Utility / Design</span>
                 <span class="badge">Studs · Rings · Pendants</span>
               </div>
-
-              <!-- CAROUSEL FOR THIS PATENT -->
-              <div class="patent-carousel" data-patent="seamless">
-                <button class="patent-arrow left" aria-label="Previous image">&#10094;</button>
-                <div class="patent-slides">
-                  <img src="images/seamless_1.png" alt="Seamless cluster studs" class="active" />
-                  <img src="images/seamless_2.png" alt="Seamless cluster ring" />
-                  <img src="images/seamless_3.png" alt="Seamless halo pendant" />
-                </div>
-                <button class="patent-arrow right" aria-label="Next image">&#10095;</button>
-                <div class="patent-dots">
-                  <span class="patent-dot active"></span>
-                  <span class="patent-dot"></span>
-                  <span class="patent-dot"></span>
-                </div>
-              </div>
-
               <p class="patent-text">
                 A cluster-engineering approach that eliminates visible gaps between stones, creating the illusion of
                 a single, larger diamond while maintaining a smooth, continuous surface and comfortable profile.
@@ -614,23 +498,6 @@
                 <span class="badge">Design / System</span>
                 <span class="badge">Bands · Stacks · Bars</span>
               </div>
-
-              <!-- CAROUSEL FOR THIS PATENT -->
-              <div class="patent-carousel" data-patent="cipher">
-                <button class="patent-arrow left" aria-label="Previous image">&#10094;</button>
-                <div class="patent-slides">
-                  <img src="images/cipher1.png" alt="Cipher ring - initials" class="active" />
-                  <img src="images/cipher2.png" alt="Cipher stack rings" />
-                  <img src="images/cipher3.png" alt="Cipher bar necklace" />
-                </div>
-                <button class="patent-arrow right" aria-label="Next image">&#10095;</button>
-                <div class="patent-dots">
-                  <span class="patent-dot active"></span>
-                  <span class="patent-dot"></span>
-                  <span class="patent-dot"></span>
-                </div>
-              </div>
-
               <p class="patent-text">
                 A structured layout system that translates initials, names, and dates into modular dot-and-dash
                 arrangements—using rounds, bars, and negative space to create legible yet discreet codes in jewelry.
@@ -642,7 +509,7 @@
               </ul>
             </article>
 
-            <!-- Modular Motif Framework -->
+            <!-- Platform / Framework -->
             <article class="patent-card">
               <h3 class="patent-name">Modular Motif Framework</h3>
               <p class="patent-tagline">A shared architecture for symbolic, story-forward pieces.</p>
@@ -651,23 +518,6 @@
                 <span class="badge">Platform</span>
                 <span class="badge">Rings · Bangles · Charms</span>
               </div>
-
-              <!-- CAROUSEL FOR THIS PATENT -->
-              <div class="patent-carousel" data-patent="modular">
-                <button class="patent-arrow left" aria-label="Previous image">&#10094;</button>
-                <div class="patent-slides">
-                  <img src="images/modular1.png" alt="Modular charm ring" class="active" />
-                  <img src="images/modular2.png" alt="Modular bangle with motifs" />
-                  <img src="images/modular3.png" alt="Charm framework variations" />
-                </div>
-                <button class="patent-arrow right" aria-label="Next image">&#10095;</button>
-                <div class="patent-dots">
-                  <span class="patent-dot active"></span>
-                  <span class="patent-dot"></span>
-                  <span class="patent-dot"></span>
-                </div>
-              </div>
-
               <p class="patent-text">
                 A base-jewelry framework that allows interchangeable motifs—such as path symbols, celestial icons, or
                 stitched elements—to be swapped, upgraded, and recombined without compromising structural strength.
@@ -711,50 +561,6 @@
   <footer>
     <p>© 2025 Kool Concepts</p>
   </footer>
-
-  <!-- ===== SIMPLE PER-CARD CAROUSEL SCRIPT ===== -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const carousels = document.querySelectorAll('.patent-carousel');
-
-      carousels.forEach((carousel) => {
-        const slides = carousel.querySelectorAll('.patent-slides img');
-        const dots = carousel.querySelectorAll('.patent-dot');
-        const prevBtn = carousel.querySelector('.patent-arrow.left');
-        const nextBtn = carousel.querySelector('.patent-arrow.right');
-
-        let current = 0;
-
-        function showSlide(index) {
-          if (!slides.length) return;
-          slides[current].classList.remove('active');
-          if (dots[current]) dots[current].classList.remove('active');
-
-          const total = slides.length;
-          current = (index + total) % total;
-
-          slides[current].classList.add('active');
-          if (dots[current]) dots[current].classList.add('active');
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', () => {
-            showSlide(current - 1);
-          });
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', () => {
-            showSlide(current + 1);
-          });
-        }
-
-        dots.forEach((dot, idx) => {
-          dot.addEventListener('click', () => showSlide(idx));
-        });
-      });
-    });
-  </script>
 </body>
 
 </html>
