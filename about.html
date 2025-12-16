@@ -224,6 +224,18 @@
       text-transform: uppercase;
     }
 
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+
     /* ===== CTA PILL ===== */
     .cta-pill {
       margin-top: 22px;
@@ -324,7 +336,7 @@
 
 
   <main>
-    <section class="about-wrapper">
+    <section class="hero-wrapper fade-in">
       <div class="about-card">
         <div class="about-kicker">About Us</div>
         <h1 class="about-title">Kool Concepts</h1>

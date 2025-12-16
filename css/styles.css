@@ -1,50 +1,34 @@
-/* === Load Kugile Font === */
-@font-face {
-  font-family: 'Kugile';
-  src: url('fonts/Kugile.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+/* ===================================================== */
+/*                 GLOBAL FOUNDATION                     */
+/* ===================================================== */
+
+:root {
+  --ink: #222;
+  --muted: #666;
+  --line: #eaeaea;
+  --gold: #b89a5e;
+  --bg-soft: #f5f4f2;
+  --gallery-card-min: 220px;
 }
 
-/* === Global Font === */
-* {
-  font-family: 'Kugile', serif;
-}
-
-/* === Global Styles === */
+html,
 body {
   margin: 0;
-  background-color: #f4f5f7;
-  color: #111;
+  padding: 0;
+  font-family: Georgia, serif;
+  color: var(--ink);
+  background-color: var(--bg-soft);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* (Optional) If you want centered body text globally, keep this.
+   Otherwise delete it and control alignment per section. */
+body {
   text-align: center;
-  opacity: 0;
-  animation: page-fade-in 0.9s ease-out forwards;
-}
-
-/* Keyframes for the fade (with a slight slide up) */
-@keyframes page-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  body {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Prevent scroll when lightbox is open */
-.no-scroll {
-  overflow: hidden;
 }
 
 /* ===================================================== */
@@ -56,40 +40,33 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* container that holds logo + nav */
 .header-inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 14px 40px 14px 56px;   /* top | right | bottom | left */
+  padding: 14px 24px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 24px;
-  flex-wrap: nowrap;
 }
 
-/* logo image */
 .site-logo {
   height: 95px;
   width: auto;
   display: block;
-  margin-right: 24px;             /* space between logo and nav */
-  cursor: pointer;
 }
 
-/* main header nav */
-.site-header .main-nav {
+.main-nav {
   display: flex;
   align-items: center;
   gap: 28px;
-  flex-wrap: nowrap;
-  margin-left: auto;              /* pushes nav to the right */
-  white-space: nowrap;            /* keep labels on one line */
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 /* links + dropdown button */
-.site-header .main-nav a,
-.site-header .main-nav .dropbtn {
+.main-nav a,
+.main-nav .dropbtn {
   color: #f5f5f5;
   text-decoration: none;
   font-size: 0.9rem;
@@ -104,40 +81,36 @@ body {
 }
 
 /* underline hover */
-.site-header .main-nav a::after,
-.site-header .main-nav .dropbtn::after {
+.main-nav a::after,
+.main-nav .dropbtn::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -4px;
   width: 0;
   height: 2px;
-  background-color: #b89a5e;      /* gold underline */
+  background-color: var(--gold);
   transition: width 0.2s ease-out;
 }
 
-.site-header .main-nav a:hover::after,
-.site-header .main-nav .dropbtn:hover::after {
+.main-nav a:hover::after,
+.main-nav .dropbtn:hover::after {
   width: 100%;
 }
 
-/* dropdown trigger */
-.site-header .main-nav .dropbtn {
+.main-nav .dropbtn {
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
-/* dropdown container */
-.site-header .dropdown {
+.dropdown {
   position: relative;
   display: inline-block;
-  flex-shrink: 0;
 }
 
-/* dropdown menu */
-.site-header .dropdown-content {
+.dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
@@ -150,7 +123,7 @@ body {
   z-index: 1000;
 }
 
-.site-header .dropdown-content a {
+.dropdown-content a {
   display: block;
   padding: 8px 14px;
   color: #f5f5f5;
@@ -160,237 +133,126 @@ body {
   text-transform: uppercase;
 }
 
-.site-header .dropdown-content a:hover {
+.dropdown-content a:hover {
   background-color: #1f1f1f;
-  color: #b89a5e;
+  color: var(--gold);
 }
 
-/* show menu on hover */
-.site-header .dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Header responsiveness */
-@media (max-width: 900px) {
+/* Responsive header */
+@media (max-width: 768px) {
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
-    padding: 12px 16px;
+    gap: 12px;
   }
 
   .site-logo {
     height: 64px;
-    margin-right: 0;
   }
 
-  .site-header .main-nav {
-    margin-left: 0;
+  .main-nav {
+    justify-content: flex-start;
     gap: 18px;
-    overflow-x: auto;
   }
 }
 
 /* ===================================================== */
-/*                       GALLERY                         */
+/*                     MAIN LAYOUT                       */
 /* ===================================================== */
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  padding: 40px;
-  max-width: 1200px;
+main {
+  padding: 34px 16px 26px;
+}
+
+.hero-wrapper {
+  padding: 24px 0 10px;
+}
+
+.hero-content {
+  max-width: 920px;
   margin: 0 auto;
-  position: relative;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
-  cursor: zoom-in;
-}
-
-/* enlarged hover popup */
-.gallery img:hover {
-  transform: scale(1.5);
-  z-index: 50;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
-  position: relative;
-}
-
-/* ===================================================== */
-/*                       FOOTER                          */
-/* ===================================================== */
-
-footer {
-  background-color: #000;
-  color: #b67c2f;
-  padding: 20px 0;
-  font-size: 14px;
-}
-
-/* ===================================================== */
-/*                   TRENDS PAGE LAYOUT                  */
-/* ===================================================== */
-
-.trends-page {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.sidebar {
-  width: 220px;
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: left;
-}
-
-.sidebar h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #b67c2f;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  margin-bottom: 12px;
-}
-
-.sidebar a {
-  color: #111;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.sidebar a:hover {
-  text-decoration: underline;
-}
-
-.trend-content {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: left;
-}
-
-.trend-content h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #b67c2f;
-}
-
-/* ===================================================== */
-/*                     CONCEPT CARDS                     */
-/* ===================================================== */
-
-.concept-card {
-  background: #fff;
-  border: 1px solid #e6e6e6;
+  text-align: center;
+  line-height: 1.7;
+  padding: 0 12px 32px;
+  background-color: #fff;
   border-radius: 16px;
-  padding: 28px;
-  margin: 40px auto;
-  max-width: 980px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
 }
 
-.concept-card h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
+.hero-inner-padding {
+  padding: 32px 32px 10px;
 }
 
-.concept-tagline {
-  font-style: italic;
-  font-size: 18px;
-  color: #444;
-  margin-bottom: 16px;
+.hero-title {
+  font-size: clamp(30px, 4vw, 42px);
+  margin: 0 0 6px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.concept-intro {
-  font-size: 16px;
-  margin-bottom: 22px;
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 4px 0 10px;
+  color: var(--gold);
 }
 
-/* spec table */
-.concept-spec {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 24px;
+.hero-meta {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 6px 0 16px;
+  color: var(--muted);
 }
 
-.concept-spec th {
-  text-align: left;
-  padding: 10px;
-  font-weight: bold;
-  background: #fafafa;
-  border: 1px solid #e0e0e0;
-  width: 30%;
-  font-size: 15px;
+.hero-intro {
+  font-size: 1rem;
+  margin: 10px 0 14px;
 }
 
-.concept-spec td {
-  padding: 10px;
-  border: 1px solid #e0e0e0;
-  font-size: 15px;
+.divider {
+  width: 48%;
+  margin: 20px auto;
+  border: 0;
+  border-top: 1px solid #dedede;
 }
 
-/* gallery inside concept cards */
-.concept-gallery {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.concept-gallery figure {
-  width: 30%;
-  min-width: 220px;
-  margin: 0;
+.section {
+  max-width: 760px;
+  margin: 20px auto;
   text-align: center;
+  line-height: 1.7;
 }
 
-.concept-gallery img {
-  width: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+.section-title {
+  font-weight: 600;
+  color: var(--gold);
+  margin-top: 16px;
+  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.98rem;
 }
 
-.concept-gallery figcaption {
-  margin-top: 8px;
-  font-size: 15px;
+.section-underline {
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 0 auto 14px;
+  border-radius: 999px;
+}
+
+.section p {
+  font-size: 0.98rem;
   color: #333;
-  font-style: italic;
-}
-
-/* CTA inside the card */
-.concept-cta {
-  text-align: center;
-}
-
-/* Georgia override just for concept cards */
-.concept-card,
-.concept-card * {
-  font-family: Georgia, serif !important;
+  margin: 6px 0 0;
 }
 
 /* ===================================================== */
-/*                    PROCESS BAND ROW                   */
+/*                  PROCESS BAND (GRID)                  */
 /* ===================================================== */
 
 .process-band {
@@ -403,7 +265,7 @@ footer {
   padding: 14px;
   margin: 22px auto;
   max-width: 1100px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.05);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
 }
 
 .process-step {
@@ -438,247 +300,88 @@ footer {
 }
 
 /* ===================================================== */
-/*                   CTA PILL (GLOBAL)                   */
+/*                      CTA PILL                         */
 /* ===================================================== */
 
 .cta-pill {
-  font-family: Georgia, serif;
+  margin-top: 22px;
+  margin-bottom: 16px;
   display: flex;
   justify-content: center;
-  margin: 28px auto;
-  padding: 8px;
-  max-width: 980px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  padding: 0 16px;
 }
 
 .cta-pill__inner {
   display: flex;
-  gap: 10px;
-  align-items: center;
   flex-wrap: wrap;
-  border-radius: 9999px;
-  padding: 6px;
-  background: rgba(0,0,0,0.02);
+  gap: 10px;
+  justify-content: center;
+  background-color: #000;
+  padding: 14px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Individual pill buttons */
 .cta-pill__btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 9999px;
-  background: #111;
-  color: #fff;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid #f0f0f0;
   text-decoration: none;
-  font-size: 15.5px;
-  line-height: 1;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+  color: #f5f5f5;
+  font-size: 0.86rem;
+  background: transparent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .cta-pill__btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  background: #222;
-}
-
-.cta-pill__btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(17,17,17,0.25), 0 6px 18px rgba(0,0,0,0.12);
-}
-
-/* Light / ghost variant */
-.cta-pill__btn.is-ghost {
-  background: #fff;
-  color: #111;
-  border: 1px solid rgba(0,0,0,0.12);
-}
-
-.cta-pill__btn.is-ghost:hover {
-  background: #f5f5f5;
-}
-
-/* Responsive tweaks */
-@media (max-width: 720px) {
-  .cta-pill {
-    padding: 10px;
-    margin: 22px 12px;
-  }
-  .cta-pill__inner {
-    gap: 8px;
-  }
-  .cta-pill__btn {
-    flex: 1 1 auto;
-    text-align: center;
-    font-size: 15px;
-    padding: 11px 14px;
-  }
-}
-
-/* Simple CTA-row buttons (if you use that block anywhere) */
-.cta-row {
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin:20px 0;
-  align-items:center;
-  justify-content:center;
-}
-
-.cta-row a {
-  font-family: Georgia, serif;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px 18px;
-  border:1px solid #222;
-  border-radius:999px;
-  text-decoration:none;
-  line-height:1;
-  font-size:15px;
-  font-weight:600;
-  color:#222;
-  background:#fff;
-  box-shadow: 0 0 0 0 rgba(0,0,0,0);
-  transition: box-shadow .15s ease, background .15s ease, transform .02s ease;
-}
-
-.cta-row a:first-child {
-  background:#111;
-  color:#fff;
-  border-color:#111;
-}
-
-.cta-row a:hover {
-  background:#f7f7f7;
-}
-
-.cta-row a:first-child:hover {
-  background:#000;
-}
-
-.cta-row a:focus-visible {
-  outline: 3px solid #8fb5ff;
-  outline-offset: 2px;
-}
-
-.cta-row a > svg,
-.cta-row a > span.icon {
-  margin-right:8px;
-}
-
-@media (max-width:700px){
-  .cta-row{ gap:10px }
-  .cta-row a{
-    flex:1 1 calc(50% - 10px);
-    text-align:center;
-    padding:12px 14px;
-  }
-}
-
-/* ===================================================== */
-/*                     LIGHTBOX (GLOBAL)                 */
-/* ===================================================== */
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
-}
-
-.lightbox--open {
-  display: flex;
-}
-
-.lightbox__inner {
-  position: relative;
-  max-width: 900px;
-  width: 100%;
-  max-height: 90vh;
-  background: #111;
-  border-radius: 18px;
-  padding: 18px 48px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
-}
-
-/* Centered image */
-.lightbox__img {
-  display: block;
-  max-width: 100%;
-  max-height: 70vh;
-  margin: 0 auto 12px auto;
-  border-radius: 14px;
-  object-fit: contain;
-  background: #000;
-}
-
-/* Close / arrows */
-.lightbox__close,
-.lightbox__prev,
-.lightbox__next {
-  position: absolute;
-  border: none;
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--gold);
   color: #fff;
-  font-size: 22px;
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-color: var(--gold);
 }
 
-.lightbox__close {
-  top: 10px;
-  right: 10px;
+/* ghost variant (optional) */
+.cta-pill__btn.is-ghost {
+  background: transparent;
+  color: #f5f5f5;
 }
 
-.lightbox__prev {
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-}
+/* ===================================================== */
+/*                       FOOTER                          */
+/* ===================================================== */
 
-.lightbox__next {
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.lightbox__close:hover,
-.lightbox__prev:hover,
-.lightbox__next:hover {
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* Counter text */
-.lightbox__counter {
+footer {
+  color: #777;
+  margin: 18px 0 24px;
   text-align: center;
-  color: #f4f5f7;
-  font-size: 14px;
-  margin-top: 2px;
+  font-size: 0.85rem;
+  border-top: 1px solid #ddd;
+  padding-top: 14px;
 }
 
-/* Mobile tweaks */
-@media (max-width: 640px) {
-  .lightbox__inner {
-    padding: 14px 14px 18px;
-  }
 
-  .lightbox__prev,
-  .lightbox__next {
-    width: 30px;
-    height: 30px;
+/* ===== GLOBAL PAGE FADE (SLOW & FLUID) ===== */
+
+body {
+  opacity: 0;
+  animation: pageFadeIn 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Smooth luxury fade */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
+
+
