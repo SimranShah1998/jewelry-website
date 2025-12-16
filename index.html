@@ -251,37 +251,7 @@
       color: #111;
     }
 
-    /* ===== GALLERY ===== */
-    .gallery {
-      max-width: 1180px;
-      margin: 32px auto 10px;
-      padding: 0 8px 10px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--gallery-card-min), 1fr));
-      gap: 18px;
-      justify-items: center;
-    }
-
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid #e0e0e0;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-      background-color: #fff;
-      cursor: zoom-in;
-      transform-origin: center center;
-      transition: transform 0.22s ease-out, box-shadow 0.22s ease-out, border-color 0.22s ease-out;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-      border-color: var(--gold);
-      position: relative;
-      z-index: 5;
-    }
+    
 
     /* ===== LIGHTBOX ===== */
     .lightbox {
@@ -449,7 +419,6 @@
   </style>
 </head>
 
-<body>
   <body>
     <header class="site-header">
       <div class="header-inner">
